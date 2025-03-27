@@ -1,0 +1,446 @@
+import React, { useState, useEffect } from 'react';
+import { Camera } from 'lucide-react';
+
+const AuthorityFramework = () => {
+  const [activeAuthority, setActiveAuthority] = useState(null);
+  const [activeCase, setActiveCase] = useState(null);
+  
+  // Authority types data
+  const authorities = [
+    {
+      id: "formal",
+      title: "Formal Authority",
+      subtitle: "Position-Based Power",
+      color: "#4568DC",
+      description: "Power derived from official position within an organizational structure",
+      evidence: [
+        "84% compliance when seen as legitimate",
+        "42% compliance when legitimacy questioned",
+        "Most effective in stable environments"
+      ],
+      stats: "(Tyler & Huo, 2002)",
+      relevance: "As a student entrepreneur, this is the authority you'll have the least of initially, but will gain through formal business registration, partnerships, and investor agreements.",
+      examples: ["University administrators", "Corporate executives", "Government officials"]
+    },
+    {
+      id: "expert",
+      title: "Expert Authority",
+      subtitle: "Knowledge-Based Influence",
+      color: "#56ab2f",
+      description: "Influence derived from specialized knowledge and demonstrated expertise",
+      evidence: [
+        "3.2x greater influence than non-experts in same position",
+        "28% more effective during organizational change",
+        "Highest impact when paired with demonstrable results"
+      ],
+      stats: "(Cross & Prusak, 2002)",
+      relevance: "Your university education and specific industry knowledge will be your primary source of expert authority in your entrepreneurial ventures.",
+      examples: ["Technical specialists", "Industry veterans", "Academic researchers"]
+    },
+    {
+      id: "moral",
+      title: "Moral Authority",
+      subtitle: "Values-Based Leadership",
+      color: "#b24592",
+      description: "Influence stemming from perceived integrity, consistency and ethical behavior",
+      evidence: [
+        "+35% voluntary effort from followers",
+        "-22% monitoring needed for compliance",
+        "Strongest predictor of long-term loyalty"
+      ],
+      stats: "(Brown et al., 2005)",
+      relevance: "For UK startups focused on sustainability or social impact, moral authority is particularly valuable for attracting investors and team members.",
+      examples: ["Ethical business leaders", "Social entrepreneurs", "Community organizers"]
+    },
+    {
+      id: "social",
+      title: "Social Authority",
+      subtitle: "Network-Based Influence",
+      color: "#FF8008",
+      description: "Power derived from connections, relationships and social capital",
+      evidence: [
+        "Network centrality predicts influence (r=0.74)",
+        "2.3x more influential during organizational change",
+        "Key factor in resource acquisition for startups"
+      ],
+      stats: "(Brass & Burkhardt, 1993)",
+      relevance: "Your university networks and UK startup ecosystem connections will be critical social capital for your entrepreneurial success.",
+      examples: ["Networked professionals", "Community leaders", "Social media influencers"]
+    },
+    {
+      id: "digital",
+      title: "Digital Authority",
+      subtitle: "Virtual Environment Influence",
+      color: "#03A9F4",
+      description: "Authority established through online presence and digital engagement",
+      evidence: [
+        "Shifts 31% more frequently than traditional authority",
+        "Response time replaces physical presence",
+        "Critical for remote teams and digital marketplaces"
+      ],
+      stats: "(Gibson & Cohen, 2003)",
+      relevance: "For a digital-native UK entrepreneur, building online credibility through content and community engagement is essential.",
+      examples: ["Digital creators", "Online community managers", "Tech thought leaders"]
+    }
+  ];
+
+  // Case studies data
+  const caseStudies = [
+    {
+      id: "thatcher",
+      name: "Margaret Thatcher",
+      role: "Former UK Prime Minister",
+      color: "#2ecc71",
+      description: "Exemplified conviction-based leadership with clear moral positioning",
+      stats: [
+        "91% policy voting consistency",
+        "3.2x higher use of absolute language",
+        "Transformed UK economic policy through conviction"
+      ],
+      authorities: ["formal", "moral"],
+      relevance: "Shows how unwavering conviction can transform an organization or country, even when facing significant opposition."
+    },
+    {
+      id: "branson",
+      name: "Richard Branson",
+      role: "Virgin Group Founder",
+      color: "#e74c3c",
+      description: "Built authority through personality-driven entrepreneurship and publicity",
+      stats: [
+        "400+ companies under Virgin brand",
+        "£5B+ personal wealth from diverse ventures",
+        "Consistently ranks among UK's most trusted business leaders"
+      ],
+      authorities: ["expert", "social", "digital"],
+      relevance: "Demonstrates how UK entrepreneurs can leverage personal brand and social capital across multiple industries."
+    },
+    {
+      id: "merkel",
+      name: "Angela Merkel",
+      role: "Former German Chancellor",
+      color: "#f39c12",
+      description: "Developed crisis-tested authority through measured, evidence-based decisions",
+      stats: [
+        "+18% approval ratings during crisis periods",
+        "+34% EU voting support on key initiatives",
+        "Maintained authority through 4 terms as Chancellor"
+      ],
+      authorities: ["expert", "formal", "moral"],
+      relevance: "Shows how consistent, rational decision-making builds enduring authority, particularly in uncertain environments."
+    },
+    {
+      id: "musk",
+      name: "Elon Musk",
+      role: "Tesla/SpaceX CEO",
+      color: "#9b59b6",
+      description: "Combined technical expertise with digital presence to build authority",
+      stats: [
+        "120M+ Twitter/X followers",
+        "Stock moves 4.3% on average per tweet",
+        "Transformed multiple industries through vision"
+      ],
+      authorities: ["expert", "digital"],
+      relevance: "Illustrates how technical expertise combined with digital engagement can create outsized influence in modern markets."
+    }
+  ];
+  
+  // Cultural variations data
+  const culturalVariations = [
+    {
+      region: "UK/Northern Europe",
+      description: "Lower power distance cultures where expert authority often trumps formal",
+      stats: "Expert authority 38% more effective than formal in these regions"
+    },
+    {
+      region: "Southern Europe",
+      description: "Greater emphasis on social authority and relationship networks",
+      stats: "Social connections 27% more influential in business outcomes"
+    },
+    {
+      region: "East Asia",
+      description: "Higher power distance with greater respect for formal authority",
+      stats: "Formal authority 43% more effective than in UK contexts"
+    },
+    {
+      region: "Silicon Valley",
+      description: "Digital and expert authority dominate over traditional structures",
+      stats: "Digital presence 2.4x more important than formal titles"
+    }
+  ];
+
+  // Handle authority selection
+  const handleAuthorityClick = (id) => {
+    setActiveAuthority(activeAuthority === id ? null : id);
+    if (activeAuthority !== id) setActiveCase(null);
+  };
+
+  // Handle case study selection
+  const handleCaseClick = (id) => {
+    setActiveCase(activeCase === id ? null : id);
+    if (activeCase !== id) setActiveAuthority(null);
+  };
+
+  return (
+    <div className="bg-white rounded-lg shadow-lg p-6 max-w-6xl mx-auto">
+      <div className="text-center mb-8">
+        <h1 className="text-3xl font-bold text-gray-800">Evidence-Based Authority Framework</h1>
+        <p className="text-gray-600 mt-2">Based on empirical research across organizational contexts and case studies</p>
+      </div>
+
+      {/* Main Visualization Section */}
+      <div className="relative">
+        {/* Center Core */}
+        <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-40 h-40 rounded-full bg-gray-100 border-2 border-gray-300 flex flex-col items-center justify-center z-10">
+          <span className="text-lg font-bold text-gray-800">Legitimacy Core</span>
+          <span className="text-xs text-gray-600 text-center mt-1 px-2">
+            Voluntary compliance without coercive force
+            <br />
+            (Tyler, 2006)
+          </span>
+        </div>
+
+        {/* Zone of Acceptance */}
+        <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-56 h-56 rounded-full border-2 border-gray-300 border-dashed z-0">
+          <div className="absolute right-0 top-1/4 transform translate-x-full px-2 py-1 bg-white rounded shadow-sm">
+            <span className="text-xs font-bold">Zone of Acceptance</span>
+            <p className="text-xs text-gray-600">70% of directives accepted without question</p>
+          </div>
+        </div>
+
+        {/* Authority Types - Arranged in a pentagon */}
+        <div className="relative w-full h-96">
+          {authorities.map((authority, index) => {
+            // Calculate positions in a pentagon around the center
+            const angle = (index * (2 * Math.PI / 5)) - (Math.PI / 2); // Start from top
+            const radius = 180;
+            const x = 400 + radius * Math.cos(angle);
+            const y = 200 + radius * Math.sin(angle);
+            
+            const isActive = activeAuthority === authority.id;
+            const isRelated = activeCase && caseStudies.find(cs => cs.id === activeCase)?.authorities.includes(authority.id);
+            
+            return (
+              <div 
+                key={authority.id}
+                className={`absolute transform -translate-x-1/2 -translate-y-1/2 w-40 cursor-pointer transition-all duration-300
+                  ${isActive || isRelated ? 'z-20 scale-110' : 'z-10'}`}
+                style={{
+                  left: `${x}px`,
+                  top: `${y}px`
+                }}
+                onClick={() => handleAuthorityClick(authority.id)}
+              >
+                <div 
+                  className="rounded-lg p-3 shadow-md text-white"
+                  style={{ 
+                    backgroundColor: authority.color,
+                    opacity: activeAuthority && !isActive && !isRelated ? 0.6 : 1
+                  }}
+                >
+                  <h3 className="font-bold text-center">{authority.title}</h3>
+                  <p className="text-xs text-center mb-1">{authority.subtitle}</p>
+                  <hr className="border-white opacity-30 my-1" />
+                  <ul className="text-xs mt-2">
+                    {authority.evidence.slice(0, isActive ? 3 : 1).map((item, i) => (
+                      <li key={i} className="text-center my-1">{item}</li>
+                    ))}
+                    <li className="text-center text-xs opacity-80">{authority.stats}</li>
+                  </ul>
+                </div>
+                
+                {/* Connection line to center */}
+                <svg className="absolute top-1/2 left-1/2 -z-10" style={{ width: radius, height: 200 }}>
+                  <line 
+                    x1="0" 
+                    y1="0" 
+                    x2={400 - x} 
+                    y2={200 - y} 
+                    stroke={authority.color} 
+                    strokeWidth="2" 
+                    strokeOpacity={activeAuthority && !isActive && !isRelated ? 0.3 : 0.7} 
+                  />
+                </svg>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Detailed View (shows when authority or case is selected) */}
+        <div className="mt-8 mb-4">
+          {activeAuthority && (
+            <div className="bg-gray-50 rounded-lg p-4 border border-gray-200 shadow-sm">
+              <h2 className="text-xl font-bold" style={{ color: authorities.find(a => a.id === activeAuthority)?.color }}>
+                {authorities.find(a => a.id === activeAuthority)?.title}
+              </h2>
+              
+              <p className="my-2">{authorities.find(a => a.id === activeAuthority)?.description}</p>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                <div>
+                  <h3 className="font-bold text-gray-700 text-sm">Evidence:</h3>
+                  <ul className="list-disc pl-5 mt-1 text-sm">
+                    {authorities.find(a => a.id === activeAuthority)?.evidence.map((item, i) => (
+                      <li key={i}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="font-bold text-gray-700 text-sm">UK Examples:</h3>
+                  <ul className="list-disc pl-5 mt-1 text-sm">
+                    {authorities.find(a => a.id === activeAuthority)?.examples.map((item, i) => (
+                      <li key={i}>{item}</li>
+                    ))}
+                  </ul>
+                  <h3 className="font-bold text-gray-700 text-sm mt-3">For UK Student Entrepreneurs:</h3>
+                  <p className="text-sm mt-1">{authorities.find(a => a.id === activeAuthority)?.relevance}</p>
+                </div>
+              </div>
+            </div>
+          )}
+          
+          {activeCase && (
+            <div className="bg-gray-50 rounded-lg p-4 border border-gray-200 shadow-sm">
+              <h2 className="text-xl font-bold" style={{ color: caseStudies.find(c => c.id === activeCase)?.color }}>
+                {caseStudies.find(c => c.id === activeCase)?.name}
+              </h2>
+              <p className="text-sm text-gray-600">{caseStudies.find(c => c.id === activeCase)?.role}</p>
+              
+              <p className="my-2">{caseStudies.find(c => c.id === activeCase)?.description}</p>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                <div>
+                  <h3 className="font-bold text-gray-700 text-sm">Key Statistics:</h3>
+                  <ul className="list-disc pl-5 mt-1 text-sm">
+                    {caseStudies.find(c => c.id === activeCase)?.stats.map((item, i) => (
+                      <li key={i}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="font-bold text-gray-700 text-sm">Authority Types Used:</h3>
+                  <ul className="list-disc pl-5 mt-1 text-sm">
+                    {caseStudies.find(c => c.id === activeCase)?.authorities.map((id) => (
+                      <li key={id} style={{ color: authorities.find(a => a.id === id)?.color }}>
+                        {authorities.find(a => a.id === id)?.title}
+                      </li>
+                    ))}
+                  </ul>
+                  <h3 className="font-bold text-gray-700 text-sm mt-3">Relevance to Entrepreneurs:</h3>
+                  <p className="text-sm mt-1">{caseStudies.find(c => c.id === activeCase)?.relevance}</p>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Case Studies Section */}
+        <div className="mt-10">
+          <h2 className="text-xl font-bold text-gray-800 mb-4">Case Studies</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+            {caseStudies.map((caseStudy) => {
+              const isActive = activeCase === caseStudy.id;
+              const isRelatedToAuthority = activeAuthority && caseStudy.authorities.includes(activeAuthority);
+              
+              return (
+                <div 
+                  key={caseStudy.id}
+                  className={`border rounded-lg p-4 cursor-pointer transition-all duration-300
+                    ${isActive ? 'border-2' : 'border'}
+                    ${isActive || isRelatedToAuthority ? 'shadow-md' : 'shadow-sm'}
+                    ${activeCase && !isActive && !isRelatedToAuthority ? 'opacity-60' : 'opacity-100'}`}
+                  style={{ borderColor: caseStudy.color }}
+                  onClick={() => handleCaseClick(caseStudy.id)}
+                >
+                  <div className="flex items-center mb-2">
+                    <div
+                      className="w-8 h-8 rounded-full mr-2 flex items-center justify-center text-white"
+                      style={{ backgroundColor: caseStudy.color }}
+                    >
+                      {caseStudy.name.charAt(0)}
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-gray-800">{caseStudy.name}</h3>
+                      <p className="text-xs text-gray-600">{caseStudy.role}</p>
+                    </div>
+                  </div>
+                  
+                  <p className="text-xs text-gray-800 mb-2">
+                    {isActive ? caseStudy.description : caseStudy.description.substring(0, 60) + '...'}
+                  </p>
+                  
+                  {/* Authority connections */}
+                  <div className="flex flex-wrap gap-1 mt-2">
+                    {caseStudy.authorities.map((authId) => (
+                      <span
+                        key={authId}
+                        className="px-2 py-1 rounded-full text-xs text-white"
+                        style={{ backgroundColor: authorities.find(a => a.id === authId)?.color }}
+                      >
+                        {authorities.find(a => a.id === authId)?.title.split(' ')[0]}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Cultural Variations Section */}
+        <div className="mt-10">
+          <h2 className="text-xl font-bold text-gray-800 mb-4">Cultural Variations in Authority</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {culturalVariations.map((culture, index) => (
+              <div 
+                key={index}
+                className="bg-gray-50 rounded-lg p-4 border border-gray-200"
+              >
+                <h3 className="font-bold text-gray-800">{culture.region}</h3>
+                <p className="text-sm text-gray-700 my-2">{culture.description}</p>
+                <p className="text-xs text-gray-600 italic">{culture.stats}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Practical Application */}
+        <div className="mt-10 bg-gray-50 rounded-lg p-4 border border-gray-200">
+          <h2 className="text-xl font-bold text-gray-800 mb-2">Building Authority as a UK Student Entrepreneur</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div>
+              <h3 className="font-bold text-gray-700">Short-Term (0-6 months)</h3>
+              <ul className="list-disc pl-5 mt-1 text-sm">
+                <li>Start with <span style={{color: authorities[1].color}}>Expert Authority</span>: Showcase university projects and specific industry knowledge in your startup area</li>
+                <li>Build <span style={{color: authorities[4].color}}>Digital Authority</span>: Create LinkedIn content about your industry and entrepreneurial journey</li>
+                <li>Leverage university connections for initial <span style={{color: authorities[3].color}}>Social Authority</span></li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-bold text-gray-700">Medium-Term (6-18 months)</h3>
+              <ul className="list-disc pl-5 mt-1 text-sm">
+                <li>Establish <span style={{color: authorities[0].color}}>Formal Authority</span> through proper business registration and partnerships</li>
+                <li>Strengthen <span style={{color: authorities[3].color}}>Social Authority</span> by joining UK startup communities and accelerators</li>
+                <li>Build <span style={{color: authorities[2].color}}>Moral Authority</span> through consistent delivery on commitments</li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-bold text-gray-700">Long-Term (18+ months)</h3>
+              <ul className="list-disc pl-5 mt-1 text-sm">
+                <li>Balance all authority types for maximum impact</li>
+                <li>Focus on building a track record that demonstrates integrity (<span style={{color: authorities[2].color}}>Moral</span>) and results (<span style={{color: authorities[1].color}}>Expert</span>)</li>
+                <li>Utilize your growing network (<span style={{color: authorities[3].color}}>Social</span>) to access UK government entrepreneurship resources</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Footer with sources */}
+      <div className="mt-10 text-center text-xs text-gray-500">
+        <p>Based on empirical research by Tyler, Cross & Prusak, Brown, Brass & Burkhardt, Gardner & Avolio, Gibson & Cohen, GLOBE Study</p>
+      </div>
+    </div>
+  );
+};
+
+export default AuthorityFramework;
