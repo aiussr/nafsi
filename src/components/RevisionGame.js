@@ -50,15 +50,26 @@ const RevisionGame = ({ goBack }) => {
     // Split into chunks for lazy loading
     return chunkArray(cardsToUse, CARDS_TO_LOAD_IMMEDIATELY);
   }, [revisionMode, revisionCards]);
-  
+  -------------------
   // Initialize first chunk of cards immediately
+// Also fix the initial loading to show the exact card count from the start
+// Find the useEffect that loads cardChunks and replace with:
   useEffect(() => {
     if (cardChunks.length > 0) {
-      setCurrentCards(cardChunks[0]);
+      // For "all" mode, take exactly MAX_CARDS_PER_SESSION cards
+      if (revisionMode === 'all') {
+        const allCards = cardChunks.flat();
+        const initialCards = allCards.length > MAX_CARDS_PER_SESSION ? 
+          allCards.slice(0, MAX_CARDS_PER_SESSION) : allCards;
+        setCurrentCards(initialCards);
+      } else {
+        // For specific weeks, take all cards at once
+        setCurrentCards(cardChunks.flat());
+      }
       resetGameState();
     }
-  }, [cardChunks]);
-  
+  }, [cardChunks, resetGameState, revisionMode]);
+  ----------------
   // Load more card chunks as user progresses
   useEffect(() => {
     const loadNextChunk = () => {
