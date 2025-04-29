@@ -50,7 +50,7 @@ const RevisionGame = ({ goBack }) => {
     // Split into chunks for lazy loading
     return chunkArray(cardsToUse, CARDS_TO_LOAD_IMMEDIATELY);
   }, [revisionMode, revisionCards]);
-  -------------------
+  
   // Initialize first chunk of cards immediately
 // Also fix the initial loading to show the exact card count from the start
 // Find the useEffect that loads cardChunks and replace with:
@@ -69,7 +69,7 @@ const RevisionGame = ({ goBack }) => {
       resetGameState();
     }
   }, [cardChunks, resetGameState, revisionMode]);
-  ----------------
+  
   // Load more card chunks as user progresses
   useEffect(() => {
     const loadNextChunk = () => {
