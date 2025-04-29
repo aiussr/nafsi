@@ -69,7 +69,9 @@ const RevisionGame = ({ goBack }) => {
       resetGameState();
     }
   }, [cardChunks, resetGameState, revisionMode]);
-  
+
+
+  /*
   // Load more card chunks as user progresses
   useEffect(() => {
     const loadNextChunk = () => {
@@ -97,6 +99,8 @@ const RevisionGame = ({ goBack }) => {
       loadNextChunk();
     }
   }, [currentCardIndex, loadedCardChunks, cardChunks, isLoadingMore]);
+*/
+
   
   // Auto-save progress periodically
   useEffect(() => {
