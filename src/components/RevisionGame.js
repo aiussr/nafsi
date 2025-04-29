@@ -192,35 +192,31 @@ const RevisionGame = ({ goBack }) => {
   }, [slowCards, wrongCards, round]);
   
   // Start a new game with a fresh set of cards
-  const startNewGame = useCallback(() => {
-    if (revisionMode === 'all') {
-      // Exclude cards already learned to avoid repetition
-      const excludeIds = [...completedCardIds, ...correctCards.map(card => card.id)];
-      
-      // If running out of cards, start showing them again
-      if (excludeIds.length >= revisionCards.length * 0.8) {
-        alert("Great job! You've mastered most cards. We'll show you all cards again.");
-        setCurrentCards(shuffleArray(revisionCards).slice(0, MAX_CARDS_PER_SESSION));
-      } else {
-        // Get cards not yet completed
-        const availableCards = revisionCards.filter(card => !excludeIds.includes(card.id));
-        
-        if (availableCards.length > 0) {
-          const newCards = getRandomCards(availableCards, MAX_CARDS_PER_SESSION);
-          setCurrentCards(newCards);
-        } else {
-          alert("You've completed all available cards!");
-          goBack();
-          return;
-        }
-      }
-    } else {
-      // For week-specific modes, just restart with the same set
-      setCurrentCards(shuffleArray(revisionCards));
-    }
+// Replace the startNewGame function with this version:
+const startNewGame = useCallback(() => {
+  if (revisionMode === 'all') {
+    // Get cards not yet completed
+    const excludeIds = [...completedCardIds];
+    const availableCards = revisionCards.filter(card => !excludeIds.includes(card.id));
     
-    resetGameState();
-  }, [revisionMode, revisionCards, completedCardIds, correctCards, resetGameState, goBack]);
+    if (availableCards.length > 0) {
+      // Exactly 20 cards for "All Content" mode
+      const newCards = availableCards.length > MAX_CARDS_PER_SESSION ? 
+        getRandomCards(availableCards, MAX_CARDS_PER_SESSION) : 
+        shuffleArray(availableCards);
+      setCurrentCards(newCards);
+    } else {
+      alert("Congratulations! You've completed all available cards!");
+      goBack();
+      return;
+    }
+  } else {
+    // For week-specific modes, use all cards for that week
+    setCurrentCards(shuffleArray(revisionCards));
+  }
+  
+  resetGameState();
+}, [revisionMode, revisionCards, completedCardIds, resetGameState, goBack]);
   
   // Show loading state
   if (loading || currentCards.length === 0) {
