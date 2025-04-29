@@ -202,8 +202,11 @@ const LearningContent = ({ goBack }) => {
       
       {/* Category info */}
       <div className="mb-4 text-center">
-        <h2 className="text-xl font-semibold text-purple-600">{currentCategory}</h2>
-        <p className="text-slate-600">
+        <h2 className={`text-xl font-semibold text-purple-600 p-2 rounded-lg 
+          ${currentCategory ? 'bg-purple-50 border-2 border-purple-200' : ''}`}>
+          {currentCategory}
+        </h2>
+        <p className="text-slate-600 mt-1">
           {categoryCards.length > 0 ? (
             `Showing all ${categoryCards.length} cards`
           ) : (
@@ -269,18 +272,21 @@ const LearningContent = ({ goBack }) => {
       </div>
       
       {/* Category navigation */}
-      <div className="flex justify-center gap-2 overflow-x-auto py-2 mb-2">
+      <div className="flex justify-center gap-2 overflow-x-auto py-2 mb-2 mt-4">
         {weekCategories.map((category, index) => (
           <button
             key={category}
             onClick={() => setCurrentCategory(category)}
-            className={`px-3 py-1 text-sm rounded-md whitespace-nowrap ${
+            className={`px-3 py-2 text-sm rounded-md whitespace-nowrap transition-all ${
               category === currentCategory
-                ? 'bg-purple-600 text-white'
+                ? 'bg-purple-600 text-white shadow-md transform scale-110 font-bold border-2 border-purple-300'
                 : 'bg-purple-100 text-purple-800 hover:bg-purple-200'
             }`}
           >
             {category.length > 15 ? `${category.substring(0, 15)}...` : category}
+            {category === currentCategory && (
+              <div className="h-1 w-full bg-white rounded-full mt-1 mx-auto"></div>
+            )}
           </button>
         ))}
       </div>
