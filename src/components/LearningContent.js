@@ -167,14 +167,50 @@ const LearningContent = ({ goBack }) => {
           Return to Weeks
         </button>
       </div>
-      
-      {/* Progress bar */}
-      <CompletionIndicator 
-        current={currentPage * CARDS_PER_PAGE + Math.min(currentCards.length, CARDS_PER_PAGE)}
-        total={categoryCards.length}
-        className="mb-6"
-      />
-      
+
+      {/* Navigation bar */}
+      <div className="flex justify-between items-center mb-6">
+        <button 
+          onClick={goToPrevPage}
+          disabled={currentPage === 0 && weekCategories.indexOf(currentCategory) === 0}
+          className={`flex items-center gap-1 px-4 py-2 rounded-lg shadow-md ${
+            currentPage === 0 && weekCategories.indexOf(currentCategory) === 0
+              ? 'bg-slate-200 text-slate-400 cursor-not-allowed' 
+              : 'bg-purple-600 text-white hover:bg-purple-700'
+          }`}
+        >
+          <ChevronLeft size={16} />
+          Previous
+        </button>
+        
+        <span className="py-2 text-slate-600">
+          {categoryCards.length > 0 ? (
+            `${currentPage + 1} of ${totalPages}`
+          ) : (
+            `No cards`
+          )}
+        </span>
+        
+        <button 
+          onClick={goToNextPage}
+          disabled={
+            (currentPage >= totalPages - 1 || categoryCards.length === 0) && 
+            weekCategories.indexOf(currentCategory) === 
+            weekCategories.length - 1
+          }
+          className={`flex items-center gap-1 px-4 py-2 rounded-lg shadow-md ${
+            (currentPage >= totalPages - 1 || categoryCards.length === 0) && 
+            weekCategories.indexOf(currentCategory) === 
+            weekCategories.length - 1
+              ? 'bg-slate-200 text-slate-400 cursor-not-allowed' 
+              : 'bg-purple-600 text-white hover:bg-purple-700'
+          }`}
+        >
+          Next
+          <ChevronRight size={16} />
+        </button>
+      </div>
+
       {/* Category selector */}
       <div className="mb-6">
         <label className="block text-lg font-medium mb-2 text-slate-700">Select Category:</label>
