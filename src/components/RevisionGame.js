@@ -1,6 +1,6 @@
 // src/components/RevisionGame.js
 
-import React, { useState, useEffect, useMemo, useCallback, lazy, Suspense } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { X, Check, Clock, ArrowLeft } from 'lucide-react';
 import { useStudyContext } from '../context/StudyContext';
 import { shuffleArray, chunkArray, getRandomCards } from '../utils/dataUtils';
@@ -35,10 +35,7 @@ const RevisionGame = ({ goBack }) => {
   const [progress, setProgress] = useState(0);
   const [responseTime, setResponseTime] = useState(null);
   const [cardStartTime, setCardStartTime] = useState(null);
-  
-  // For lazy loading card chunks
-  const [loadedCardChunks, setLoadedCardChunks] = useState(1);
-  const [isLoadingMore, setIsLoadingMore] = useState(false);
+  const [isInitialized, setIsInitialized] = useState(false);
   
   // Prepare cards in chunks for large datasets (to prevent UI freezing)
   const cardChunks = useMemo(() => {
@@ -50,69 +47,6 @@ const RevisionGame = ({ goBack }) => {
     // Split into chunks for lazy loading
     return chunkArray(cardsToUse, CARDS_TO_LOAD_IMMEDIATELY);
   }, [revisionMode, revisionCards]);
-  
-  // Initialize first chunk of cards immediately
-// Also fix the initial loading to show the exact card count from the start
-// Find the useEffect that loads cardChunks and replace with:
-  useEffect(() => {
-    if (cardChunks.length > 0) {
-      // For "all" mode, take exactly MAX_CARDS_PER_SESSION cards
-      if (revisionMode === 'all') {
-        const allCards = cardChunks.flat();
-        const initialCards = allCards.length > MAX_CARDS_PER_SESSION ? 
-          allCards.slice(0, MAX_CARDS_PER_SESSION) : allCards;
-        setCurrentCards(initialCards);
-      } else {
-        // For specific weeks, take all cards at once
-        setCurrentCards(cardChunks.flat());
-      }
-      resetGameState();
-    }
-  }, [cardChunks, resetGameState, revisionMode]);
-
-
-  /*
-  // Load more card chunks as user progresses
-  useEffect(() => {
-    const loadNextChunk = () => {
-      if (loadedCardChunks < cardChunks.length) {
-        setIsLoadingMore(true);
-        
-        // Simulate a slight delay to avoid UI freezing
-        setTimeout(() => {
-          setCurrentCards(prev => {
-            const nextChunk = cardChunks[loadedCardChunks];
-            return [...prev, ...nextChunk];
-          });
-          
-          setLoadedCardChunks(prev => prev + 1);
-          setIsLoadingMore(false);
-        }, 100);
-      }
-    };
-    
-    // Calculate when to load next chunk (when 70% through the current chunk)
-    const chunkSize = CARDS_TO_LOAD_IMMEDIATELY;
-    const loadThreshold = Math.floor(loadedCardChunks * chunkSize * 0.7);
-    
-    if (currentCardIndex >= loadThreshold && !isLoadingMore) {
-      loadNextChunk();
-    }
-  }, [currentCardIndex, loadedCardChunks, cardChunks, isLoadingMore]);
-*/
-
-  
-  // Auto-save progress periodically
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      const allCorrect = [...correctCards];
-      allCorrect.forEach(card => {
-        addCompletedCard(card.id);
-      });
-    }, AUTO_SAVE_INTERVAL);
-    
-    return () => clearInterval(intervalId);
-  }, [correctCards, addCompletedCard]);
   
   // Reset game state
   const resetGameState = useCallback(() => {
@@ -126,7 +60,44 @@ const RevisionGame = ({ goBack }) => {
     setGameComplete(false);
     setProgress(0);
     setCardStartTime(Date.now());
+    setIsInitialized(true);
   }, []);
+  
+  // Initialize cards (safely)
+  useEffect(() => {
+    // Only proceed if we have cards
+    if (cardChunks.length > 0) {
+      try {
+        // For "all" mode, take exactly MAX_CARDS_PER_SESSION cards
+        if (revisionMode === 'all') {
+          const allCards = cardChunks.flat();
+          const initialCards = allCards.length > MAX_CARDS_PER_SESSION ? 
+            allCards.slice(0, MAX_CARDS_PER_SESSION) : allCards;
+          setCurrentCards(initialCards);
+        } else {
+          // For specific weeks, take all cards at once
+          setCurrentCards(cardChunks.flat());
+        }
+        
+        // Only reset after cards are set
+        setTimeout(() => resetGameState(), 50);
+      } catch (error) {
+        console.error("Error initializing cards:", error);
+      }
+    }
+  }, [cardChunks, resetGameState, revisionMode]);
+  
+  // Auto-save progress periodically
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      const allCorrect = [...correctCards];
+      allCorrect.forEach(card => {
+        addCompletedCard(card.id);
+      });
+    }, AUTO_SAVE_INTERVAL);
+    
+    return () => clearInterval(intervalId);
+  }, [correctCards, addCompletedCard]);
   
   // Update progress when card changes
   useEffect(() => {
@@ -154,7 +125,7 @@ const RevisionGame = ({ goBack }) => {
   
   // Handle card response classification
   const handleResponse = useCallback((response) => {
-    if (currentCards.length === 0) return;
+    if (currentCards.length === 0 || currentCardIndex >= currentCards.length) return;
     
     const currentCard = currentCards[currentCardIndex];
     
@@ -207,34 +178,33 @@ const RevisionGame = ({ goBack }) => {
   }, [slowCards, wrongCards, round]);
   
   // Start a new game with a fresh set of cards
-// Replace the startNewGame function with this version:
-const startNewGame = useCallback(() => {
-  if (revisionMode === 'all') {
-    // Get cards not yet completed
-    const excludeIds = [...completedCardIds];
-    const availableCards = revisionCards.filter(card => !excludeIds.includes(card.id));
-    
-    if (availableCards.length > 0) {
-      // Exactly 20 cards for "All Content" mode
-      const newCards = availableCards.length > MAX_CARDS_PER_SESSION ? 
-        getRandomCards(availableCards, MAX_CARDS_PER_SESSION) : 
-        shuffleArray(availableCards);
-      setCurrentCards(newCards);
+  const startNewGame = useCallback(() => {
+    if (revisionMode === 'all') {
+      // Get cards not yet completed
+      const excludeIds = [...completedCardIds];
+      const availableCards = revisionCards.filter(card => !excludeIds.includes(card.id));
+      
+      if (availableCards.length > 0) {
+        // Exactly 20 cards for "All Content" mode
+        const newCards = availableCards.length > MAX_CARDS_PER_SESSION ? 
+          getRandomCards(availableCards, MAX_CARDS_PER_SESSION) : 
+          shuffleArray(availableCards);
+        setCurrentCards(newCards);
+      } else {
+        alert("Congratulations! You've completed all available cards!");
+        goBack();
+        return;
+      }
     } else {
-      alert("Congratulations! You've completed all available cards!");
-      goBack();
-      return;
+      // For week-specific modes, use all cards for that week
+      setCurrentCards(shuffleArray(revisionCards));
     }
-  } else {
-    // For week-specific modes, use all cards for that week
-    setCurrentCards(shuffleArray(revisionCards));
-  }
-  
-  resetGameState();
-}, [revisionMode, revisionCards, completedCardIds, resetGameState, goBack]);
+    
+    resetGameState();
+  }, [revisionMode, revisionCards, completedCardIds, resetGameState, goBack]);
   
   // Show loading state
-  if (loading || currentCards.length === 0) {
+  if (loading || !isInitialized || currentCards.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center h-full py-12">
         <div className="animate-pulse flex flex-col items-center">
@@ -364,9 +334,10 @@ const startNewGame = useCallback(() => {
     );
   }
   
-  // Main game screen
-  const currentCard = currentCards[currentCardIndex];
+  // Get the current card with safety check
+  const currentCard = currentCardIndex < currentCards.length ? currentCards[currentCardIndex] : null;
   
+  // Main game screen - with added safety checks
   return (
     <div className="flex flex-col items-center h-full py-8">
       <div className="w-full max-w-4xl">
@@ -405,16 +376,28 @@ const startNewGame = useCallback(() => {
           <div className="text-gray-600 font-semibold">Remaining: {currentCards.length - currentCardIndex}</div>
         </div>
         
-        {/* Flashcard */}
-        <RevisionCard
-          question={currentCard.question}
-          answer={currentCard.answer}
-          showAnswer={showAnswer}
-          onClick={handleShowAnswer}
-        />
+        {/* Flashcard - with safety check */}
+        {currentCard ? (
+          <RevisionCard
+            question={currentCard.question}
+            answer={currentCard.answer}
+            showAnswer={showAnswer}
+            onClick={handleShowAnswer}
+          />
+        ) : (
+          <div className="bg-white rounded-lg shadow-lg p-8 mb-8 flex flex-col justify-center text-center">
+            <p className="text-lg text-red-600">No card available. Please restart the game.</p>
+            <button 
+              onClick={goBack}
+              className="mt-4 bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-lg"
+            >
+              Return to Main Menu
+            </button>
+          </div>
+        )}
         
-        {/* Response Buttons */}
-        {showAnswer && (
+        {/* Response Buttons - only show if we have a valid card and answer is showing */}
+        {showAnswer && currentCard && (
           <div className="grid grid-cols-3 gap-4">
             <button 
               onClick={() => handleResponse('correct')}
