@@ -226,7 +226,42 @@ const LearningContent = ({ goBack }) => {
           ))}
         </select>
       </div>
-      
+
+      // Add top navigation arrows:
+      <div className="flex justify-between items-center mb-4">
+        <button 
+          onClick={goToPrevPage}
+          disabled={currentPage === 0 && weekCategories.indexOf(currentCategory) === 0}
+          className={`flex items-center gap-1 px-3 py-1 rounded-lg shadow-md ${
+            currentPage === 0 && weekCategories.indexOf(currentCategory) === 0
+              ? 'bg-slate-200 text-slate-400 cursor-not-allowed' 
+              : 'bg-purple-600 text-white hover:bg-purple-700'
+          }`}
+        >
+          <ChevronLeft size={14} />
+          Previous
+        </button>
+        
+        <button 
+          onClick={goToNextPage}
+          disabled={
+            (currentPage >= totalPages - 1 || categoryCards.length === 0) && 
+            weekCategories.indexOf(currentCategory) === 
+            weekCategories.length - 1
+          }
+          className={`flex items-center gap-1 px-3 py-1 rounded-lg shadow-md ${
+            (currentPage >= totalPages - 1 || categoryCards.length === 0) && 
+            weekCategories.indexOf(currentCategory) === 
+            weekCategories.length - 1
+              ? 'bg-slate-200 text-slate-400 cursor-not-allowed' 
+              : 'bg-purple-600 text-white hover:bg-purple-700'
+          }`}
+        >
+          Next
+          <ChevronRight size={14} />
+        </button>
+      </div>
+
       {/* Category info */}
       <div className="mb-4 text-center">
         <h2 className="text-xl font-semibold text-purple-600">{currentCategory}</h2>
