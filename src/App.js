@@ -58,7 +58,7 @@ const AppContent = () => {
         {section === 'revision' && revisionMode && (
           <Suspense fallback={<LoadingFallback />}>
             <RevisionGame 
-              goBack={() => setRevisionMode(null)} // Changed from resetStudyState()
+              goBack={() => setRevisionMode(null)}
             />
           </Suspense>
         )}
@@ -72,10 +72,11 @@ const AppContent = () => {
         {section === 'learning' && learningMode && (
           <Suspense fallback={<LoadingFallback />}>
             <LearningContent 
-              goBack={() => setLearningMode(null)} // Changed from resetStudyState()
+              goBack={() => setLearningMode(null)}
             />
           </Suspense>
         )}
+      </main>
       
       <footer className="bg-teal-800 text-white p-4 text-center shadow-inner">
         <p>© 2025 Quranic Arabic Materials</p>
