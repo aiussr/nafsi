@@ -1,12 +1,12 @@
 // src/components/LearningContent.js
 
-import React, { useState, useEffect, useMemo, useCallback, lazy, Suspense } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { ArrowLeft, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useStudyContext } from '../context/StudyContext';
-import FlashCard, { CompletionIndicator } from './common/FlashCard';
+import FlashCard from './common/FlashCard';
 import { weekNames } from '../data/flashcards';
 
-// Constants for pagination
+// Show all cards in a category
 const CARDS_PER_PAGE = 1000;
 
 const LearningContent = ({ goBack }) => {
@@ -54,12 +54,6 @@ const LearningContent = ({ goBack }) => {
       (currentPage * CARDS_PER_PAGE) + CARDS_PER_PAGE
     );
   }, [categoryCards, currentPage]);
-  
-  // Calculate progress percentage
-  const progress = useMemo(() => {
-    if (categoryCards.length === 0) return 0;
-    return (currentPage * CARDS_PER_PAGE + Math.min(currentCards.length, CARDS_PER_PAGE)) / categoryCards.length * 100;
-  }, [categoryCards.length, currentCards.length, currentPage]);
   
   // Handle card flip
   const toggleFlip = useCallback((id) => {
@@ -120,20 +114,6 @@ const LearningContent = ({ goBack }) => {
     }
   }, [currentPage, weekCategories, currentCategory, learningCards, setCurrentCategory]);
   
-  // Keyboard navigation
-  useEffect(() => {
-    const handleKeyDown = (event) => {
-      if (event.key === 'ArrowRight') {
-        goToNextPage();
-      } else if (event.key === 'ArrowLeft') {
-        goToPrevPage();
-      }
-    };
-    
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [goToNextPage, goToPrevPage]);
-  
   // Show loading state
   if (loading || !currentCategory) {
     return (
@@ -167,53 +147,46 @@ const LearningContent = ({ goBack }) => {
           Return to Weeks
         </button>
       </div>
-
-      {/* Navigation bar */}
-      <div className="flex justify-between items-center mb-6">
-        <button 
-          onClick={goToPrevPage}
-          disabled={currentPage === 0 && weekCategories.indexOf(currentCategory) === 0}
-          className={`flex items-center gap-1 px-4 py-2 rounded-lg shadow-md ${
-            currentPage === 0 && weekCategories.indexOf(currentCategory) === 0
-              ? 'bg-slate-200 text-slate-400 cursor-not-allowed' 
-              : 'bg-purple-600 text-white hover:bg-purple-700'
-          }`}
-        >
-          <ChevronLeft size={16} />
-          Previous
-        </button>
-        
-        <span className="py-2 text-slate-600">
-          {categoryCards.length > 0 ? (
-            `${currentPage + 1} of ${totalPages}`
-          ) : (
-            `No cards`
-          )}
-        </span>
-        
-        <button 
-          onClick={goToNextPage}
-          disabled={
-            (currentPage >= totalPages - 1 || categoryCards.length === 0) && 
-            weekCategories.indexOf(currentCategory) === 
-            weekCategories.length - 1
-          }
-          className={`flex items-center gap-1 px-4 py-2 rounded-lg shadow-md ${
-            (currentPage >= totalPages - 1 || categoryCards.length === 0) && 
-            weekCategories.indexOf(currentCategory) === 
-            weekCategories.length - 1
-              ? 'bg-slate-200 text-slate-400 cursor-not-allowed' 
-              : 'bg-purple-600 text-white hover:bg-purple-700'
-          }`}
-        >
-          Next
-          <ChevronRight size={16} />
-        </button>
-      </div>
-
-      {/* Category selector */}
+      
+      {/* Category selector with navigation */}
       <div className="mb-6">
-        <label className="block text-lg font-medium mb-2 text-slate-700">Select Category:</label>
+        <div className="flex justify-between items-center mb-4">
+          <label className="text-lg font-medium text-slate-700">Select Category:</label>
+          <div className="flex gap-2">
+            <button 
+              onClick={goToPrevPage}
+              disabled={currentPage === 0 && weekCategories.indexOf(currentCategory) === 0}
+              className={`flex items-center gap-1 px-3 py-1 rounded-lg shadow-md ${
+                currentPage === 0 && weekCategories.indexOf(currentCategory) === 0
+                  ? 'bg-slate-200 text-slate-400 cursor-not-allowed' 
+                  : 'bg-purple-600 text-white hover:bg-purple-700'
+              }`}
+            >
+              <ChevronLeft size={14} />
+              Previous
+            </button>
+            
+            <button 
+              onClick={goToNextPage}
+              disabled={
+                (currentPage >= totalPages - 1 || categoryCards.length === 0) && 
+                weekCategories.indexOf(currentCategory) === 
+                weekCategories.length - 1
+              }
+              className={`flex items-center gap-1 px-3 py-1 rounded-lg shadow-md ${
+                (currentPage >= totalPages - 1 || categoryCards.length === 0) && 
+                weekCategories.indexOf(currentCategory) === 
+                weekCategories.length - 1
+                  ? 'bg-slate-200 text-slate-400 cursor-not-allowed' 
+                  : 'bg-purple-600 text-white hover:bg-purple-700'
+              }`}
+            >
+              Next
+              <ChevronRight size={14} />
+            </button>
+          </div>
+        </div>
+        
         <select 
           value={currentCategory}
           onChange={(e) => setCurrentCategory(e.target.value)}
@@ -226,51 +199,13 @@ const LearningContent = ({ goBack }) => {
           ))}
         </select>
       </div>
-
-      // Add top navigation arrows:
-      <div className="flex justify-between items-center mb-4">
-        <button 
-          onClick={goToPrevPage}
-          disabled={currentPage === 0 && weekCategories.indexOf(currentCategory) === 0}
-          className={`flex items-center gap-1 px-3 py-1 rounded-lg shadow-md ${
-            currentPage === 0 && weekCategories.indexOf(currentCategory) === 0
-              ? 'bg-slate-200 text-slate-400 cursor-not-allowed' 
-              : 'bg-purple-600 text-white hover:bg-purple-700'
-          }`}
-        >
-          <ChevronLeft size={14} />
-          Previous
-        </button>
-        
-        <button 
-          onClick={goToNextPage}
-          disabled={
-            (currentPage >= totalPages - 1 || categoryCards.length === 0) && 
-            weekCategories.indexOf(currentCategory) === 
-            weekCategories.length - 1
-          }
-          className={`flex items-center gap-1 px-3 py-1 rounded-lg shadow-md ${
-            (currentPage >= totalPages - 1 || categoryCards.length === 0) && 
-            weekCategories.indexOf(currentCategory) === 
-            weekCategories.length - 1
-              ? 'bg-slate-200 text-slate-400 cursor-not-allowed' 
-              : 'bg-purple-600 text-white hover:bg-purple-700'
-          }`}
-        >
-          Next
-          <ChevronRight size={14} />
-        </button>
-      </div>
-
+      
       {/* Category info */}
       <div className="mb-4 text-center">
         <h2 className="text-xl font-semibold text-purple-600">{currentCategory}</h2>
         <p className="text-slate-600">
           {categoryCards.length > 0 ? (
-            <>
-              Showing {currentPage * CARDS_PER_PAGE + 1}-
-              {Math.min((currentPage + 1) * CARDS_PER_PAGE, categoryCards.length)} of {categoryCards.length} cards
-            </>
+            `Showing all ${categoryCards.length} cards`
           ) : (
             "No cards available for this category yet"
           )}
@@ -298,8 +233,8 @@ const LearningContent = ({ goBack }) => {
         )}
       </div>
       
-      {/* Navigation */}
-      <div className="flex justify-between items-center mb-4">
+      {/* Bottom navigation */}
+      <div className="flex justify-between items-center mb-2">
         <button 
           onClick={goToPrevPage}
           disabled={currentPage === 0 && weekCategories.indexOf(currentCategory) === 0}
@@ -312,14 +247,6 @@ const LearningContent = ({ goBack }) => {
           <ChevronLeft size={16} />
           Previous
         </button>
-        
-        <span className="py-2 text-slate-600">
-          {categoryCards.length > 0 ? (
-            `Page ${currentPage + 1} of ${totalPages}`
-          ) : (
-            `No cards`
-          )}
-        </span>
         
         <button 
           onClick={goToNextPage}
@@ -359,7 +286,7 @@ const LearningContent = ({ goBack }) => {
       </div>
       
       <div className="mt-4 text-center text-sm text-slate-600">
-        Tap or click each card to flip between front and back. Use the arrow keys to navigate.
+        Tap or click each card to flip between front and back.
       </div>
       
       {/* Completion stats */}
