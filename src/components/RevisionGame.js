@@ -8,7 +8,7 @@ import { RevisionCard, CompletionIndicator } from './common/FlashCard';
 import { weekNames } from '../data/flashcards';
 
 // Constants for game
-const MAX_CARDS_PER_SESSION = 50; // Maximum cards to show in one session
+const MAX_CARDS_PER_SESSION = 20; // Maximum cards to show in one session
 const CARDS_TO_LOAD_IMMEDIATELY = 10; // Load first chunk immediately
 const SLOW_THRESHOLD = 10000; // Time in ms to consider a response slow (auto-classification)
 const AUTO_SAVE_INTERVAL = 30000; // Save progress every 30 seconds
