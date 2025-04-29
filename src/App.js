@@ -20,7 +20,9 @@ const AppContent = () => {
   const { 
     section, 
     revisionMode, 
-    learningMode, 
+    learningMode,
+    setRevisionMode,   // Added this line
+    setLearningMode,   // Added this line
     resetStudyState 
   } = useStudyContext();
   
