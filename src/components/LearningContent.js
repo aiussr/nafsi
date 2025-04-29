@@ -7,7 +7,7 @@ import FlashCard, { CompletionIndicator } from './common/FlashCard';
 import { weekNames } from '../data/flashcards';
 
 // Constants for pagination
-const CARDS_PER_PAGE = 5;
+const CARDS_PER_PAGE = 1000;
 
 const LearningContent = ({ goBack }) => {
   const { 
