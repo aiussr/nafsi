@@ -1442,52 +1442,52 @@ export const flashcardsData = [
     reference: "Surat Al-Baqarah 2 : 229" },
 
   { id: "w4-37", week: "week4", category: "Peace, Reconciliation, and Unity",
-    arabic: "أَطِيعُوا اللَّهَ وَأَطِيعُوا الرَّسُولَ وَأُولِي الْأَمْرِ مِنكُمْ",
-    english: "Obey God, obey the Messenger, and those in authority among you.",
-    reference: "Surat An-Nisāʾ 4 : 59" },
-
+    arabic: "يَا أَيُّهَا ٱلَّذِينَ آمَنُوا أَطِيعُوا ٱللَّهَ وَأَطِيعُوا ٱلرَّسُولَ وَأُوْلِي ٱلْأَمْرِ مِنكُمْ",
+    english: "O believers! Obey God, obey the Messenger, and those in charge among you.",
+    reference: "Surat An-Nisāʾ 4:59" },
+  
   { id: "w4-38", week: "week4", category: "Peace, Reconciliation, and Unity",
-    arabic: "وَالْمُؤْمِنُونَ وَالْمُؤْمِنَاتُ بَعْضُهُمْ أَوْلِيَاءُ بَعْضٍ",
-    english: "Believing men and women are allies of one another.",
-    reference: "Surat At-Tawbah 9 : 71" },
-
+    arabic: "وَٱلْمُؤْمِنُونَ وَٱلْمُؤْمِنَاتُ بَعْضُهُمْ أَوْلِيَآءُ بَعْضٍ ۚ يَأْمُرُونَ بِٱلْمَعْرُوفِ وَيَنْهَوْنَ عَنِ ٱلْمُنكَرِ",
+    english: "Believing men and women are helpers of each other. They encourage what is good and stop what is wrong.",
+    reference: "Surat At-Tawbah 9:71" },
+  
   { id: "w4-39", week: "week4", category: "Peace, Reconciliation, and Unity",
-    arabic: "وَعَدَ اللَّهُ الَّذِينَ آمَنُوا... لَيَسْتَخْلِفَنَّهُمْ فِي الْأَرْضِ",
-    english: "God has promised those who believe and do good that He will grant them succession on earth.",
-    reference: "Surat An-Nūr 24 : 55" },
-
+    arabic: "وَعَدَ ٱللَّهُ ٱلَّذِينَ آمَنُوا مِنكُمْ وَعَمِلُوا ٱلصَّـٰلِحَاتِ لَيَسْتَخْلِفَنَّهُمْ فِي ٱلْأَرْضِ",
+    english: "God has promised those of you who believe and do good that He will give them authority on earth.",
+    reference: "Surat An-Nūr 24:55" },
+  
   { id: "w4-40", week: "week4", category: "Peace, Reconciliation, and Unity",
-    arabic: "وَلَوْلَا دَفْعُ اللَّهِ النَّاسَ بَعْضَهُم بِبَعْضٍ...",
-    english: "If God did not repel some people by means of others, monasteries, churches, synagogues and mosques would be destroyed.",
-    reference: "Surat Al-Ḥajj 22 : 40" },
-
+    arabic: "وَلَوْلَا دَفْعُ ٱللَّهِ ٱلنَّاسَ بَعْضَهُم بِبَعْضٍ لَّهُدِّمَتْ صَوَٰمِعُ وَبِيَعٌ وَصَلَوَٰتٌ وَمَسَـٰجِدُ يُذْكَرُ فِيهَا ٱسْمُ ٱللَّهِ كَثِيرًا",
+    english: "If God did not stop some people by means of others, monasteries, churches, synagogues, and mosques, where God's name is much invoked, would be destroyed.",
+    reference: "Surat Al-Ḥajj 22:40" },
+  
   { id: "w4-41", week: "week4", category: "Peace, Reconciliation, and Unity",
-    arabic: "إِنْ تَنْصُرُوا اللَّهَ يَنْصُرْكُمْ وَيُثَبِّتْ أَقْدَامَكُمْ",
-    english: "If you help God, He will help you and make you firm.",
-    reference: "Surat Muḥammad 47 : 7" },
-
+    arabic: "يَـٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوٓا۟ إِن تَنصُرُوا۟ ٱللَّهَ يَنصُرْكُمْ وَيُثَبِّتْ أَقْدَامَكُمْ",
+    english: "O believers! If you help God, He will help you and keep you firm.",
+    reference: "Surat Muḥammad 47:7" },
+  
   { id: "w4-42", week: "week4", category: "Peace, Reconciliation, and Unity",
-    arabic: "يَا أَيُّهَا النَّاسُ إِنَّا خَلَقْنَاكُمْ مِن ذَكَرٍ وَأُنثَىٰ...",
-    english: "O mankind, We created you from a male and a female and made you peoples and tribes that you may know one another.",
-    reference: "Surat Al-Ḥujurāt 49 : 13" },
-
+    arabic: "يَـٰٓأَيُّهَا ٱلنَّاسُ إِنَّا خَلَقْنَـٰكُم مِّن ذَكَرٍ وَأُنثَىٰ وَجَعَلْنَـٰكُمْ شُعُوبًا وَقَبَآئِلَ لِتَعَارَفُوٓا۟ ۚ إِنَّ أَكْرَمَكُمْ عِندَ ٱللَّهِ أَتْقَىٰكُمْ",
+    english: "O people! We created you from a male and a female and made you into nations and tribes that you may know one another. The most noble of you in God's sight is the most mindful of Him.",
+    reference: "Surat Al-Ḥujurāt 49:13" },
+  
   { id: "w4-43", week: "week4", category: "Peace, Reconciliation, and Unity",
-    arabic: "لَا يَنْهَاكُمُ اللَّهُ عَنِ الَّذِينَ لَمْ يُقَاتِلُوكُمْ...",
-    english: "God does not forbid you from being kind and just to those who have not fought you over religion.",
-    reference: "Surat Al-Mumtaḥanah 60 : 8" },
-
+    arabic: "لَّا يَنْهَىٰكُمُ ٱللَّهُ عَنِ ٱلَّذِينَ لَمْ يُقَـٰتِلُوكُمْ فِى ٱلدِّينِ وَلَمْ يُخْرِجُوكُم مِّن دِيَـٰرِكُمْ أَن تَبَرُّوهُمْ وَتُقْسِطُوٓا۟ إِلَيْهِمْ ۚ إِنَّ ٱللَّهَ يُحِبُّ ٱلْمُقْسِطِينَ",
+    english: "God does not forbid you from being kind and just to those who have not fought you because of your faith or driven you out of your homes. God loves those who are fair.",
+    reference: "Surat Al-Mumtaḥanah 60:8" },
+  
   { id: "w4-44", week: "week4", category: "Peace, Reconciliation, and Unity",
-    arabic: "إِنَّمَا يَنْهَاكُمُ اللَّهُ عَنِ الَّذِينَ قَاتَلُوكُمْ...",
-    english: "God only forbids you from befriending those who fought you because of faith and expelled you.",
-    reference: "Surat Al-Mumtaḥanah 60 : 9" },
-
+    arabic: "إِنَّمَا يَنْهَىٰكُمُ ٱللَّهُ عَنِ ٱلَّذِينَ قَـٰتَلُوكُمْ فِى ٱلدِّينِ وَأَخْرَجُوكُم مِّن دِيَـٰرِكُمْ وَظَـٰهَرُوا۟ عَلَىٰٓ إِخْرَاجِكُمْ أَن تَوَلَّوْهُمْ ۚ وَمَن يَتَوَلَّهُمْ فَأُو۟لَـٰٓئِكَ هُمُ ٱلظَّـٰلِمُونَ",
+    english: "God only forbids you from befriending those who fought you because of your faith, drove you out of your homes, and helped others to do the same. Whoever takes them as allies, these are the wrongdoers.",
+    reference: "Surat Al-Mumtaḥanah 60:9" },
+  
   { id: "w4-45", week: "week4", category: "Peace, Reconciliation, and Unity",
-    arabic: "فَاحْكُمْ بَيْنَهُم بِمَا أَنزَلَ اللَّهُ",
-    english: "Judge between them by what God has revealed.",
-    reference: "Surat Al-Māʾidah 5 : 49" },
-
+    arabic: "فَٱحْكُم بَيْنَهُم بِمَآ أَنزَلَ ٱللَّهُ",
+    english: "Judge between them with what God has revealed.",
+    reference: "Surat Al-Māʾidah 5:49" },
+  
   { id: "w4-46", week: "week4", category: "Peace, Reconciliation, and Unity",
-    arabic: "وَلَا يَجْرِمَنَّكُمْ شَنَآنُ قَوْمٍ عَلَىٰ أَلَّا تَعْدِلُوا",
-    english: "Do not let hatred of a people cause you to deviate from justice.",
-    reference: "Surat Al-Māʾidah 5 : 8" }
+    arabic: "وَلَا يَجْرِمَنَّكُمْ شَنَآنُ قَوْمٍ عَلَىٰٓ أَلَّا تَعْدِلُوا",
+    english: "Do not let hatred of a people prevent you from being just.",
+    reference: "Surat Al-Māʾidah 5:8" }
 ];
