@@ -5,6 +5,13 @@ import { Clock, Book } from 'lucide-react';
 import { useStudyContext } from '../context/StudyContext';
 import { weekNames } from '../data/flashcards';
 
+// Derive a sorted array of all week keys (e.g. ['week1','week2',...])
+const weeks = Object
+  .keys(weekNames)
+  .sort((a, b) =>
+    parseInt(a.replace('week', ''), 10) - parseInt(b.replace('week', ''), 10)
+  );
+
 // Main Menu Component - Optimized with memo to prevent unnecessary re-renders
 export const MainMenu = memo(() => {
   const { setSection, stats } = useStudyContext();
@@ -80,19 +87,14 @@ export const MainMenu = memo(() => {
       {/* Week Overview */}
       <div className="mt-8 w-full max-w-4xl">
         <h3 className="text-xl font-semibold text-gray-700 mb-4">Content Overview</h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="bg-white rounded-lg shadow p-4">
-            <h4 className="text-lg font-semibold text-teal-700">Week 1: {weekNames.week1}</h4>
-            <p className="text-gray-600">Focus on Quranic verses related to logic, reasoning, and critical thinking.</p>
-          </div>
-          <div className="bg-white rounded-lg shadow p-4">
-            <h4 className="text-lg font-semibold text-teal-700">Week 2: {weekNames.week2}</h4>
-            <p className="text-gray-600">Study verses about physics, cosmology, and natural phenomena.</p>
-          </div>
-          <div className="bg-white rounded-lg shadow p-4">
-            <h4 className="text-lg font-semibold text-teal-700">Week 3: {weekNames.week3}</h4>
-            <p className="text-gray-600">Learn verses related to ethics, morality, and righteous conduct.</p>
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          {weeks.map(wk => (
+            <div key={wk} className="bg-white rounded-lg shadow p-4">
+              <h4 className="text-lg font-semibold text-teal-700">
+                {`Week ${wk.replace('week', '')}: ${weekNames[wk]}`}
+              </h4>
+            </div>
+          ))}
         </div>
       </div>
     </div>
@@ -107,33 +109,18 @@ export const RevisionMenu = memo(() => {
     <div className="flex flex-col items-center justify-center h-full gap-8 py-12">
       <h2 className="text-3xl font-bold text-teal-700 mb-8">Choose Revision Content</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-5xl">
-        <button 
-          onClick={() => setRevisionMode('week1')}
-          className="bg-teal-100 hover:bg-teal-200 
-                    text-teal-800 border-2 border-teal-300 p-6 rounded-lg shadow-md 
-                    transition-colors text-xl font-bold flex flex-col items-center"
-        >
-          <span>Week 1</span>
-          <span className="text-sm font-normal mt-2">{weekNames.week1}</span>
-        </button>
-        <button 
-          onClick={() => setRevisionMode('week2')}
-          className="bg-teal-100 hover:bg-teal-200 
-                    text-teal-800 border-2 border-teal-300 p-6 rounded-lg shadow-md 
-                    transition-colors text-xl font-bold flex flex-col items-center"
-        >
-          <span>Week 2</span>
-          <span className="text-sm font-normal mt-2">{weekNames.week2}</span>
-        </button>
-        <button 
-          onClick={() => setRevisionMode('week3')}
-          className="bg-teal-100 hover:bg-teal-200 
-                    text-teal-800 border-2 border-teal-300 p-6 rounded-lg shadow-md 
-                    transition-colors text-xl font-bold flex flex-col items-center"
-        >
-          <span>Week 3</span>
-          <span className="text-sm font-normal mt-2">{weekNames.week3}</span>
-        </button>
+        {weeks.map(wk => (
+          <button 
+            key={wk}
+            onClick={() => setRevisionMode(wk)}
+            className="bg-teal-100 hover:bg-teal-200 
+                      text-teal-800 border-2 border-teal-300 p-6 rounded-lg shadow-md 
+                      transition-colors text-xl font-bold flex flex-col items-center"
+          >
+            <span>{`Week ${wk.replace('week','')}`}</span>
+            <span className="text-sm font-normal mt-2">{weekNames[wk]}</span>
+          </button>
+        ))}
         <button 
           onClick={() => setRevisionMode('all')}
           className="bg-teal-600 hover:bg-teal-700 
@@ -176,33 +163,25 @@ export const LearningMenu = memo(() => {
   return (
     <div className="flex flex-col items-center justify-center h-full gap-8 py-12">
       <h2 className="text-3xl font-bold text-purple-700 mb-8">Choose Learning Content</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 w-full max-w-4xl">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-4xl">
+        {weeks.map(wk => (
+          <button 
+            key={wk}
+            onClick={() => setLearningMode(wk)}
+            className="bg-purple-100 hover:bg-purple-200 
+                      text-purple-800 border-2 border-purple-300 p-6 rounded-lg shadow-md 
+                      transition-colors text-xl font-bold flex flex-col items-center"
+          >
+            <span>{`Week ${wk.replace('week','')}`}</span>
+            <span className="text-sm font-normal mt-2">{weekNames[wk]}</span>
+          </button>
+        ))}
         <button 
-          onClick={() => setLearningMode('week1')}
-          className="bg-purple-100 hover:bg-purple-200 
-                    text-purple-800 border-2 border-purple-300 p-6 rounded-lg shadow-md 
-                    transition-colors text-xl font-bold flex flex-col items-center"
+          onClick={() => setLearningMode('all')}
+          className="bg-purple-600 hover:bg-purple-700 
+                    text-white p-6 rounded-lg shadow-md transition-colors text-xl font-bold"
         >
-          <span>Week 1</span>
-          <span className="text-sm font-normal mt-2">{weekNames.week1}</span>
-        </button>
-        <button 
-          onClick={() => setLearningMode('week2')}
-          className="bg-purple-100 hover:bg-purple-200 
-                    text-purple-800 border-2 border-purple-300 p-6 rounded-lg shadow-md 
-                    transition-colors text-xl font-bold flex flex-col items-center"
-        >
-          <span>Week 2</span>
-          <span className="text-sm font-normal mt-2">{weekNames.week2}</span>
-        </button>
-        <button 
-          onClick={() => setLearningMode('week3')}
-          className="bg-purple-100 hover:bg-purple-200 
-                    text-purple-800 border-2 border-purple-300 p-6 rounded-lg shadow-md 
-                    transition-colors text-xl font-bold flex flex-col items-center"
-        >
-          <span>Week 3</span>
-          <span className="text-sm font-normal mt-2">{weekNames.week3}</span>
+          All Content
         </button>
       </div>
       
