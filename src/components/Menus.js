@@ -1,11 +1,11 @@
 // src/components/Menus.js
 
-import React, { memo } from 'react';
+import React, { memo, useMemo } from 'react';
 import { Clock, Book } from 'lucide-react';
 import { useStudyContext } from '../context/StudyContext';
 import { weekNames } from '../data/flashcards';
 
-// Derive a sorted array of all week keys (e.g. ['week1','week2',...])
+// Build a sorted array of all week keys, e.g. ['week1','week2',…]
 const weeks = Object.keys(weekNames).sort((a, b) =>
   parseInt(a.replace('week', ''), 10) - parseInt(b.replace('week', ''), 10)
 );
@@ -38,21 +38,20 @@ const RevisionInfoCard = () => (
   <div className="mt-8 bg-teal-50 p-6 rounded-lg border border-teal-200 max-w-2xl text-center">
     <h3 className="text-lg font-semibold text-teal-700 mb-2">How Revision Works</h3>
     <p className="text-teal-800 mb-4">
-      Test your knowledge with our spaced repetition system. Cards you know well will appear less frequently,
-      while those you struggle with will be shown more often.
+      Test your knowledge with our spaced repetition system. Cards you know well will appear less frequently, while those you struggle with will be shown more often.
     </p>
     <div className="grid grid-cols-3 gap-4 text-sm">
       <div className="bg-green-100 p-3 rounded">
         <span className="font-semibold block text-green-800">I Knew This</span>
-        <span className="text-green-700">For cards you recognize immediately</span>
+        <span className="text-green-700">Instant recall</span>
       </div>
       <div className="bg-yellow-100 p-3 rounded">
         <span className="font-semibold block text-yellow-800">Knew Slowly</span>
-        <span className="text-yellow-700">For cards you remember with effort</span>
+        <span className="text-yellow-700">Recall with effort</span>
       </div>
       <div className="bg-red-100 p-3 rounded">
         <span className="font-semibold block text-red-800">Didn't Know</span>
-        <span className="text-red-700">For cards you need to study more</span>
+        <span className="text-red-700">Needs more study</span>
       </div>
     </div>
   </div>
@@ -81,39 +80,29 @@ const LearningInfoCard = () => (
 // Main Menu Component
 // ────────────────────────────────────────────────────────────────────────────────
 export const MainMenu = memo(() => {
-  const { setSection, stats } = useStudyContext();
+  const { setSection } = useStudyContext();
+
+  // Calculate days until the next Eid al-Adha
+  const daysUntilEid = useMemo(() => {
+    const today = new Date();
+    const eidDates = [
+      new Date('2025-06-06'),
+      new Date('2026-05-26'),
+      new Date('2027-05-16')
+    ];
+    const nextEid = eidDates.find(date => date > today) || eidDates[0];
+    const diffTime = nextEid - today;
+    return Math.max(0, Math.ceil(diffTime / (1000 * 60 * 60 * 24)));
+  }, []);
 
   return (
     <div className="flex flex-col items-center justify-center h-full gap-8 py-12">
       <h2 className="text-3xl font-bold text-teal-700 mb-4">Quranic Arabic Study</h2>
 
-      {/* Stats Summary */}
-      <div className="bg-white rounded-lg shadow-md p-6 w-full max-w-2xl mb-8">
-        <h3 className="text-xl font-semibold text-teal-700 mb-4">Your Progress</h3>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {[
-            { label: 'Total Cards', value: stats.totalCards },
-            { label: 'Cards Viewed', value: stats.completedCards },
-            { label: 'Mastered', value: stats.mastered },
-            { label: 'To Review', value: stats.needReview }
-          ].map((s) => (
-            <div key={s.label} className="text-center p-3 bg-teal-50 rounded-lg">
-              <p className="text-sm text-teal-600">{s.label}</p>
-              <p className="text-2xl font-bold text-teal-800">{s.value}</p>
-            </div>
-          ))}
-        </div>
-        <div className="mt-4">
-          <div className="w-full h-4 bg-gray-200 rounded-full">
-            <div
-              className="h-full bg-teal-600 rounded-full transition-all"
-              style={{ width: `${Math.floor((stats.completedCards / stats.totalCards) * 100)}%` }}
-            />
-          </div>
-          <div className="text-right mt-1 text-sm text-gray-600">
-            {Math.floor((stats.completedCards / stats.totalCards) * 100)}% Complete
-          </div>
-        </div>
+      {/* Countdown Card */}
+      <div className="bg-white rounded-lg shadow-md p-6 w-full max-w-md mb-8 text-center">
+        <h3 className="text-xl font-semibold text-teal-700 mb-2">Days until Eid al-Adha</h3>
+        <p className="text-4xl font-extrabold text-teal-800">{daysUntilEid}</p>
       </div>
 
       {/* Study Mode Buttons */}
@@ -139,7 +128,7 @@ export const MainMenu = memo(() => {
       <div className="mt-8 w-full max-w-4xl">
         <h3 className="text-xl font-semibold text-gray-700 mb-4">Content Overview</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {weeks.map((wk) => (
+          {weeks.map(wk => (
             <div key={wk} className="bg-white rounded-lg shadow p-4">
               <h4 className="text-lg font-semibold text-teal-700">
                 {`Week ${wk.replace('week', '')}: ${weekNames[wk]}`}
@@ -162,7 +151,7 @@ export const RevisionMenu = memo(() => {
     <div className="flex flex-col items-center justify-center h-full gap-8 py-12">
       <h2 className="text-3xl font-bold text-teal-700 mb-8">Choose Revision Content</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-5xl">
-        {weeks.map((wk) => (
+        {weeks.map(wk => (
           <WeekButton
             key={wk}
             weekKey={wk}
@@ -183,7 +172,7 @@ export const RevisionMenu = memo(() => {
 });
 
 // ────────────────────────────────────────────────────────────────────────────────
-// Learning Menu Component (no “All Content”)
+// Learning Menu Component (no "All Content")
 // ────────────────────────────────────────────────────────────────────────────────
 export const LearningMenu = memo(() => {
   const { setLearningMode } = useStudyContext();
@@ -192,7 +181,7 @@ export const LearningMenu = memo(() => {
     <div className="flex flex-col items-center justify-center h-full gap-8 py-12">
       <h2 className="text-3xl font-bold text-purple-700 mb-8">Choose Learning Content</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-4xl">
-        {weeks.map((wk) => (
+        {weeks.map(wk => (
           <WeekButton
             key={wk}
             weekKey={wk}
