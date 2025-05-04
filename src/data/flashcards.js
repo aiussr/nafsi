@@ -29,6 +29,14 @@ export const categories = {
     "Patience and Forgiveness",
     "Humility and Gratitude",
     "Good Speech and Knowledge"
+  ],
+  week4: [
+    "Governance, Leadership, and Authority",
+    "Justice and Fairness",
+    "War, Peace, and Security",
+    "Corruption and Accountability",
+    "Laws, Legislation, and Divine Guidance",
+    "Peace, Reconciliation, and Unity"
   ]
 };
 
@@ -36,7 +44,8 @@ export const categories = {
 export const weekNames = {
   week1: "Logic",
   week2: "Physics",
-  week3: "Ethics"
+  week3: "Ethics",
+  week4: "Politics"
 };
 
 // Flashcard data from your PDF documents, formatted for the application
@@ -1245,7 +1254,240 @@ export const flashcardsData = [
     arabic: "إِنَّ ٱللَّهَ يُِحبُّ ٱلُْمقِْسِطيَن",
     english: "God loves those who are fair.",
     reference: "Surat Al-Ma'idah, 5:42"
-  }
+  },
+    // === GOVERNANCE, LEADERSHIP, AND AUTHORITY ===
+  { id: "w4-1",  week: "week4", category: "Governance, Leadership, and Authority",
+    arabic: "فَبِمَا رَحْمَةٍ مِّنَ اللَّهِ لِنتَ لَهُمْ",
+    english: "It was by God’s mercy that you were kind to them.",
+    reference: "Surat Āl ʿImrān 3 : 159" },
 
-    
+  { id: "w4-2",  week: "week4", category: "Governance, Leadership, and Authority",
+    arabic: "وَأَمْرُهُمْ شُورَىٰ بَيْنَهُمْ",
+    english: "They decide their matters by consulting each other.",
+    reference: "Surat Ash-Shūrā 42 : 38" },
+
+  { id: "w4-3",  week: "week4", category: "Governance, Leadership, and Authority",
+    arabic: "لَا طَاعَةَ لِمَخْلُوقٍ فِي مَعْصِيَةِ الْخَالِقِ",
+    english: "No creature should be obeyed if it means disobeying the Creator.",
+    reference: "Hadith principle" },
+
+  { id: "w4-4",  week: "week4", category: "Governance, Leadership, and Authority",
+    arabic: "وَمَنْ لَّمْ يَحْكُم بِمَا أَنزَلَ اللَّهُ فَأُولَٰئِكَ هُمُ الظَّالِمُونَ",
+    english: "Those who do not rule by what God revealed are wrongdoers.",
+    reference: "Surat Al-Māʾidah 5 : 45" },
+
+  // === JUSTICE AND FAIRNESS ===
+  { id: "w4-5",  week: "week4", category: "Justice and Fairness",
+    arabic: "إِنَّ اللَّهَ يَأْمُرُ بِالْعَدْلِ وَالْإِحْسَانِ",
+    english: "God commands justice and doing good.",
+    reference: "Surat An-Naḥl 16 : 90" },
+
+  { id: "w4-6",  week: "week4", category: "Justice and Fairness",
+    arabic: "يَا أَيُّهَا الَّذِينَ آمَنُوا كُونُوا قَوَّامِينَ لِلَّهِ شُهَدَاءَ بِالْقِسْطِ",
+    english: "Believers, stand firm for God and be fair witnesses.",
+    reference: "Surat An-Nisāʾ 4 : 135" },
+
+  { id: "w4-7",  week: "week4", category: "Justice and Fairness",
+    arabic: "يَا أَيُّهَا الَّذِينَ آمَنُوا أَوْفُوا بِالْعُقُودِ",
+    english: "Believers, keep your agreements.",
+    reference: "Surat Al-Māʾidah 5 : 1" },
+
+  { id: "w4-8",  week: "week4", category: "Justice and Fairness",
+    arabic: "وَإِن جَنَحُوا لِلسِّلْمِ فَاجْنَحْ لَهَا",
+    english: "If they incline toward peace, then you too incline to it.",
+    reference: "Surat Al-Anfāl 8 : 61" },
+
+  { id: "w4-9",  week: "week4", category: "Justice and Fairness",
+    arabic: "وَأَوْفُوا بِالْعَهْدِ إِنَّ الْعَهْدَ كَانَ مَسْئُولًا",
+    english: "Honour your commitments; you will be questioned about them.",
+    reference: "Surat Al-Isrāʾ 17 : 34" },
+
+  { id: "w4-10", week: "week4", category: "Justice and Fairness",
+    arabic: "وَلَا تَقْرَبُوا مَالَ الْيَتِيمِ إِلَّا بِالَّتِي هِيَ أَحْسَنُ",
+    english: "Do not go near an orphan’s property unless to improve it.",
+    reference: "Surat Al-Isrāʾ 17 : 34" },
+
+  // === WAR, PEACE, AND SECURITY ===
+  { id: "w4-11", week: "week4", category: "War, Peace, and Security",
+    arabic: "كُتِبَ عَلَيْكُمُ الْقِتَالُ وَهُوَ كُرْهٌ لَّكُمْ",
+    english: "Fighting has been prescribed for you, though you dislike it.",
+    reference: "Surat Al-Baqarah 2 : 216" },
+
+  { id: "w4-12", week: "week4", category: "War, Peace, and Security",
+    arabic: "وَإِن جَنَحُوا لِلسِّلْمِ فَاجْنَحْ لَهَا وَتَوَكَّلْ عَلَى اللَّهِ",
+    english: "If they want peace, accept it and trust God.",
+    reference: "Surat Al-Anfāl 8 : 61" },
+
+  { id: "w4-13", week: "week4", category: "War, Peace, and Security",
+    arabic: "وَأَعِدُّوا لَهُم مَّا اسْتَطَعْتُم مِّن قُوَّةٍ",
+    english: "Prepare against them whatever force you can.",
+    reference: "Surat Al-Anfāl 8 : 60" },
+
+  { id: "w4-14", week: "week4", category: "War, Peace, and Security",
+    arabic: "وَقَاتِلُوا فِي سَبِيلِ اللَّهِ الَّذِينَ يُقَاتِلُونَكُمْ وَلَا تَعْتَدُوا",
+    english: "Fight those who fight you—but do not transgress.",
+    reference: "Surat Al-Baqarah 2 : 190" },
+
+  { id: "w4-15", week: "week4", category: "War, Peace, and Security",
+    arabic: "إِنَّمَا الْمُؤْمِنُونَ إِخْوَةٌ فَأَصْلِحُوا بَيْنَ أَخَوَيْكُمْ",
+    english: "Believers are but siblings, so make peace between them.",
+    reference: "Surat Al-Ḥujurāt 49 : 10" },
+
+  // === CORRUPTION AND ACCOUNTABILITY ===
+  { id: "w4-16", week: "week4", category: "Corruption and Accountability",
+    arabic: "وَلَا تَبْغِ الْفَسَادَ فِي الْأَرْضِ",
+    english: "Do not spread corruption on the earth.",
+    reference: "Surat Al-Baqarah 2 : 205" },
+
+  { id: "w4-17", week: "week4", category: "Corruption and Accountability",
+    arabic: "إِنَّ اللَّهَ لَا يُحِبُّ الْمُفْسِدِينَ",
+    english: "God does not love those who spread corruption.",
+    reference: "Surat Al-Qaṣaṣ 28 : 77" },
+
+  { id: "w4-18", week: "week4", category: "Corruption and Accountability",
+    arabic: "إِنَّ اللَّهَ لَا يُغَيِّرُ مَا بِقَوْمٍ حَتَّىٰ يُغَيِّرُوا مَا بِأَنْفُسِهِمْ",
+    english: "God will not change a people’s condition until they change themselves.",
+    reference: "Surat Ar-Raʿd 13 : 11" },
+
+  { id: "w4-19", week: "week4", category: "Corruption and Accountability",
+    arabic: "كُلُّ نَفْسٍ بِمَا كَسَبَتْ رَهِينَةٌ",
+    english: "Every soul is held in pledge for what it has earned.",
+    reference: "Surat Al-Muddaththir 74 : 38" },
+
+  { id: "w4-20", week: "week4", category: "Corruption and Accountability",
+    arabic: "وَلَا تَكُنْ لِلْخَائِنِينَ خَصِيمًا",
+    english: "Do not be an advocate for the traitors.",
+    reference: "Surat An-Nisāʾ 4 : 105" },
+
+  { id: "w4-21", week: "week4", category: "Corruption and Accountability",
+    arabic: "ٱتَّبِعُوا مَا أُنْزِلَ إِلَيْكُمْ مِن رَّبِّكُمْ",
+    english: "Follow what has been sent down to you from your Lord.",
+    reference: "Surat Al-Aʿrāf 7 : 3" },
+
+  { id: "w4-22", week: "week4", category: "Corruption and Accountability",
+    arabic: "وَلَا تَتَّبِعْ أَهْوَاءَهُمْ عَمَّا جَاءَكَ مِنَ الْحَقِّ",
+    english: "Do not follow their desires at the expense of truth.",
+    reference: "Surat Al-Māʾidah 5 : 48" },
+
+  { id: "w4-23", week: "week4", category: "Corruption and Accountability",
+    arabic: "إِنَّ الَّذِينَ يُحَادُّونَ اللَّهَ وَرَسُولَهُ كُبِتُوا",
+    english: "Those who oppose God and His Messenger will be humbled.",
+    reference: "Surat Al-Mujādilah 58 : 5" },
+
+  { id: "w4-24", week: "week4", category: "Corruption and Accountability",
+    arabic: "وَلَا تَكُونَنَّ مِنَ الْمُشْرِكِينَ",
+    english: "Do not be one of those who associate partners with God.",
+    reference: "Surat Al-Anʿām 6 : 14" },
+
+  // === LAWS, LEGISLATION, AND DIVINE GUIDANCE ===
+  { id: "w4-25", week: "week4", category: "Laws, Legislation, and Divine Guidance",
+    arabic: "يُرِيدُ اللَّهُ أَنْ يُخَفِّفَ عَنكُمْ وَخُلِقَ الْإِنسَانُ ضَعِيفًا",
+    english: "God wishes to lighten your burden; humankind was created weak.",
+    reference: "Surat An-Nisāʾ 4 : 28" },
+
+  { id: "w4-26", week: "week4", category: "Laws, Legislation, and Divine Guidance",
+    arabic: "فَلَا وَرَبِّكَ لَا يُؤْمِنُونَ حَتَّىٰ يُحَكِّمُوكَ فِيمَا شَجَرَ بَيْنَهُمْ",
+    english: "By your Lord, they do not truly believe until they make you judge their disputes.",
+    reference: "Surat An-Nisāʾ 4 : 65" },
+
+  { id: "w4-27", week: "week4", category: "Laws, Legislation, and Divine Guidance",
+    arabic: "ثُمَّ جَعَلْنَاكَ عَلَىٰ شَرِيعَةٍ مِّنَ الْأَمْرِ فَاتَّبِعْهَا",
+    english: "We set you on a clear path of command—follow it.",
+    reference: "Surat Al-Jāthiyah 45 : 18" },
+
+  { id: "w4-28", week: "week4", category: "Laws, Legislation, and Divine Guidance",
+    arabic: "وَإِذَا حَكَمْتُمْ بَيْنَ النَّاسِ أَنْ تَحْكُمُوا بِالْعَدْلِ",
+    english: "When you judge between people, judge with justice.",
+    reference: "Surat An-Nisāʾ 4 : 58" },
+
+  { id: "w4-29", week: "week4", category: "Laws, Legislation, and Divine Guidance",
+    arabic: "يَا دَاوُودُ إِنَّا جَعَلْنَاكَ خَلِيفَةً فِي الْأَرْضِ فَاحْكُمْ بَيْنَ النَّاسِ بِالْحَقِّ",
+    english: "O David, We made you a leader; judge people with truth.",
+    reference: "Surat Ṣād 38 : 26" },
+
+  { id: "w4-30", week: "week4", category: "Laws, Legislation, and Divine Guidance",
+    arabic: "وَجَعَلْنَا مِنْهُمْ أَئِمَّةً يَهْدُونَ بِأَمْرِنَا",
+    english: "We made them leaders guiding by Our command.",
+    reference: "Surat Al-Anbiyāʾ 21 : 73" },
+
+  { id: "w4-31", week: "week4", category: "Laws, Legislation, and Divine Guidance",
+    arabic: "لَا إِكْرَاهَ فِي الدِّينِ",
+    english: "There is no compulsion in religion.",
+    reference: "Surat Al-Baqarah 2 : 256" },
+
+  { id: "w4-32", week: "week4", category: "Laws, Legislation, and Divine Guidance",
+    arabic: "لَكُمْ دِينُكُمْ وَلِيَ دِينِ",
+    english: "You have your religion and I have mine.",
+    reference: "Surat Al-Kāfirūn 109 : 6" },
+
+  { id: "w4-33", week: "week4", category: "Laws, Legislation, and Divine Guidance",
+    arabic: "وَلَوْ شَاءَ رَبُّكَ لَآمَنَ مَن فِي الْأَرْضِ كُلُّهُمْ جَمِيعًا",
+    english: "Had your Lord willed, everyone on earth would have believed.",
+    reference: "Surat Yūnus 10 : 99" },
+
+  // === PEACE, RECONCILIATION, AND UNITY ===
+  { id: "w4-34", week: "week4", category: "Peace, Reconciliation, and Unity",
+    arabic: "فَأَصْلِحُوا بَيْنَ أَخَوَيْكُمْ",
+    english: "Make peace between your brothers.",
+    reference: "Surat Al-Ḥujurāt 49 : 10" },
+
+  { id: "w4-35", week: "week4", category: "Peace, Reconciliation, and Unity",
+    arabic: "وَاعْتَصِمُوا بِحَبْلِ اللَّهِ جَمِيعًا وَلَا تَفَرَّقُوا",
+    english: "Hold firmly to the rope of God—all of you—and do not divide.",
+    reference: "Surat Āl ʿImrān 3 : 103" },
+
+  { id: "w4-36", week: "week4", category: "Peace, Reconciliation, and Unity",
+    arabic: "تِلْكَ حُدُودُ اللَّهِ فَلَا تَعْتَدُوهَا",
+    english: "These are God’s limits—do not overstep them.",
+    reference: "Surat Al-Baqarah 2 : 229" },
+
+  { id: "w4-37", week: "week4", category: "Peace, Reconciliation, and Unity",
+    arabic: "أَطِيعُوا اللَّهَ وَأَطِيعُوا الرَّسُولَ وَأُولِي الْأَمْرِ مِنكُمْ",
+    english: "Obey God, obey the Messenger, and those in authority among you.",
+    reference: "Surat An-Nisāʾ 4 : 59" },
+
+  { id: "w4-38", week: "week4", category: "Peace, Reconciliation, and Unity",
+    arabic: "وَالْمُؤْمِنُونَ وَالْمُؤْمِنَاتُ بَعْضُهُمْ أَوْلِيَاءُ بَعْضٍ",
+    english: "Believing men and women are allies of one another.",
+    reference: "Surat At-Tawbah 9 : 71" },
+
+  { id: "w4-39", week: "week4", category: "Peace, Reconciliation, and Unity",
+    arabic: "وَعَدَ اللَّهُ الَّذِينَ آمَنُوا... لَيَسْتَخْلِفَنَّهُمْ فِي الْأَرْضِ",
+    english: "God has promised those who believe and do good that He will grant them succession on earth.",
+    reference: "Surat An-Nūr 24 : 55" },
+
+  { id: "w4-40", week: "week4", category: "Peace, Reconciliation, and Unity",
+    arabic: "وَلَوْلَا دَفْعُ اللَّهِ النَّاسَ بَعْضَهُم بِبَعْضٍ...",
+    english: "If God did not repel some people by means of others, monasteries, churches, synagogues and mosques would be destroyed.",
+    reference: "Surat Al-Ḥajj 22 : 40" },
+
+  { id: "w4-41", week: "week4", category: "Peace, Reconciliation, and Unity",
+    arabic: "إِنْ تَنْصُرُوا اللَّهَ يَنْصُرْكُمْ وَيُثَبِّتْ أَقْدَامَكُمْ",
+    english: "If you help God, He will help you and make you firm.",
+    reference: "Surat Muḥammad 47 : 7" },
+
+  { id: "w4-42", week: "week4", category: "Peace, Reconciliation, and Unity",
+    arabic: "يَا أَيُّهَا النَّاسُ إِنَّا خَلَقْنَاكُمْ مِن ذَكَرٍ وَأُنثَىٰ...",
+    english: "O mankind, We created you from a male and a female and made you peoples and tribes that you may know one another.",
+    reference: "Surat Al-Ḥujurāt 49 : 13" },
+
+  { id: "w4-43", week: "week4", category: "Peace, Reconciliation, and Unity",
+    arabic: "لَا يَنْهَاكُمُ اللَّهُ عَنِ الَّذِينَ لَمْ يُقَاتِلُوكُمْ...",
+    english: "God does not forbid you from being kind and just to those who have not fought you over religion.",
+    reference: "Surat Al-Mumtaḥanah 60 : 8" },
+
+  { id: "w4-44", week: "week4", category: "Peace, Reconciliation, and Unity",
+    arabic: "إِنَّمَا يَنْهَاكُمُ اللَّهُ عَنِ الَّذِينَ قَاتَلُوكُمْ...",
+    english: "God only forbids you from befriending those who fought you because of faith and expelled you.",
+    reference: "Surat Al-Mumtaḥanah 60 : 9" },
+
+  { id: "w4-45", week: "week4", category: "Peace, Reconciliation, and Unity",
+    arabic: "فَاحْكُمْ بَيْنَهُم بِمَا أَنزَلَ اللَّهُ",
+    english: "Judge between them by what God has revealed.",
+    reference: "Surat Al-Māʾidah 5 : 49" },
+
+  { id: "w4-46", week: "week4", category: "Peace, Reconciliation, and Unity",
+    arabic: "وَلَا يَجْرِمَنَّكُمْ شَنَآنُ قَوْمٍ عَلَىٰ أَلَّا تَعْدِلُوا",
+    english: "Do not let hatred of a people cause you to deviate from justice.",
+    reference: "Surat Al-Māʾidah 5 : 8" }
 ];
