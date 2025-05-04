@@ -43,7 +43,7 @@ const FlashCard = memo(({
               className={
                 `mb-2 text-slate-700 break-words leading-relaxed ` + backClassName
               }
-              style={{ direction: 'rtl', fontSize: 'clamp(1rem, 2.5vw, 1.125rem)' }}
+              style={{ direction: 'ltr', fontSize: 'clamp(1rem, 2.5vw, 1.125rem)' }}
             >
               {back}
             </p>
