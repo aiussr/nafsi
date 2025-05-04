@@ -1320,12 +1320,12 @@ export const flashcardsData = [
 
   { id: "w4-13", week: "week4", category: "War, Peace, and Security",
     arabic: "وَأَعِدُّوا لَهُم مَّا اسْتَطَعْتُم مِّن قُوَّةٍ",
-    english: "Prepare against them whatever force you can.",
+    english: "Prepare against them with all the strength you can.",
     reference: "Surat Al-Anfāl 8 : 60" },
 
   { id: "w4-14", week: "week4", category: "War, Peace, and Security",
     arabic: "وَقَاتِلُوا فِي سَبِيلِ اللَّهِ الَّذِينَ يُقَاتِلُونَكُمْ وَلَا تَعْتَدُوا",
-    english: "Fight those who fight you—but do not transgress.",
+    english: "Fight those who fight you—but do not go too far (transgress).",
     reference: "Surat Al-Baqarah 2 : 190" },
 
   { id: "w4-15", week: "week4", category: "War, Peace, and Security",
@@ -1351,12 +1351,12 @@ export const flashcardsData = [
 
   { id: "w4-19", week: "week4", category: "Corruption and Accountability",
     arabic: "كُلُّ نَفْسٍ بِمَا كَسَبَتْ رَهِينَةٌ",
-    english: "Every soul is held in pledge for what it has earned.",
+    english: "Every soul is held hostage/(accountable) for what it does/(earns).",
     reference: "Surat Al-Muddaththir 74 : 38" },
 
   { id: "w4-20", week: "week4", category: "Corruption and Accountability",
     arabic: "وَلَا تَكُنْ لِلْخَائِنِينَ خَصِيمًا",
-    english: "Do not be an advocate for the traitors.",
+    english: "Do not defend/(argue for) those who are dishonest/(traitors).",
     reference: "Surat An-Nisāʾ 4 : 105" },
 
   { id: "w4-21", week: "week4", category: "Corruption and Accountability",
@@ -1366,12 +1366,12 @@ export const flashcardsData = [
 
   { id: "w4-22", week: "week4", category: "Corruption and Accountability",
     arabic: "وَلَا تَتَّبِعْ أَهْوَاءَهُمْ عَمَّا جَاءَكَ مِنَ الْحَقِّ",
-    english: "Do not follow their desires at the expense of truth.",
+    english: "Do not follow their low desires over/(away from) what's true.",
     reference: "Surat Al-Māʾidah 5 : 48" },
 
   { id: "w4-23", week: "week4", category: "Corruption and Accountability",
     arabic: "إِنَّ الَّذِينَ يُحَادُّونَ اللَّهَ وَرَسُولَهُ كُبِتُوا",
-    english: "Those who oppose God and His Messenger will be humbled.",
+    english: "Those who oppose God and His Messenger will be defeated/humiliated.",
     reference: "Surat Al-Mujādilah 58 : 5" },
 
   { id: "w4-24", week: "week4", category: "Corruption and Accountability",
@@ -1382,17 +1382,17 @@ export const flashcardsData = [
   // === LAWS, LEGISLATION, AND DIVINE GUIDANCE ===
   { id: "w4-25", week: "week4", category: "Laws, Legislation, and Divine Guidance",
     arabic: "يُرِيدُ اللَّهُ أَنْ يُخَفِّفَ عَنكُمْ وَخُلِقَ الْإِنسَانُ ضَعِيفًا",
-    english: "God wishes to lighten your burden; humankind was created weak.",
+    english: "God wishes to make it easier for you/(lighten your burden); people were created weak.",
     reference: "Surat An-Nisāʾ 4 : 28" },
 
   { id: "w4-26", week: "week4", category: "Laws, Legislation, and Divine Guidance",
     arabic: "فَلَا وَرَبِّكَ لَا يُؤْمِنُونَ حَتَّىٰ يُحَكِّمُوكَ فِيمَا شَجَرَ بَيْنَهُمْ",
-    english: "By your Lord, they do not truly believe until they make you judge their disputes.",
+    english: "By your Lord, they do not truly believe until they let you judge their disputes.",
     reference: "Surat An-Nisāʾ 4 : 65" },
 
   { id: "w4-27", week: "week4", category: "Laws, Legislation, and Divine Guidance",
     arabic: "ثُمَّ جَعَلْنَاكَ عَلَىٰ شَرِيعَةٍ مِّنَ الْأَمْرِ فَاتَّبِعْهَا",
-    english: "We set you on a clear path of command—follow it.",
+    english: "We set you on a clear path—so follow it.",
     reference: "Surat Al-Jāthiyah 45 : 18" },
 
   { id: "w4-28", week: "week4", category: "Laws, Legislation, and Divine Guidance",
@@ -1402,12 +1402,12 @@ export const flashcardsData = [
 
   { id: "w4-29", week: "week4", category: "Laws, Legislation, and Divine Guidance",
     arabic: "يَا دَاوُودُ إِنَّا جَعَلْنَاكَ خَلِيفَةً فِي الْأَرْضِ فَاحْكُمْ بَيْنَ النَّاسِ بِالْحَقِّ",
-    english: "O David, We made you a leader; judge people with truth.",
+    english: "O David, We made you a leader; judge people with justice/(truth).",
     reference: "Surat Ṣād 38 : 26" },
 
   { id: "w4-30", week: "week4", category: "Laws, Legislation, and Divine Guidance",
     arabic: "وَجَعَلْنَا مِنْهُمْ أَئِمَّةً يَهْدُونَ بِأَمْرِنَا",
-    english: "We made them leaders guiding by Our command.",
+    english: "We made them leaders who guided by Our command.",
     reference: "Surat Al-Anbiyāʾ 21 : 73" },
 
   { id: "w4-31", week: "week4", category: "Laws, Legislation, and Divine Guidance",
