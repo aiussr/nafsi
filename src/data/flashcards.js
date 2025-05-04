@@ -1304,7 +1304,7 @@ export const flashcardsData = [
 
   { id: "w4-10", week: "week4", category: "Justice and Fairness",
     arabic: "وَلَا تَقْرَبُوا مَالَ الْيَتِيمِ إِلَّا بِالَّتِي هِيَ أَحْسَنُ",
-    english: "Do not go near an orphan’s property unless to improve it.",
+    english: "Do not go near an orphan’s property unless you're doing what's right (better or more just).",
     reference: "Surat Al-Isrāʾ 17 : 34" },
 
   // === WAR, PEACE, AND SECURITY ===
