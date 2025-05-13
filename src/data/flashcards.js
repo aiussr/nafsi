@@ -37,6 +37,14 @@ export const categories = {
     "Corruption and Accountability",
     "Laws, Legislation, and Divine Guidance",
     "Peace, Reconciliation, and Unity"
+  ],
+  week5: [
+    "The Nature and Attributes of God",
+    "God's Knowledge and the Unseen",
+    "Creation and Cosmology",
+    "Divine Presence and Immanence",
+    "The Human Condition, Soul, and Free Will",
+    "Time, Death, and the Afterlife"
   ]
 };
 
@@ -45,7 +53,8 @@ export const weekNames = {
   week1: "Logic",
   week2: "Physics",
   week3: "Ethics",
-  week4: "Politics"
+  week4: "Politics",
+  week5: "Metaphysics"
 };
 
 // Flashcard data from your PDF documents, formatted for the application
