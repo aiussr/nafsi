@@ -1498,5 +1498,415 @@ export const flashcardsData = [
   { id: "w4-46", week: "week4", category: "Peace, Reconciliation, and Unity",
     arabic: "وَلَا يَجْرِمَنَّكُمْ شَنَآنُ قَوْمٍ عَلَىٰٓ أَلَّا تَعْدِلُوا",
     english: "Do not let hatred of a people prevent you from being just.",
-    reference: "Surat Al-Māʾidah 5:8" }
+    reference: "Surat Al-Māʾidah 5:8" },
+// === WEEK 5: METAPHYSICS ===
+{
+  id: "w5-1",
+  week: "week5",
+  category: "The Nature and Attributes of God",
+  arabic: "اللَّهُ لَا إِلٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ",
+  english: "God—there is no deity but Him, the Ever-Living, the Sustainer of life.",
+  reference: "2:255"
+}, // :contentReference[oaicite:0]{index=0}:contentReference[oaicite:1]{index=1}
+{
+  id: "w5-2",
+  week: "week5",
+  category: "The Nature and Attributes of God",
+  arabic: "لَا تُدْرِكُهُ الْأَبْصَارُ وَهُوَ يُدْرِكُ الْأَبْصَارَ",
+  english: "No vision can grasp Him, but He encompasses all vision.",
+  reference: "6:103"
+}, // :contentReference[oaicite:2]{index=2}:contentReference[oaicite:3]{index=3}
+{
+  id: "w5-3",
+  week: "week5",
+  category: "The Nature and Attributes of God",
+  arabic: "اللَّهُ نُورُ السَّمَاوَاتِ وَالْأَرْضِ",
+  english: "God is the Light of the heavens and the earth.",
+  reference: "24:35"
+}, // :contentReference[oaicite:4]{index=4}:contentReference[oaicite:5]{index=5}
+{
+  id: "w5-4",
+  week: "week5",
+  category: "The Nature and Attributes of God",
+  arabic: "اللَّهُ خَالِقُ كُلِّ شَيْءٍ",
+  english: "God is the Creator of all things.",
+  reference: "39:62"
+}, // :contentReference[oaicite:6]{index=6}:contentReference[oaicite:7]{index=7}
+{
+  id: "w5-5",
+  week: "week5",
+  category: "The Nature and Attributes of God",
+  arabic: "إِنَّهُ عَلَى كُلِّ شَيْءٍ قَدِيرٌ",
+  english: "Indeed, God has power over all things.",
+  reference: "2:20"
+}, // :contentReference[oaicite:8]{index=8}:contentReference[oaicite:9]{index=9}
+{
+  id: "w5-6",
+  week: "week5",
+  category: "The Nature and Attributes of God",
+  arabic: "وَهُوَ الْعَلِيُّ الْعَظِيمُ",
+  english: "He is the Most High, the Most Great.",
+  reference: "2:255"
+}, // :contentReference[oaicite:10]{index=10}:contentReference[oaicite:11]{index=11}
+{
+  id: "w5-7",
+  week: "week5",
+  category: "The Nature and Attributes of God",
+  arabic: "لَيْسَ كَمِثْلِهِ شَيْءٌ",
+  english: "There is nothing like Him whatsoever.",
+  reference: "42:11"
+}, // :contentReference[oaicite:12]{index=12}:contentReference[oaicite:13]{index=13}
+{
+  id: "w5-8",
+  week: "week5",
+  category: "The Nature and Attributes of God",
+  arabic: "اللَّهُ وَلِيُّ الَّذِينَ آمَنُوا",
+  english: "God is the Guardian of those who have faith.",
+  reference: "2:257"
+}, // :contentReference[oaicite:14]{index=14}:contentReference[oaicite:15]{index=15}
+{
+  id: "w5-9",
+  week: "week5",
+  category: "The Nature and Attributes of God",
+  arabic: "وَهُوَ الْحَكِيمُ الْخَبِيرُ",
+  english: "He is the All-Wise, the All-Aware.",
+  reference: "6:18"
+}, // :contentReference[oaicite:16]{index=16}:contentReference[oaicite:17]{index=17}
+{
+  id: "w5-10",
+  week: "week5",
+  category: "The Nature and Attributes of God",
+  arabic: "يُحْيِي وَيُمِيتُ",
+  english: "He gives life and causes death.",
+  reference: "9:116"
+}, // :contentReference[oaicite:18]{index=18}:contentReference[oaicite:19]{index=19}
+{
+  id: "w5-11",
+  week: "week5",
+  category: "The Nature and Attributes of God",
+  arabic: "وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ",
+  english: "And He has power over all things.",
+  reference: "2:284"
+}, // :contentReference[oaicite:20]{index=20}:contentReference[oaicite:21]{index=21}
+{
+  id: "w5-12",
+  week: "week5",
+  category: "The Nature and Attributes of God",
+  arabic: "هُوَ الْأَوَّلُ وَالْآخِرُ وَالظَّاهِرُ وَالْبَاطِنُ",
+  english: "He is the First and the Last, the Manifest and the Hidden.",
+  reference: "57:3"
+}, // :contentReference[oaicite:22]{index=22}:contentReference[oaicite:23]{index=23}
+{
+  id: "w5-13",
+  week: "week5",
+  category: "The Nature and Attributes of God",
+  arabic: "اللَّهُ يَسْتَهْزِئُ بِهِمْ",
+  english: "God mocks them [in return for their mockery].",
+  reference: "2:15"
+}, // :contentReference[oaicite:24]{index=24}:contentReference[oaicite:25]{index=25}
+{
+  id: "w5-14",
+  week: "week5",
+  category: "God's Knowledge and the Unseen",
+  arabic: "وَعِنْدَهُ مَفَاتِحُ الْغَيْبِ",
+  english: "With Him lie the keys to the unseen.",
+  reference: "6:59"
+}, // :contentReference[oaicite:26]{index=26}:contentReference[oaicite:27]{index=27}
+{
+  id: "w5-15",
+  week: "week5",
+  category: "God's Knowledge and the Unseen",
+  arabic: "يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ",
+  english: "He knows what lies before them and behind them.",
+  reference: "2:255"
+}, // :contentReference[oaicite:28]{index=28}:contentReference[oaicite:29]{index=29}
+{
+  id: "w5-16",
+  week: "week5",
+  category: "God's Knowledge and the Unseen",
+  arabic: "وَلَا يُحِيطُونَ بِشَيْءٍ مِنْ عِلْمِهِ إِلَّا بِمَا شَاءَ",
+  english: "They grasp nothing of His knowledge except what He wills.",
+  reference: "2:255"
+}, // :contentReference[oaicite:30]{index=30}:contentReference[oaicite:31]{index=31}
+{
+  id: "w5-17",
+  week: "week5",
+  category: "God's Knowledge and the Unseen",
+  arabic: "إِنَّهُ عَلِيمٌ بِذَاتِ الصُّدُورِ",
+  english: "He knows the secrets of hearts.",
+  reference: "67:13"
+}, // :contentReference[oaicite:32]{index=32}:contentReference[oaicite:33]{index=33}
+{
+  id: "w5-18",
+  week: "week5",
+  category: "God's Knowledge and the Unseen",
+  arabic: "وَيَعْلَمُ مَا تُخْفِي الصُّدُورُ",
+  english: "And He knows what the hearts conceal.",
+  reference: "64:4"
+}, // :contentReference[oaicite:34]{index=34}:contentReference[oaicite:35]{index=35}
+{
+  id: "w5-19",
+  week: "week5",
+  category: "God's Knowledge and the Unseen",
+  arabic: "يَعْلَمُ مَا يُسِرُّونَ وَمَا يُعْلِنُونَ",
+  english: "He knows what they keep secret and what they make public.",
+  reference: "28:69"
+}, // :contentReference[oaicite:36]{index=36}:contentReference[oaicite:37]{index=37}
+{
+  id: "w5-20",
+  week: "week5",
+  category: "God's Knowledge and the Unseen",
+  arabic: "وَنَحْنُ أَقْرَبُ إِلَيْهِ مِنْ حَبْلِ الْوَرِيدِ",
+  english: "We are nearer to him than his jugular vein.",
+  reference: "50:16"
+}, // :contentReference[oaicite:38]{index=38}:contentReference[oaicite:39]{index=39}
+{
+  id: "w5-21",
+  week: "week5",
+  category: "God's Knowledge and the Unseen",
+  arabic: "وَنَفْسٍ وَمَا سَوَّاهَا",
+  english: "By the soul, and the One who shaped it.",
+  reference: "91:7"
+}, // :contentReference[oaicite:40]{index=40}:contentReference[oaicite:41]{index=41}
+{
+  id: "w5-22",
+  week: "week5",
+  category: "God's Knowledge and the Unseen",
+  arabic: "قُلِ الرُّوحُ مِنْ أَمْرِ رَبِّي",
+  english: "Say: “The Spirit is from the command of my Lord.”",
+  reference: "17:85"
+}, // :contentReference[oaicite:42]{index=42}:contentReference[oaicite:43]{index=43}
+{
+  id: "w5-23",
+  week: "week5",
+  category: "Creation and Cosmology",
+  arabic: "يُحْيِي الْأَرْضَ بَعْدَ مَوْتِهَا",
+  english: "He revives the earth after its death.",
+  reference: "30:19"
+}, // :contentReference[oaicite:44]{index=44}:contentReference[oaicite:45]{index=45}
+{
+  id: "w5-24",
+  week: "week5",
+  category: "Creation and Cosmology",
+  arabic: "يُدَبِّرُ الْأَمْرَ مِنَ السَّمَاءِ إِلَى الْأَرْضِ",
+  english: "He orchestrates the command from heaven to earth.",
+  reference: "32:5"
+}, // :contentReference[oaicite:46]{index=46}:contentReference[oaicite:47]{index=47}
+{
+  id: "w5-25",
+  week: "week5",
+  category: "Creation and Cosmology",
+  arabic: "كُلَّ يَوْمٍ هُوَ فِي شَأْنٍ",
+  english: "Every day He is at work.",
+  reference: "55:29"
+}, // :contentReference[oaicite:48]{index=48}:contentReference[oaicite:49]{index=49}
+{
+  id: "w5-26",
+  week: "week5",
+  category: "Creation and Cosmology",
+  arabic: "وَيَخْلُقُ مَا لَا تَعْلَمُونَ",
+  english: "And He creates what you do not know.",
+  reference: "16:8"
+}, // :contentReference[oaicite:50]{index=50}:contentReference[oaicite:51]{index=51}
+{
+  id: "w5-27",
+  week: "week5",
+  category: "Creation and Cosmology",
+  arabic: "وَنَفَخْتُ فِيهِ مِنْ رُوحِي",
+  english: "And I breathed into him of My Spirit.",
+  reference: "15:29"
+}, // :contentReference[oaicite:52]{index=52}:contentReference[oaicite:53]{index=53}
+{
+  id: "w5-28",
+  week: "week5",
+  category: "Creation and Cosmology",
+  arabic: "خَلَقَ الْإِنْسَانَ مِنْ نُطْفَةٍ فَإِذَا هُوَ خَصِيمٌ مُبِينٌ",
+  english: "He created man from a drop, yet he becomes a clear opponent.",
+  reference: "16:4"
+}, // :contentReference[oaicite:54]{index=54}:contentReference[oaicite:55]{index=55}
+{
+  id: "w5-29",
+  week: "week5",
+  category: "Creation and Cosmology",
+  arabic: "كُلُّ شَيْءٍ هَالِكٌ إِلَّا وَجْهَهُ",
+  english: "All things perish, save His Face.",
+  reference: "28:88"
+}, // :contentReference[oaicite:56]{index=56}:contentReference[oaicite:57]{index=57}
+{
+  id: "w5-30",
+  week: "week5",
+  category: "Divine Presence and Immanence",
+  arabic: "فَأَيْنَمَا تُوَلُّوا فَثَمَّ وَجْهُ اللَّهِ",
+  english: "Wherever you turn, there is the Face of God.",
+  reference: "2:115"
+}, // :contentReference[oaicite:58]{index=58}:contentReference[oaicite:59]{index=59}
+{
+  id: "w5-31",
+  week: "week5",
+  category: "Divine Presence and Immanence",
+  arabic: "وَهُوَ مَعَكُمْ أَيْنَ مَا كُنتُمْ",
+  english: "He is with you wherever you are.",
+  reference: "57:4"
+}, // :contentReference[oaicite:60]{index=60}:contentReference[oaicite:61]{index=61}
+{
+  id: "w5-32",
+  week: "week5",
+  category: "Divine Presence and Immanence",
+  arabic: "وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ",
+  english: "His Throne extends over the heavens and the earth.",
+  reference: "2:255"
+}, // :contentReference[oaicite:62]{index=62}:contentReference[oaicite:63]{index=63}
+{
+  id: "w5-33",
+  week: "week5",
+  category: "Divine Presence and Immanence",
+  arabic: "لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ",
+  english: "Neither drowsiness nor sleep overtakes Him.",
+  reference: "2:255"
+}, // :contentReference[oaicite:64]{index=64}:contentReference[oaicite:65]{index=65}
+{
+  id: "w5-34",
+  week: "week5",
+  category: "The Human Condition, Soul, and Free Will",
+  arabic: "وَمَا خَلَقْتُ الْجِنَّ وَالْإِنْسَ إِلَّا لِيَعْبُدُونِ",
+  english: "I created jinn and humankind only to worship Me.",
+  reference: "51:56"
+}, // :contentReference[oaicite:66]{index=66}:contentReference[oaicite:67]{index=67}
+{
+  id: "w5-35",
+  week: "week5",
+  category: "The Human Condition, Soul, and Free Will",
+  arabic: "اللَّهُ يُحِبُّ الْمُحْسِنِينَ",
+  english: "God loves those who act with excellence.",
+  reference: "2:195"
+}, // :contentReference[oaicite:68]{index=68}:contentReference[oaicite:69]{index=69}
+{
+  id: "w5-36",
+  week: "week5",
+  category: "The Human Condition, Soul, and Free Will",
+  arabic: "يُرِيدُ اللَّهُ بِكُمُ الْيُسْرَ",
+  english: "God intends ease for you.",
+  reference: "2:185"
+}, // :contentReference[oaicite:70]{index=70}:contentReference[oaicite:71]{index=71}
+{
+  id: "w5-37",
+  week: "week5",
+  category: "The Human Condition, Soul, and Free Will",
+  arabic: "ثُمَّ إِلَى رَبِّكُمْ تُرْجَعُونَ",
+  english: "Then to your Lord you shall all return.",
+  reference: "6:98"
+}, // :contentReference[oaicite:72]{index=72}:contentReference[oaicite:73]{index=73}
+{
+  id: "w5-38",
+  week: "week5",
+  category: "The Human Condition, Soul, and Free Will",
+  arabic: "إِنَّا لِلَّهِ وَإِنَّا إِلَيْهِ رَاجِعُونَ",
+  english: "Truly we belong to God, and truly to Him we shall return.",
+  reference: "2:156"
+}, // :contentReference[oaicite:74]{index=74}:contentReference[oaicite:75]{index=75}
+{
+  id: "w5-39",
+  week: "week5",
+  category: "The Human Condition, Soul, and Free Will",
+  arabic: "وَأَنَّ إِلَى رَبِّكَ الْمُنْتَهَى",
+  english: "And indeed, to your Lord is the final destination.",
+  reference: "53:42"
+}, // :contentReference[oaicite:76]{index=76}:contentReference[oaicite:77]{index=77}
+{
+  id: "w5-40",
+  week: "week5",
+  category: "The Human Condition, Soul, and Free Will",
+  arabic: "وَإِلَيْهِ الْمَصِيرُ",
+  english: "And to Him is the ultimate return.",
+  reference: "5:18"
+}, // :contentReference[oaicite:78]{index=78}:contentReference[oaicite:79]{index=79}
+{
+  id: "w5-41",
+  week: "week5",
+  category: "Time, Death, and the Afterlife",
+  arabic: "اللَّهُ يَتَوَفَّى الْأَنْفُسَ حِينَ مَوْتِهَا",
+  english: "It is God who takes the souls at the time of their death.",
+  reference: "39:42"
+}, // :contentReference[oaicite:80]{index=80}:contentReference[oaicite:81]{index=81}
+{
+  id: "w5-42",
+  week: "week5",
+  category: "Time, Death, and the Afterlife",
+  arabic: "كُلُّ نَفْسٍ ذَائِقَةُ الْمَوْتِ",
+  english: "Every soul shall taste death.",
+  reference: "3:185"
+}, // :contentReference[oaicite:82]{index=82}:contentReference[oaicite:83]{index=83}
+{
+  id: "w5-43",
+  week: "week5",
+  category: "Time, Death, and the Afterlife",
+  arabic: "وَعِنْدَهُ عِلْمُ السَّاعَةِ",
+  english: "With Him is knowledge of the Hour.",
+  reference: "31:34"
+}, // :contentReference[oaicite:84]{index=84}:contentReference[oaicite:85]{index=85}
+{
+  id: "w5-44",
+  week: "week5",
+  category: "Time, Death, and the Afterlife",
+  arabic: "وَإِلَيْهِ يُرْجَعُ الْأَمْرُ كُلُّهُ",
+  english: "To Him all affairs shall return.",
+  reference: "11:123"
+}, // :contentReference[oaicite:86]{index=86}:contentReference[oaicite:87]{index=87}
+{
+  id: "w5-45",
+  week: "week5",
+  category: "Time, Death, and the Afterlife",
+  arabic: "إِذَا قَضَى أَمْرًا فَإِنَّمَا يَقُولُ لَهُ كُنْ فَيَكُونُ",
+  english: "When He decrees a thing, He only says, “Be,” and it becomes.",
+  reference: "2:117"
+}, // :contentReference[oaicite:88]{index=88}:contentReference[oaicite:89]{index=89}
+{
+  id: "w5-46",
+  week: "week5",
+  category: "Time, Death, and the Afterlife",
+  arabic: "وَمَا تَشَاءُونَ إِلَّا أَنْ يَشَاءَ اللَّهُ",
+  english: "You do not will unless God wills.",
+  reference: "76:30"
+}, // :contentReference[oaicite:90]{index=90}:contentReference[oaicite:91]{index=91}
+{
+  id: "w5-47",
+  week: "week5",
+  category: "Time, Death, and the Afterlife",
+  arabic: "إِنَّ رَبَّكَ فَعَّالٌ لِمَا يُرِيدُ",
+  english: "Indeed, your Lord is the Doer of whatever He wills.",
+  reference: "11:107"
+}, // :contentReference[oaicite:92]{index=92}:contentReference[oaicite:93]{index=93}
+{
+  id: "w5-48",
+  week: "week5",
+  category: "Time, Death, and the Afterlife",
+  arabic: "وَيَفْعَلُ اللَّهُ مَا يَشَاءُ",
+  english: "God does whatever He wills.",
+  reference: "14:27"
+}, // :contentReference[oaicite:94]{index=94}:contentReference[oaicite:95]{index=95}
+{
+  id: "w5-49",
+  week: "week5",
+  category: "The Human Condition, Soul, and Free Will",
+  arabic: "قَدْ أَفْلَحَ مَنْ زَكَّاهَا",
+  english: "Successful is the one who purifies it [the soul].",
+  reference: "91:9"
+}, // :contentReference[oaicite:96]{index=96}:contentReference[oaicite:97]{index=97}
+{
+  id: "w5-50",
+  week: "week5",
+  category: "The Human Condition, Soul, and Free Will",
+  arabic: "وَقَدْ خَابَ مَنْ دَسَّاهَا",
+  english: "And lost is the one who corrupts it.",
+  reference: "91:10"
+}, // :contentReference[oaicite:98]{index=98}:contentReference[oaicite:99]{index=99}
+{
+  id: "w5-51",
+  week: "week5",
+  category: "God's Knowledge and the Unseen",
+  arabic: "عَالِمِ الْغَيْبِ وَالشَّهَادَةِ",
+  english: "Knower of the unseen and the seen.",
+  reference: "6:73"
+}  // :contentReference[oaicite:100]{index=100}:contentReference[oaicite:101]{index=101}
+
 ];
