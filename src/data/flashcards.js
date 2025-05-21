@@ -1919,11 +1919,11 @@ export const flashcardsData = [
 }, // :contentReference[oaicite:100]{index=100}:contentReference[oaicite:101]{index=101}
   // === WEEK 6 : AESTHETIC ===
   // --------------------------------------------------
-  // Group 1 (verses 1 – 9)
+  // Origins & Cosmic Craftsmanship (verses 1 – 9)
   {
     id: "w6-1",
     week: "week6",
-    category: "Group 1",
+    category: "Origins & Cosmic Craftsmanship",
     arabic: "الَّذِي خَلَقَ فَسَوَّى",
     english: "He created and shaped perfectly.",
     reference: "Surat Al‑Aʿlā 87:2"
@@ -1931,7 +1931,7 @@ export const flashcardsData = [
   {
     id: "w6-2",
     week: "week6",
-    category: "Group 1",
+    category: "Origins & Cosmic Craftsmanship",
     arabic: "الَّذِي خَلَقَنِي فَهُوَ يَهْدِينِ",
     english: "He created me and guides me.",
     reference: "Surat Ash‑Shuʿarāʾ 26:78"
@@ -1939,7 +1939,7 @@ export const flashcardsData = [
   {
     id: "w6-3",
     week: "week6",
-    category: "Group 1",
+    category: "Origins & Cosmic Craftsmanship",
     arabic: "وَالسَّمَاءِ ذَاتِ الْبُرُوجِ",
     english: "By the sky with constellations.",
     reference: "Surat Al‑Burūj 85:1"
@@ -1947,7 +1947,7 @@ export const flashcardsData = [
   {
     id: "w6-4",
     week: "week6",
-    category: "Group 1",
+    category: "Origins & Cosmic Craftsmanship",
     arabic: "وَالْأَرْضِ ذَاتِ الصَّدْعِ",
     english: "And the earth that cracks open.",
     reference: "Surat At‑Ṭāriq 86:12"
@@ -1955,7 +1955,7 @@ export const flashcardsData = [
   {
     id: "w6-5",
     week: "week6",
-    category: "Group 1",
+    category: "Origins & Cosmic Craftsmanship",
     arabic: "إِنَّ الْأَبْرَارَ لَفِي نَعِيمٍ",
     english: "The righteous will be in bliss.",
     reference: "Surat Al‑Infiṭār 82:13"
@@ -1963,7 +1963,7 @@ export const flashcardsData = [
   {
     id: "w6-6",
     week: "week6",
-    category: "Group 1",
+    category: "Origins & Cosmic Craftsmanship",
     arabic: "إِنَّ الْفُجَّارَ لَفِي جَحِيمٍ",
     english: "The wicked will be in a blazing fire.",
     reference: "Surat Al‑Infiṭār 82:14"
@@ -1971,7 +1971,7 @@ export const flashcardsData = [
   {
     id: "w6-7",
     week: "week6",
-    category: "Group 1",
+    category: "Origins & Cosmic Craftsmanship",
     arabic: "فَانظُرْ إِلَى آثَارِ رَحْمَتِ اللَّهِ",
     english: "Look at the effects of Allah’s mercy.",
     reference: "Surat Ar‑Rūm 30:50"
@@ -1979,7 +1979,7 @@ export const flashcardsData = [
   {
     id: "w6-8",
     week: "week6",
-    category: "Group 1",
+    category: "Origins & Cosmic Craftsmanship",
     arabic: "وَيُسَبِّحُ الرَّعْدُ بِحَمْدِهِ",
     english: "And the thunder praises Him.",
     reference: "Surat Ar‑Raʿd 13:13"
@@ -1987,17 +1987,17 @@ export const flashcardsData = [
   {
     id: "w6-9",
     week: "week6",
-    category: "Group 1",
+    category: "Origins & Cosmic Craftsmanship",
     arabic: "هُوَ الَّذِي جَعَلَ لَكُمُ الْأَرْضَ ذَلُولًا",
     english: "He made the earth manageable for you.",
     reference: "Surat Al‑Mulk 67:15"
   },
 
-  // Group 2 (verses 10 – 18)
+  // Continuous Creation & Sustaining Power (verses 10 – 18)
   {
     id: "w6-10",
     week: "week6",
-    category: "Group 2",
+    category: "Continuous Creation & Sustaining Power",
     arabic: "تُسَبِّحُ لَهُ السَّمَاوَاتُ السَّبْعُ",
     english: "The seven heavens glorify Him.",
     reference: "Surat Al‑Isrāʾ 17:44"
@@ -2005,7 +2005,7 @@ export const flashcardsData = [
   {
     id: "w6-11",
     week: "week6",
-    category: "Group 2",
+    category: "Continuous Creation & Sustaining Power",
     arabic: "خَلَقَ السَّمَاوَاتِ وَالْأَرْضَ بِالْحَقِّ",
     english: "He created the heavens and the earth with truth.",
     reference: "Surat An‑Naḥl 16:3"
@@ -2013,7 +2013,7 @@ export const flashcardsData = [
   {
     id: "w6-12",
     week: "week6",
-    category: "Group 2",
+    category: "Continuous Creation & Sustaining Power",
     arabic: "يُخْرِجُ الْحَيَّ مِنَ الْمَيِّتِ",
     english: "He brings the living out of the dead.",
     reference: "Surat Ar‑Rūm 30:19"
@@ -2021,7 +2021,7 @@ export const flashcardsData = [
   {
     id: "w6-13",
     week: "week6",
-    category: "Group 2",
+    category: "Continuous Creation & Sustaining Power",
     arabic: "إِنَّ الْمُتَّقِينَ فِي مَقَامٍ أَمِينٍ",
     english: "The righteous will be in a secure place.",
     reference: "Surat Ad‑Dukhān 44:51"
@@ -2029,7 +2029,7 @@ export const flashcardsData = [
   {
     id: "w6-14",
     week: "week6",
-    category: "Group 2",
+    category: "Continuous Creation & Sustaining Power",
     arabic: "خَلَقَ الْإِنْسَانَ مِنْ صَلْصَالٍ",
     english: "He created man from clay.",
     reference: "Surat Ar‑Raḥmān 55:14"
@@ -2037,7 +2037,7 @@ export const flashcardsData = [
   {
     id: "w6-15",
     week: "week6",
-    category: "Group 2",
+    category: "Continuous Creation & Sustaining Power",
     arabic: "يَا أَيُّهَا الْإِنْسَانُ مَا غَرَّكَ بِرَبِّكَ الْكَرِيمِ",
     english: "O human, what has deceived you about your generous Lord?",
     reference: "Surat Al‑Infiṭār 82:6"
@@ -2045,7 +2045,7 @@ export const flashcardsData = [
   {
     id: "w6-16",
     week: "week6",
-    category: "Group 2",
+    category: "Continuous Creation & Sustaining Power",
     arabic: "هَذَا خَلْقُ اللَّهِ فَأَرُونِي مَاذَا خَلَقَ الَّذِينَ مِنْ دُونِهِ",
     english: "This is the creation of Allah. So show Me what others created.",
     reference: "Surat Luqmān 31:11"
@@ -2053,7 +2053,7 @@ export const flashcardsData = [
   {
     id: "w6-17",
     week: "week6",
-    category: "Group 2",
+    category: "Continuous Creation & Sustaining Power",
     arabic: "وَجَعَلْنَا السَّمَاءَ سَقْفًا مَحْفُوظًا",
     english: "We made the sky a protected roof.",
     reference: "Surat Al‑Anbiyāʾ 21:32"
@@ -2061,17 +2061,17 @@ export const flashcardsData = [
   {
     id: "w6-18",
     week: "week6",
-    category: "Group 2",
+    category: "Continuous Creation & Sustaining Power",
     arabic: "وَاللَّهُ جَعَلَ لَكُمْ مِمَّا خَلَقَ ظِلَالًا",
     english: "Allah made shade for you from what He created.",
     reference: "Surat An‑Naḥl 16:81"
   },
 
-  // Group 3 (verses 19 – 27)
+  // Cycles of Provision (verses 19 – 27)
   {
     id: "w6-19",
     week: "week6",
-    category: "Group 3",
+    category: "Cycles of Provision",
     arabic: "فَأَنْزَلْنَا مِنَ السَّمَاءِ مَاءً فَأَسْقَيْنَاكُمُوهُ",
     english: "We sent down water from the sky and gave it to you to drink.",
     reference: "Surat Al‑Ḥijr 15:22"
@@ -2079,7 +2079,7 @@ export const flashcardsData = [
   {
     id: "w6-20",
     week: "week6",
-    category: "Group 3",
+    category: "Cycles of Provision",
     arabic: "فَسُبْحَانَ اللَّهِ حِينَ تُمْسُونَ وَحِينَ تُصْبِحُونَ",
     english: "So glorify Allah in the evening and in the morning.",
     reference: "Surat Ar‑Rūm 30:17"
@@ -2087,7 +2087,7 @@ export const flashcardsData = [
   {
     id: "w6-21",
     week: "week6",
-    category: "Group 3",
+    category: "Cycles of Provision",
     arabic: "فَانْفَجَرَتْ مِنْهُ اثْنَتَا عَشْرَةَ عَيْنًا",
     english: "Twelve springs burst out from it.",
     reference: "Surat Al‑Baqarah 2:60"
@@ -2095,7 +2095,7 @@ export const flashcardsData = [
   {
     id: "w6-22",
     week: "week6",
-    category: "Group 3",
+    category: "Cycles of Provision",
     arabic: "لَعَلَّكُمْ تَشْكُرُونَ",
     english: "So that you may give thanks.",
     reference: "Surat An‑Naḥl 16:14"
@@ -2103,7 +2103,7 @@ export const flashcardsData = [
   {
     id: "w6-23",
     week: "week6",
-    category: "Group 3",
+    category: "Cycles of Provision",
     arabic: "وَأَنْزَلْنَا مِنَ السَّمَاءِ مَاءً بِقَدَرٍ",
     english: "We sent down water in a measured amount.",
     reference: "Surat Al‑Muʾminūn 23:18"
@@ -2111,7 +2111,7 @@ export const flashcardsData = [
   {
     id: "w6-24",
     week: "week6",
-    category: "Group 3",
+    category: "Cycles of Provision",
     arabic: "يُكَوِّرُ اللَّيْلَ عَلَى النَّهَارِ",
     english: "He wraps the night over the day.",
     reference: "Surat Az‑Zumar 39:5"
@@ -2119,7 +2119,7 @@ export const flashcardsData = [
   {
     id: "w6-25",
     week: "week6",
-    category: "Group 3",
+    category: "Cycles of Provision",
     arabic: "وَاللَّيْلِ إِذَا يَغْشَى",
     english: "By the night as it covers.",
     reference: "Surat Al‑Layl 92:1"
@@ -2127,7 +2127,7 @@ export const flashcardsData = [
   {
     id: "w6-26",
     week: "week6",
-    category: "Group 3",
+    category: "Cycles of Provision",
     arabic: "وَالنَّهَارِ إِذَا تَجَلَّى",
     english: "And the day as it appears.",
     reference: "Surat Al‑Layl 92:2"
@@ -2135,17 +2135,17 @@ export const flashcardsData = [
   {
     id: "w6-27",
     week: "week6",
-    category: "Group 3",
+    category: "Cycles of Provision",
     arabic: "وَأَرْسَلْنَا الرِّيَاحَ لَوَاقِحَ",
     english: "We sent the winds to fertilize.",
     reference: "Surat Al‑Ḥijr 15:22"
   },
 
-  // Group 4 (verses 28 – 36)
+  // Architecture of the Macro‑Cosmos (verses 28 – 36)
   {
     id: "w6-28",
     week: "week6",
-    category: "Group 4",
+    category: "Architecture of the Macro‑Cosmos",
     arabic: "أَلَمْ تَرَ كَيْفَ خَلَقَ اللَّهُ سَبْعَ سَمَاوَاتٍ",
     english: "Have you not seen how Allah created seven skies?",
     reference: "Surat Nūḥ 71:15"
@@ -2153,7 +2153,7 @@ export const flashcardsData = [
   {
     id: "w6-29",
     week: "week6",
-    category: "Group 4",
+    category: "Architecture of the Macro‑Cosmos",
     arabic: "وَزَيَّنَّا السَّمَاءَ الدُّنْيَا بِزِينَةٍ الْكَوَاكِبِ",
     english: "We adorned the lowest heaven with the beauty of stars.",
     reference: "Surat Aṣ‑Ṣāffāt 37:6"
@@ -2161,7 +2161,7 @@ export const flashcardsData = [
   {
     id: "w6-30",
     week: "week6",
-    category: "Group 4",
+    category: "Architecture of the Macro‑Cosmos",
     arabic: "وَيَسْأَلُونَكَ عَنِ الْجِبَالِ",
     english: "They ask you about the mountains.",
     reference: "Surat Ṭā‑Hā 20:105"
@@ -2169,7 +2169,7 @@ export const flashcardsData = [
   {
     id: "w6-31",
     week: "week6",
-    category: "Group 4",
+    category: "Architecture of the Macro‑Cosmos",
     arabic: "فَقُلْ يَنْسِفُهَا رَبِّي نَسْفًا",
     english: "Say: My Lord will blow them away.",
     reference: "Surat Ṭā‑Hā 20:105"
@@ -2177,7 +2177,7 @@ export const flashcardsData = [
   {
     id: "w6-32",
     week: "week6",
-    category: "Group 4",
+    category: "Architecture of the Macro‑Cosmos",
     arabic: "إِنَّ رَبَّكُمُ اللَّهُ الَّذِي خَلَقَ السَّمَاوَاتِ وَالْأَرْضَ فِي سِتَّةِ أَيَّامٍ",
     english: "Your Lord is Allah, who created the heavens and the earth in six days.",
     reference: "Surat Al‑Aʿrāf 7:54"
@@ -2185,7 +2185,7 @@ export const flashcardsData = [
   {
     id: "w6-33",
     week: "week6",
-    category: "Group 4",
+    category: "Architecture of the Macro‑Cosmos",
     arabic: "ثُمَّ اسْتَوَى عَلَى الْعَرْشِ",
     english: "Then He rose above the Throne.",
     reference: "Surat Al‑Aʿrāf 7:54"
@@ -2193,7 +2193,7 @@ export const flashcardsData = [
   {
     id: "w6-34",
     week: "week6",
-    category: "Group 4",
+    category: "Architecture of the Macro‑Cosmos",
     arabic: "وَسَخَّرَ الشَّمْسَ وَالْقَمَرَ",
     english: "He made the sun and the moon subservient.",
     reference: "Surat Ibrāhīm 14:33"
@@ -2201,7 +2201,7 @@ export const flashcardsData = [
   {
     id: "w6-35",
     week: "week6",
-    category: "Group 4",
+    category: "Architecture of the Macro‑Cosmos",
     arabic: "كُلٌّ يَجْرِي لِأَجَلٍ مُّسَمًّى",
     english: "Each moves for a fixed term.",
     reference: "Surat Ar‑Raʿd 13:2"
@@ -2209,17 +2209,17 @@ export const flashcardsData = [
   {
     id: "w6-36",
     week: "week6",
-    category: "Group 4",
+    category: "Architecture of the Macro‑Cosmos",
     arabic: "وَفِي الْأَرْضِ قِطَعٌ مُّتَجَاوِرَاتٌ ... وَنُفَضِّلُ بَعْضَهَا عَلَى بَعْضٍ إِنَّ فِي ذَٰلِكَ لَآيَاتٍ لِقَوْمٍ يَعْقِلُونَ",
     english: "And on the earth are neighbouring plots, gardens of grapevines, crops, and palm trees—some growing from the same root, others not. They are all watered with the same water, yet We make some better in taste than others. Surely in this are signs for people who understand.",
     reference: "Surat Ar‑Raʿd 13:4"
   },
 
-  // Group 5 (verses 37 – 45)
+  // Signs in Creation & Human Reflection (verses 37 – 45)
   {
     id: "w6-37",
     week: "week6",
-    category: "Group 5",
+    category: "Signs in Creation & Human Reflection",
     arabic: "يَا أَيُّهَا النَّاسُ إِنْ كُنْتُمْ فِي رَيْبٍ مِنَ الْبَعْثِ ... فَإِذَا أَنْزَلْنَا عَلَيْهَا الْمَاءَ اهْتَزَّتْ وَرَبَتْ وَأَنْبَتَتْ مِنْ كُلِّ زَوْجٍ بَهِيجٍ",
     english: "O people, if you are in doubt about the resurrection, then know that We created you from dust, then from a drop of fluid, then from a clinging clot, then from a lump of flesh—formed and unformed—so We may clarify things for you. We settle in the wombs whatever We will for a fixed time, then bring you out as infants, so you may reach maturity. Some of you die, and some live to the weakest age, so they know nothing after having knowledge. You see the earth lifeless, but when We send down rain upon it, it stirs and swells and produces every kind of delightful plant.",
     reference: "Surat Al‑Ḥajj 22:5"
@@ -2227,7 +2227,7 @@ export const flashcardsData = [
   {
     id: "w6-38",
     week: "week6",
-    category: "Group 5",
+    category: "Signs in Creation & Human Reflection",
     arabic: "وَاللَّهُ خَلَقَ كُلَّ دَابَّةٍ مِنْ مَاءٍ ... إِنَّ اللَّهَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ",
     english: "Allah created every living creature from water. Some of them crawl on their bellies, some walk on two legs, and some on four. Allah creates whatever He wills. Indeed, Allah is capable of everything.",
     reference: "Surat An‑Nūr 24:45"
@@ -2235,7 +2235,7 @@ export const flashcardsData = [
   {
     id: "w6-39",
     week: "week6",
-    category: "Group 5",
+    category: "Signs in Creation & Human Reflection",
     arabic: "وَمِنَ الْجِبَالِ جُدَدٌ بِيضٌ وَحُمْرٌ",
     english: "Among the mountains are white and red stripes.",
     reference: "Surat Fāṭir 35:27"
@@ -2243,7 +2243,7 @@ export const flashcardsData = [
   {
     id: "w6-40",
     week: "week6",
-    category: "Group 5",
+    category: "Signs in Creation & Human Reflection",
     arabic: "وَغَرَابِيبُ سُودٌ",
     english: "And others are deep black.",
     reference: "Surat Fāṭir 35:27"
@@ -2251,7 +2251,7 @@ export const flashcardsData = [
   {
     id: "w6-41",
     week: "week6",
-    category: "Group 5",
+    category: "Signs in Creation & Human Reflection",
     arabic: "إِنَّمَا يَخْشَى اللَّهَ مِنْ عِبَادِهِ الْعُلَمَاءُ",
     english: "Only those who have knowledge are mindful of Allah.",
     reference: "Surat Fāṭir 35:28"
@@ -2259,7 +2259,7 @@ export const flashcardsData = [
   {
     id: "w6-42",
     week: "week6",
-    category: "Group 5",
+    category: "Signs in Creation & Human Reflection",
     arabic: "ثُمَّ سَوَّاكَ فَعَدَلَكَ",
     english: "Then He shaped you and made you balanced.",
     reference: "Surat Al‑Infiṭār 82:7"
@@ -2267,7 +2267,7 @@ export const flashcardsData = [
   {
     id: "w6-43",
     week: "week6",
-    category: "Group 5",
+    category: "Signs in Creation & Human Reflection",
     arabic: "اللَّهُ الَّذِي رَفَعَ السَّمَاوَاتِ بِغَيْرِ عَمَدٍ",
     english: "Allah is the One who raised the heavens without pillars.",
     reference: "Surat Ar‑Raʿd 13:2"
@@ -2275,7 +2275,7 @@ export const flashcardsData = [
   {
     id: "w6-44",
     week: "week6",
-    category: "Group 5",
+    category: "Signs in Creation & Human Reflection",
     arabic: "وَظِلٍّ مَمْدُودٍ",
     english: "And extended shade.",
     reference: "Surat Al‑Wāqiʿah 56:30"
@@ -2283,17 +2283,17 @@ export const flashcardsData = [
   {
     id: "w6-45",
     week: "week6",
-    category: "Group 5",
+    category: "Signs in Creation & Human Reflection",
     arabic: "وَفَاكِهَةٍ كَثِيرَةٍ",
     english: "And abundant fruit.",
     reference: "Surat Al‑Wāqiʿah 56:32"
   },
 
-  // Group 6 (verses 46 – 54)
+  // Portraits of Paradise (verses 46 – 54)
   {
     id: "w6-46",
     week: "week6",
-    category: "Group 6",
+    category: "Portraits of Paradise",
     arabic: "وَأَكْوَابٌۭ مَّوْضُوعَةٌۭ",
     english: "And cups put in place.",
     reference: "Surat Al-Ghāshiyah 88:14"
@@ -2301,7 +2301,7 @@ export const flashcardsData = [
   {
     id: "w6-47",
     week: "week6",
-    category: "Group 6",
+    category: "Portraits of Paradise",
     arabic: "وَنَمَارِقُ مَصْفُوفَةٌ",
     english: "And cushions lined up.",
     reference: "Surat Al‑Ghāshiyah 88:15"
@@ -2309,7 +2309,7 @@ export const flashcardsData = [
   {
     id: "w6-48",
     week: "week6",
-    category: "Group 6",
+    category: "Portraits of Paradise",
     arabic: "وَزَرَابِيُّ مَبْثُوثَةٌ",
     english: "And carpets spread around.",
     reference: "Surat Al‑Ghāshiyah 88:16"
@@ -2317,7 +2317,7 @@ export const flashcardsData = [
   {
     id: "w6-49",
     week: "week6",
-    category: "Group 6",
+    category: "Portraits of Paradise",
     arabic: "لَا يَسْمَعُونَ فِيهَا لَغْوًا وَلَا تَأْثِيمًا",
     english: "They will not hear therein ill speech or commission of sin.",
     reference: "Surat Al‑Wāqiʿah 56:25"
@@ -2325,7 +2325,7 @@ export const flashcardsData = [
   {
     id: "w6-50",
     week: "week6",
-    category: "Group 6",
+    category: "Portraits of Paradise",
     arabic: "إِلَّا قِيلًا سَلَامًا سَلَامًا",
     english: "But only the saying of: \"Peace, peace.\"",
     reference: "Surat Al‑Wāqiʿah 56:26"
@@ -2333,7 +2333,7 @@ export const flashcardsData = [
   {
     id: "w6-51",
     week: "week6",
-    category: "Group 6",
+    category: "Portraits of Paradise",
     arabic: "فِيهَا أَنْهَارٌ مِنْ مَاءٍ غَيْرِ آسِنٍ",
     english: "In it are rivers of unpolluted water.",
     reference: "Surat Muḥammad 47:15"
@@ -2341,7 +2341,7 @@ export const flashcardsData = [
   {
     id: "w6-52",
     week: "week6",
-    category: "Group 6",
+    category: "Portraits of Paradise",
     arabic: "وَأَنْهَارٌ مِنْ لَبَنٍ لَمْ يَتَغَيَّرْ طَعْمُهُ",
     english: "And rivers of milk whose taste does not change.",
     reference: "Surat Muḥammad 47:15"
@@ -2349,7 +2349,7 @@ export const flashcardsData = [
   {
     id: "w6-53",
     week: "week6",
-    category: "Group 6",
+    category: "Portraits of Paradise",
     arabic: "وَأَنْهَارٌ مِنْ خَمْرٍ لَذَّةٍ لِلشَّارِبِينَ",
     english: "And rivers of wine delicious to drink.",
     reference: "Surat Muḥammad 47:15"
@@ -2357,7 +2357,7 @@ export const flashcardsData = [
   {
     id: "w6-54",
     week: "week6",
-    category: "Group 6",
+    category: "Portraits of Paradise",
     arabic: "وَأَنْهَارٌ مِنْ عَسَلٍ مُصَفًّى",
     english: "And rivers of purified honey.",
     reference: "Surat Muḥammad 47:15"
