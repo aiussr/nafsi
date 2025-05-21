@@ -2296,7 +2296,7 @@ export const flashcardsData = [
     category: "Group 6",
     arabic: "وَأَكْوَابٌۭ مَّوْضُوعَةٌۭ",
     english: "And cups put in place.",
-    reference: "Surat Al-Ghashiyah 88:14"
+    reference: "Surat Al-Ghāshiyah 88:14"
   },
   {
     id: "w6-47",
