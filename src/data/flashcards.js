@@ -47,12 +47,12 @@ export const categories = {
     "Time, Death, and the Afterlife"
   ],
   week6: [
-    "Group 1",
-    "Group 2",
-    "Group 3",
-    "Group 4",
-    "Group 5",
-    "Group 6"
+    "Origins & Cosmic Craftsmanship",
+    "Continuous Creation & Sustaining Power",
+    "Cycles of Provision",
+    "Architecture of the Macro‑Cosmos",
+    "Signs in Creation & Human Reflection",
+    "Portraits of Paradise"
   ]
 };
 
