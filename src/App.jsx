@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ParticleCanvas } from './components/ParticleCanvas';
 import { NavigationArrows } from './components/NavigationArrows';
 import { Sidebar } from './components/Sidebar';
@@ -19,6 +19,10 @@ import './styles/animations.css';
 const ElegantCourse = () => {
   // Mobile menu state
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // Hamburger visibility state (hide on scroll down, show on scroll up)
+  const [showHamburger, setShowHamburger] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   // Single source of truth for active section (via IntersectionObserver)
   const activeSection = useScrollSpy(chapters);
@@ -49,6 +53,30 @@ const ElegantCourse = () => {
     setIsMobileMenuOpen(false);
   };
 
+  // Scroll detection for hamburger visibility (mobile only)
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY < 50) {
+        // Always show at top of page
+        setShowHamburger(true);
+      } else if (currentScrollY < lastScrollY) {
+        // Scrolling up - show hamburger
+        setShowHamburger(true);
+      } else if (currentScrollY > lastScrollY) {
+        // Scrolling down - hide hamburger
+        setShowHamburger(false);
+        setIsMobileMenuOpen(false); // Also close menu if open
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollY]);
+
   return (
     <div
       className="relative min-h-screen"
@@ -60,27 +88,21 @@ const ElegantCourse = () => {
       {/* Background layers */}
       <ParticleCanvas />
 
-      {/* Mobile menu button */}
+      {/* Mobile menu button - hides on scroll down, shows on scroll up */}
       <MobileMenuButton
         isOpen={isMobileMenuOpen}
         onToggle={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        isVisible={showHamburger}
       />
 
-      {/* Mobile menu backdrop */}
-      {isMobileMenuOpen && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-50 lg:hidden transition-opacity duration-300"
-          style={{ zIndex: 40 }}
-          onClick={() => setIsMobileMenuOpen(false)}
+      {/* Navigation arrows - hidden on mobile, visible on desktop only */}
+      <div className="hidden lg:block">
+        <NavigationArrows
+          isAtTop={isAtTop}
+          isAtBottom={isAtBottom}
+          onNavigate={handleArrowNavigation}
         />
-      )}
-
-      {/* Navigation arrows */}
-      <NavigationArrows
-        isAtTop={isAtTop}
-        isAtBottom={isAtBottom}
-        onNavigate={handleArrowNavigation}
-      />
+      </div>
 
       {/* Main layout */}
       <div className="relative flex" style={{ zIndex: 2 }}>
