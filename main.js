@@ -212,15 +212,34 @@ async function generateASCIIArt(imageUrl, charSet) {
 // ===== PROXIMITY-BASED GLOW EFFECT =====
 let asciiSpans = [];
 let asciiGlowIntensity = 10; // Configurable glow intensity
+let activeSpans = new Set(); // Track currently glowing spans for efficient reset
 
 function updateGlowEffect() {
-    const radiusSquared = ASCII_CONFIG.glowRadius * ASCII_CONFIG.glowRadius;
+    const radius = ASCII_CONFIG.glowRadius;
+    const radiusSquared = radius * radius;
 
-    asciiSpans.forEach(span => {
+    // Calculate bounding box around cursor
+    const minX = mouse.x - radius;
+    const maxX = mouse.x + radius;
+    const minY = mouse.y - radius;
+    const maxY = mouse.y + radius;
+
+    // Track spans that should be glowing this frame
+    const newActiveSpans = new Set();
+
+    // Only iterate through spans that fall within the bounding box
+    for (let i = 0; i < asciiSpans.length; i++) {
+        const span = asciiSpans[i];
         const spanX = parseFloat(span.dataset.x);
         const spanY = parseFloat(span.dataset.y);
 
-        // Calculate distance from cursor
+        // Quick bounding box check - skip if outside box
+        if (spanX < minX || spanX > maxX || spanY < minY || spanY > maxY) {
+            // Skip this span - it's definitely outside the radius
+            continue;
+        }
+
+        // Within bounding box - now do precise distance check
         const dx = mouse.x - spanX;
         const dy = mouse.y - spanY;
         const distanceSquared = dx * dx + dy * dy;
@@ -228,17 +247,26 @@ function updateGlowEffect() {
         if (distanceSquared < radiusSquared) {
             // Within glow radius
             const distance = Math.sqrt(distanceSquared);
-            const intensity = 1 - (distance / ASCII_CONFIG.glowRadius);
+            const intensity = 1 - (distance / radius);
 
             // Apply glow effect
             span.style.color = ASCII_CONFIG.glowColor;
             span.style.textShadow = `0 0 ${intensity * asciiGlowIntensity}px ${ASCII_CONFIG.glowColor}`;
-        } else {
-            // Outside glow radius - reset to default
+
+            newActiveSpans.add(span);
+        }
+    }
+
+    // Reset previously active spans that are no longer in range
+    activeSpans.forEach(span => {
+        if (!newActiveSpans.has(span)) {
             span.style.color = ASCII_CONFIG.defaultColor;
             span.style.textShadow = 'none';
         }
     });
+
+    // Update active spans set for next frame
+    activeSpans = newActiveSpans;
 
     requestAnimationFrame(updateGlowEffect);
 }
