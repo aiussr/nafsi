@@ -1,0 +1,96 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: monospace;
+}
+
+body {
+    position: relative;
+    background: #000;
+}
+
+/* Background Layer: ASCII Art */
+#ascii-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background: #000;
+    color: #0f0;
+    font-family: monospace;
+    font-size: 10px;
+    line-height: 10px;
+    overflow: hidden;
+    white-space: pre;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    pointer-events: none;
+}
+
+/* Foreground Layer: Fluid Simulation Canvas */
+#fluid-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    display: block;
+}
+
+/* Interactive Link */
+#main-link {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    color: #fff;
+    font-size: 48px;
+    font-weight: bold;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 8px;
+    padding: 20px 40px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    pointer-events: auto;
+}
+
+#main-link:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.8);
+    letter-spacing: 12px;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    #ascii-background {
+        font-size: 6px;
+        line-height: 6px;
+    }
+
+    #main-link {
+        font-size: 32px;
+        letter-spacing: 4px;
+        padding: 15px 30px;
+    }
+
+    #main-link:hover {
+        letter-spacing: 6px;
+    }
+}
