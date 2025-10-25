@@ -2,15 +2,23 @@
 const asciiBackground = document.getElementById('ascii-background');
 const fluidCanvas = document.getElementById('fluid-canvas');
 const mainLink = document.getElementById('main-link');
+const leftColumn = document.querySelector('.left-column');
+const rightColumn = document.querySelector('.right-column');
 
 // Initialize canvas size
 function resizeCanvas() {
-    fluidCanvas.width = window.innerWidth;
-    fluidCanvas.height = window.innerHeight;
+    // Canvas takes up the left column (50% of screen)
+    const rect = leftColumn.getBoundingClientRect();
+    fluidCanvas.width = rect.width;
+    fluidCanvas.height = rect.height;
 }
 
 // Handle window resize
-window.addEventListener('resize', resizeCanvas);
+window.addEventListener('resize', () => {
+    resizeCanvas();
+    // Regenerate ASCII art with new dimensions
+    initASCIIBackground();
+});
 
 // Initial setup
 resizeCanvas();
@@ -38,9 +46,19 @@ const mouse = {
     y: -1000
 };
 
+// Track mouse position relative to the right column (for ASCII glow effect)
 window.addEventListener('mousemove', (e) => {
-    mouse.x = e.clientX;
-    mouse.y = e.clientY;
+    const rect = rightColumn.getBoundingClientRect();
+    // Only update if mouse is over the right column
+    if (e.clientX >= rect.left && e.clientX <= rect.right &&
+        e.clientY >= rect.top && e.clientY <= rect.bottom) {
+        mouse.x = e.clientX - rect.left;
+        mouse.y = e.clientY - rect.top;
+    } else {
+        // Move cursor out of range when not over right column
+        mouse.x = -1000;
+        mouse.y = -1000;
+    }
 });
 
 // ===== IMAGE LOADING AND PROCESSING =====
@@ -128,9 +146,10 @@ async function generateASCIIArt(imageUrl, charSet) {
         // Load and process image
         const img = await loadImage(imageUrl);
 
-        // Calculate dimensions based on screen size and character size
-        const cols = Math.floor(window.innerWidth / ASCII_CONFIG.charWidth);
-        const rows = Math.floor(window.innerHeight / ASCII_CONFIG.charHeight);
+        // Calculate dimensions based on right column size and character size
+        const rect = rightColumn.getBoundingClientRect();
+        const cols = Math.floor(rect.width / ASCII_CONFIG.charWidth);
+        const rows = Math.floor(rect.height / ASCII_CONFIG.charHeight);
 
         // Create a smaller canvas for ASCII conversion
         const canvas = document.createElement('canvas');

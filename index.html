@@ -7,14 +7,19 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Background Layer: ASCII Art -->
-    <pre id="ascii-background"></pre>
+    <!-- Split-screen container -->
+    <div class="container">
+        <!-- Left Column: Fluid Simulation -->
+        <div class="left-column">
+            <canvas id="fluid-canvas"></canvas>
+        </div>
 
-    <!-- Foreground Layer: Fluid Simulation -->
-    <canvas id="fluid-canvas"></canvas>
-
-    <!-- Interactive Link -->
-    <a href="#" id="main-link">Enter</a>
+        <!-- Right Column: ASCII Art + Link -->
+        <div class="right-column">
+            <pre id="ascii-background"></pre>
+            <a href="#" id="main-link">Enter</a>
+        </div>
+    </div>
 
     <!-- Controls Toggle Button -->
     <button id="toggle-controls">Settings</button>
