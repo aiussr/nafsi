@@ -2,15 +2,23 @@
 const asciiBackground = document.getElementById('ascii-background');
 const fluidCanvas = document.getElementById('fluid-canvas');
 const mainLink = document.getElementById('main-link');
+const leftColumn = document.querySelector('.left-column');
+const rightColumn = document.querySelector('.right-column');
 
 // Initialize canvas size
 function resizeCanvas() {
-    fluidCanvas.width = window.innerWidth;
-    fluidCanvas.height = window.innerHeight;
+    // Canvas takes up the left column (50% of screen)
+    const rect = leftColumn.getBoundingClientRect();
+    fluidCanvas.width = rect.width;
+    fluidCanvas.height = rect.height;
 }
 
 // Handle window resize
-window.addEventListener('resize', resizeCanvas);
+window.addEventListener('resize', () => {
+    resizeCanvas();
+    // Regenerate ASCII art with new dimensions
+    initASCIIBackground();
+});
 
 // Initial setup
 resizeCanvas();
@@ -38,9 +46,19 @@ const mouse = {
     y: -1000
 };
 
+// Track mouse position relative to the right column (for ASCII glow effect)
 window.addEventListener('mousemove', (e) => {
-    mouse.x = e.clientX;
-    mouse.y = e.clientY;
+    const rect = rightColumn.getBoundingClientRect();
+    // Only update if mouse is over the right column
+    if (e.clientX >= rect.left && e.clientX <= rect.right &&
+        e.clientY >= rect.top && e.clientY <= rect.bottom) {
+        mouse.x = e.clientX - rect.left;
+        mouse.y = e.clientY - rect.top;
+    } else {
+        // Move cursor out of range when not over right column
+        mouse.x = -1000;
+        mouse.y = -1000;
+    }
 });
 
 // ===== IMAGE LOADING AND PROCESSING =====
@@ -128,9 +146,10 @@ async function generateASCIIArt(imageUrl, charSet) {
         // Load and process image
         const img = await loadImage(imageUrl);
 
-        // Calculate dimensions based on screen size and character size
-        const cols = Math.floor(window.innerWidth / ASCII_CONFIG.charWidth);
-        const rows = Math.floor(window.innerHeight / ASCII_CONFIG.charHeight);
+        // Calculate dimensions based on right column size and character size
+        const rect = rightColumn.getBoundingClientRect();
+        const cols = Math.floor(rect.width / ASCII_CONFIG.charWidth);
+        const rows = Math.floor(rect.height / ASCII_CONFIG.charHeight);
 
         // Create a smaller canvas for ASCII conversion
         const canvas = document.createElement('canvas');
@@ -193,15 +212,34 @@ async function generateASCIIArt(imageUrl, charSet) {
 // ===== PROXIMITY-BASED GLOW EFFECT =====
 let asciiSpans = [];
 let asciiGlowIntensity = 10; // Configurable glow intensity
+let activeSpans = new Set(); // Track currently glowing spans for efficient reset
 
 function updateGlowEffect() {
-    const radiusSquared = ASCII_CONFIG.glowRadius * ASCII_CONFIG.glowRadius;
+    const radius = ASCII_CONFIG.glowRadius;
+    const radiusSquared = radius * radius;
 
-    asciiSpans.forEach(span => {
+    // Calculate bounding box around cursor
+    const minX = mouse.x - radius;
+    const maxX = mouse.x + radius;
+    const minY = mouse.y - radius;
+    const maxY = mouse.y + radius;
+
+    // Track spans that should be glowing this frame
+    const newActiveSpans = new Set();
+
+    // Only iterate through spans that fall within the bounding box
+    for (let i = 0; i < asciiSpans.length; i++) {
+        const span = asciiSpans[i];
         const spanX = parseFloat(span.dataset.x);
         const spanY = parseFloat(span.dataset.y);
 
-        // Calculate distance from cursor
+        // Quick bounding box check - skip if outside box
+        if (spanX < minX || spanX > maxX || spanY < minY || spanY > maxY) {
+            // Skip this span - it's definitely outside the radius
+            continue;
+        }
+
+        // Within bounding box - now do precise distance check
         const dx = mouse.x - spanX;
         const dy = mouse.y - spanY;
         const distanceSquared = dx * dx + dy * dy;
@@ -209,17 +247,26 @@ function updateGlowEffect() {
         if (distanceSquared < radiusSquared) {
             // Within glow radius
             const distance = Math.sqrt(distanceSquared);
-            const intensity = 1 - (distance / ASCII_CONFIG.glowRadius);
+            const intensity = 1 - (distance / radius);
 
             // Apply glow effect
             span.style.color = ASCII_CONFIG.glowColor;
             span.style.textShadow = `0 0 ${intensity * asciiGlowIntensity}px ${ASCII_CONFIG.glowColor}`;
-        } else {
-            // Outside glow radius - reset to default
+
+            newActiveSpans.add(span);
+        }
+    }
+
+    // Reset previously active spans that are no longer in range
+    activeSpans.forEach(span => {
+        if (!newActiveSpans.has(span)) {
             span.style.color = ASCII_CONFIG.defaultColor;
             span.style.textShadow = 'none';
         }
     });
+
+    // Update active spans set for next frame
+    activeSpans = newActiveSpans;
 
     requestAnimationFrame(updateGlowEffect);
 }
@@ -370,7 +417,7 @@ const SHADERS = {
             );
 
             color *= u_brightness;
-            gl_FragColor = vec4(color, 0.3); // Semi-transparent
+            gl_FragColor = vec4(color, 1.0); // Fully opaque
         }
     `
 };
@@ -401,6 +448,7 @@ class FluidSimulation {
         };
 
         this.pointers = [];
+        this.time = 0; // Track time for noise generation
         this.init();
     }
 
@@ -574,14 +622,33 @@ class FluidSimulation {
         const gl = this.gl;
         const dt = Math.min(deltaTime, 0.016);
 
-        // Apply mouse splat
-        if (this.pointers[0] && this.pointers[0].down) {
+        // Update time for noise
+        this.time += dt;
+
+        // Apply mouse splat on any movement
+        if (this.pointers[0]) {
             const pointer = this.pointers[0];
             const force = { x: pointer.dx, y: pointer.dy };
 
             if (Math.abs(force.x) > 0.01 || Math.abs(force.y) > 0.01) {
                 this.splat(pointer.x, pointer.y, force.x, force.y);
             }
+        }
+
+        // Apply persistent low-frequency noise for ambient movement
+        // Add random splats at slow intervals to keep fluid alive
+        if (Math.random() < 0.05) { // 5% chance per frame (~3 times per second at 60fps)
+            const x = Math.random();
+            const y = Math.random();
+
+            // Use time-based sine waves for smooth, organic motion
+            const angle = this.time * 0.5 + Math.random() * Math.PI * 2;
+            const strength = 0.2 + Math.random() * 0.3; // Subtle force
+
+            const dx = Math.cos(angle) * strength;
+            const dy = Math.sin(angle) * strength;
+
+            this.splat(x, y, dx, dy);
         }
 
         // Advect velocity
@@ -864,7 +931,7 @@ function updateDisplayShader() {
         void main() {
             ${paletteCode}
             color *= u_brightness;
-            gl_FragColor = vec4(color, 0.3);
+            gl_FragColor = vec4(color, 1.0);
         }
     `;
 
