@@ -192,6 +192,7 @@ async function generateASCIIArt(imageUrl, charSet) {
 
 // ===== PROXIMITY-BASED GLOW EFFECT =====
 let asciiSpans = [];
+let asciiGlowIntensity = 10; // Configurable glow intensity
 
 function updateGlowEffect() {
     const radiusSquared = ASCII_CONFIG.glowRadius * ASCII_CONFIG.glowRadius;
@@ -212,7 +213,7 @@ function updateGlowEffect() {
 
             // Apply glow effect
             span.style.color = ASCII_CONFIG.glowColor;
-            span.style.textShadow = `0 0 ${intensity * 10}px ${ASCII_CONFIG.glowColor}`;
+            span.style.textShadow = `0 0 ${intensity * asciiGlowIntensity}px ${ASCII_CONFIG.glowColor}`;
         } else {
             // Outside glow radius - reset to default
             span.style.color = ASCII_CONFIG.defaultColor;
@@ -796,3 +797,154 @@ function updateFluid(time) {
 
 // Start fluid simulation
 initFluidSimulation();
+
+// ===== UI CONTROLS =====
+
+// Color palette options
+const COLOR_PALETTES = {
+    velocity: `
+        vec2 vel = texture2D(u_velocity, v_texCoord).xy;
+        float speed = length(vel);
+        vec3 color = vec3(
+            0.5 + 0.5 * vel.x * 10.0,
+            0.5 + 0.5 * vel.y * 10.0,
+            0.5 + speed * 2.0
+        );
+    `,
+    rainbow: `
+        vec2 vel = texture2D(u_velocity, v_texCoord).xy;
+        float speed = length(vel);
+        float hue = atan(vel.y, vel.x) / 3.14159 * 0.5 + 0.5;
+        vec3 color = vec3(
+            0.5 + 0.5 * cos(6.28318 * (hue + 0.0)),
+            0.5 + 0.5 * cos(6.28318 * (hue + 0.33)),
+            0.5 + 0.5 * cos(6.28318 * (hue + 0.67))
+        ) * (0.5 + speed * 2.0);
+    `,
+    fire: `
+        vec2 vel = texture2D(u_velocity, v_texCoord).xy;
+        float speed = length(vel);
+        vec3 color = vec3(
+            1.0,
+            0.5 + speed * 2.0,
+            speed * 1.5
+        ) * (0.3 + speed * 3.0);
+    `,
+    ocean: `
+        vec2 vel = texture2D(u_velocity, v_texCoord).xy;
+        float speed = length(vel);
+        vec3 color = vec3(
+            speed * 1.5,
+            0.5 + speed * 2.0,
+            0.8 + speed * 1.0
+        ) * (0.4 + speed * 2.0);
+    `,
+    neon: `
+        vec2 vel = texture2D(u_velocity, v_texCoord).xy;
+        float speed = length(vel);
+        vec3 color = vec3(
+            0.0 + speed * 3.0,
+            0.8 + speed * 2.0,
+            1.0
+        ) * (0.3 + speed * 4.0);
+    `
+};
+
+let currentPalette = 'velocity';
+
+function updateDisplayShader() {
+    const paletteCode = COLOR_PALETTES[currentPalette];
+    const newShader = `
+        precision highp float;
+
+        varying vec2 v_texCoord;
+        uniform sampler2D u_velocity;
+        uniform float u_brightness;
+
+        void main() {
+            ${paletteCode}
+            color *= u_brightness;
+            gl_FragColor = vec4(color, 0.3);
+        }
+    `;
+
+    // Recompile shader
+    if (fluidSim && fluidSim.gl) {
+        fluidSim.programs.display = fluidSim.createProgram(SHADERS.vertex, newShader);
+    }
+}
+
+// Initialize controls
+function initControls() {
+    const toggleBtn = document.getElementById('toggle-controls');
+    const controlsPanel = document.getElementById('controls');
+
+    // Toggle controls visibility
+    toggleBtn.addEventListener('click', () => {
+        controlsPanel.classList.toggle('hidden');
+        toggleBtn.textContent = controlsPanel.classList.contains('hidden') ? 'Settings' : 'Close';
+    });
+
+    // Velocity dissipation slider
+    const dissipationSlider = document.getElementById('dissipation-slider');
+    const dissipationValue = document.getElementById('dissipation-value');
+    dissipationSlider.addEventListener('input', (e) => {
+        const value = parseFloat(e.target.value);
+        dissipationValue.textContent = value.toFixed(3);
+        if (fluidSim) {
+            fluidSim.config.velocityDissipation = value;
+        }
+    });
+
+    // Pressure iterations slider
+    const iterationsSlider = document.getElementById('iterations-slider');
+    const iterationsValue = document.getElementById('iterations-value');
+    iterationsSlider.addEventListener('input', (e) => {
+        const value = parseInt(e.target.value);
+        iterationsValue.textContent = value;
+        if (fluidSim) {
+            fluidSim.config.pressureIterations = value;
+        }
+    });
+
+    // Splat radius slider
+    const radiusSlider = document.getElementById('radius-slider');
+    const radiusValue = document.getElementById('radius-value');
+    radiusSlider.addEventListener('input', (e) => {
+        const value = parseFloat(e.target.value);
+        radiusValue.textContent = value.toFixed(3);
+        if (fluidSim) {
+            fluidSim.config.splatRadius = value;
+        }
+    });
+
+    // Color palette selector
+    const paletteSelect = document.getElementById('color-palette');
+    paletteSelect.addEventListener('change', (e) => {
+        currentPalette = e.target.value;
+        updateDisplayShader();
+    });
+
+    // ASCII glow radius slider
+    const glowRadiusSlider = document.getElementById('glow-radius-slider');
+    const glowRadiusValue = document.getElementById('glow-radius-value');
+    glowRadiusSlider.addEventListener('input', (e) => {
+        const value = parseInt(e.target.value);
+        glowRadiusValue.textContent = value + 'px';
+        ASCII_CONFIG.glowRadius = value;
+    });
+
+    // ASCII glow intensity slider
+    const glowIntensitySlider = document.getElementById('glow-intensity-slider');
+    const glowIntensityValue = document.getElementById('glow-intensity-value');
+    glowIntensitySlider.addEventListener('input', (e) => {
+        const value = parseInt(e.target.value);
+        glowIntensityValue.textContent = value + 'px';
+        asciiGlowIntensity = value;
+    });
+
+    console.log('Controls initialized');
+}
+
+// Initialize controls after page loads
+initControls();
