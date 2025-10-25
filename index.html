@@ -1,13 +1,82 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nafsi - Elegant Course</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Homepage</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Background Layer: ASCII Art -->
+    <pre id="ascii-background"></pre>
+
+    <!-- Foreground Layer: Fluid Simulation -->
+    <canvas id="fluid-canvas"></canvas>
+
+    <!-- Interactive Link -->
+    <a href="#" id="main-link">Enter</a>
+
+    <!-- Controls Toggle Button -->
+    <button id="toggle-controls">Settings</button>
+
+    <!-- Controls Panel -->
+    <div id="controls">
+        <h3>Controls</h3>
+
+        <!-- Fluid Simulation Controls -->
+        <div class="control-group">
+            <label>
+                Velocity Dissipation
+                <span class="value-display" id="dissipation-value">0.99</span>
+            </label>
+            <input type="range" id="dissipation-slider" min="0.90" max="0.999" step="0.001" value="0.99">
+        </div>
+
+        <div class="control-group">
+            <label>
+                Pressure Iterations
+                <span class="value-display" id="iterations-value">20</span>
+            </label>
+            <input type="range" id="iterations-slider" min="5" max="50" step="1" value="20">
+        </div>
+
+        <div class="control-group">
+            <label>
+                Splat Radius
+                <span class="value-display" id="radius-value">0.005</span>
+            </label>
+            <input type="range" id="radius-slider" min="0.001" max="0.02" step="0.001" value="0.005">
+        </div>
+
+        <div class="control-group">
+            <label>Fluid Color Palette</label>
+            <select id="color-palette">
+                <option value="velocity">Velocity-Based</option>
+                <option value="rainbow">Rainbow</option>
+                <option value="fire">Fire</option>
+                <option value="ocean">Ocean</option>
+                <option value="neon">Neon</option>
+            </select>
+        </div>
+
+        <!-- ASCII Controls -->
+        <div class="control-group">
+            <label>
+                ASCII Glow Radius
+                <span class="value-display" id="glow-radius-value">100px</span>
+            </label>
+            <input type="range" id="glow-radius-slider" min="50" max="300" step="10" value="100">
+        </div>
+
+        <div class="control-group">
+            <label>
+                ASCII Glow Intensity
+                <span class="value-display" id="glow-intensity-value">10px</span>
+            </label>
+            <input type="range" id="glow-intensity-slider" min="5" max="30" step="1" value="10">
+        </div>
+    </div>
+
+    <script type="module" src="main.js"></script>
+</body>
 </html>
