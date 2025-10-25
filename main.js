@@ -236,4 +236,563 @@ async function initASCIIBackground() {
 // Start ASCII art generation
 initASCIIBackground();
 
-// Placeholder: Fluid simulation will go here
+// ===== WEBGL FLUID SIMULATION =====
+
+// GLSL Shader Sources
+const SHADERS = {
+    // Vertex shader - simple pass-through
+    vertex: `
+        attribute vec2 a_position;
+        varying vec2 v_texCoord;
+
+        void main() {
+            v_texCoord = a_position * 0.5 + 0.5;
+            gl_Position = vec4(a_position, 0.0, 1.0);
+        }
+    `,
+
+    // Advection shader - moves quantities through velocity field
+    advection: `
+        precision highp float;
+
+        varying vec2 v_texCoord;
+        uniform sampler2D u_velocity;
+        uniform sampler2D u_source;
+        uniform vec2 u_texelSize;
+        uniform float u_dt;
+        uniform float u_dissipation;
+
+        void main() {
+            // Backtrace along velocity field
+            vec2 coord = v_texCoord - u_dt * texture2D(u_velocity, v_texCoord).xy * u_texelSize;
+            gl_FragColor = u_dissipation * texture2D(u_source, coord);
+        }
+    `,
+
+    // Divergence shader - computes divergence of velocity field
+    divergence: `
+        precision highp float;
+
+        varying vec2 v_texCoord;
+        uniform sampler2D u_velocity;
+        uniform vec2 u_texelSize;
+
+        void main() {
+            float L = texture2D(u_velocity, v_texCoord - vec2(u_texelSize.x, 0.0)).x;
+            float R = texture2D(u_velocity, v_texCoord + vec2(u_texelSize.x, 0.0)).x;
+            float T = texture2D(u_velocity, v_texCoord + vec2(0.0, u_texelSize.y)).y;
+            float B = texture2D(u_velocity, v_texCoord - vec2(0.0, u_texelSize.y)).y;
+
+            float div = 0.5 * (R - L + T - B);
+            gl_FragColor = vec4(div, 0.0, 0.0, 1.0);
+        }
+    `,
+
+    // Pressure solver - Jacobi iteration for pressure
+    pressure: `
+        precision highp float;
+
+        varying vec2 v_texCoord;
+        uniform sampler2D u_pressure;
+        uniform sampler2D u_divergence;
+        uniform vec2 u_texelSize;
+
+        void main() {
+            float L = texture2D(u_pressure, v_texCoord - vec2(u_texelSize.x, 0.0)).x;
+            float R = texture2D(u_pressure, v_texCoord + vec2(u_texelSize.x, 0.0)).x;
+            float T = texture2D(u_pressure, v_texCoord + vec2(0.0, u_texelSize.y)).x;
+            float B = texture2D(u_pressure, v_texCoord - vec2(0.0, u_texelSize.y)).x;
+            float C = texture2D(u_divergence, v_texCoord).x;
+
+            float pressure = (L + R + T + B - C) * 0.25;
+            gl_FragColor = vec4(pressure, 0.0, 0.0, 1.0);
+        }
+    `,
+
+    // Gradient subtraction - makes velocity field incompressible
+    gradientSubtract: `
+        precision highp float;
+
+        varying vec2 v_texCoord;
+        uniform sampler2D u_pressure;
+        uniform sampler2D u_velocity;
+        uniform vec2 u_texelSize;
+
+        void main() {
+            float L = texture2D(u_pressure, v_texCoord - vec2(u_texelSize.x, 0.0)).x;
+            float R = texture2D(u_pressure, v_texCoord + vec2(u_texelSize.x, 0.0)).x;
+            float T = texture2D(u_pressure, v_texCoord + vec2(0.0, u_texelSize.y)).x;
+            float B = texture2D(u_pressure, v_texCoord - vec2(0.0, u_texelSize.y)).x;
+
+            vec2 velocity = texture2D(u_velocity, v_texCoord).xy;
+            velocity -= 0.5 * vec2(R - L, T - B);
+
+            gl_FragColor = vec4(velocity, 0.0, 1.0);
+        }
+    `,
+
+    // Splat shader - adds force/color at mouse position
+    splat: `
+        precision highp float;
+
+        varying vec2 v_texCoord;
+        uniform sampler2D u_target;
+        uniform vec2 u_point;
+        uniform vec3 u_color;
+        uniform float u_radius;
+
+        void main() {
+            vec2 p = v_texCoord - u_point;
+            float splat = exp(-dot(p, p) / u_radius);
+            vec3 base = texture2D(u_target, v_texCoord).xyz;
+            gl_FragColor = vec4(base + u_color * splat, 1.0);
+        }
+    `,
+
+    // Display shader - renders fluid with color based on velocity
+    display: `
+        precision highp float;
+
+        varying vec2 v_texCoord;
+        uniform sampler2D u_velocity;
+        uniform float u_brightness;
+
+        void main() {
+            vec2 vel = texture2D(u_velocity, v_texCoord).xy;
+            float speed = length(vel);
+
+            // Color based on velocity magnitude and direction
+            vec3 color = vec3(
+                0.5 + 0.5 * vel.x * 10.0,
+                0.5 + 0.5 * vel.y * 10.0,
+                0.5 + speed * 2.0
+            );
+
+            color *= u_brightness;
+            gl_FragColor = vec4(color, 0.3); // Semi-transparent
+        }
+    `
+};
+
+// WebGL Utility Functions
+class FluidSimulation {
+    constructor(canvas) {
+        this.canvas = canvas;
+        this.gl = canvas.getContext('webgl', {
+            alpha: true,
+            premultipliedAlpha: false
+        });
+
+        if (!this.gl) {
+            console.error('WebGL not supported');
+            return;
+        }
+
+        // Simulation parameters
+        this.config = {
+            simResolution: 128,
+            dyeResolution: 512,
+            densityDissipation: 0.98,
+            velocityDissipation: 0.99,
+            pressureIterations: 20,
+            splatRadius: 0.005,
+            brightness: 0.8
+        };
+
+        this.pointers = [];
+        this.init();
+    }
+
+    init() {
+        const gl = this.gl;
+
+        // Create programs
+        this.programs = {
+            advection: this.createProgram(SHADERS.vertex, SHADERS.advection),
+            divergence: this.createProgram(SHADERS.vertex, SHADERS.divergence),
+            pressure: this.createProgram(SHADERS.vertex, SHADERS.pressure),
+            gradientSubtract: this.createProgram(SHADERS.vertex, SHADERS.gradientSubtract),
+            splat: this.createProgram(SHADERS.vertex, SHADERS.splat),
+            display: this.createProgram(SHADERS.vertex, SHADERS.display)
+        };
+
+        // Create full-screen quad
+        const vertices = new Float32Array([-1, -1, -1, 1, 1, 1, 1, -1]);
+        const buffer = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+        gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
+
+        this.quadBuffer = buffer;
+
+        // Create framebuffers
+        this.initFramebuffers();
+
+        // Setup mouse/touch interaction
+        this.setupPointerEvents();
+
+        console.log('Fluid simulation initialized');
+    }
+
+    createProgram(vertexSource, fragmentSource) {
+        const gl = this.gl;
+
+        const vertexShader = this.compileShader(gl.VERTEX_SHADER, vertexSource);
+        const fragmentShader = this.compileShader(gl.FRAGMENT_SHADER, fragmentSource);
+
+        const program = gl.createProgram();
+        gl.attachShader(program, vertexShader);
+        gl.attachShader(program, fragmentShader);
+        gl.linkProgram(program);
+
+        if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+            console.error('Program link error:', gl.getProgramInfoLog(program));
+            return null;
+        }
+
+        return program;
+    }
+
+    compileShader(type, source) {
+        const gl = this.gl;
+        const shader = gl.createShader(type);
+        gl.shaderSource(shader, source);
+        gl.compileShader(shader);
+
+        if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+            console.error('Shader compile error:', gl.getShaderInfoLog(shader));
+            return null;
+        }
+
+        return shader;
+    }
+
+    createTexture(width, height) {
+        const gl = this.gl;
+        const texture = gl.createTexture();
+        gl.bindTexture(gl.TEXTURE_2D, texture);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, width, height, 0, gl.RGBA, gl.FLOAT, null);
+        return texture;
+    }
+
+    createDoubleFBO(width, height) {
+        const gl = this.gl;
+
+        // Check for floating point texture support
+        const ext = gl.getExtension('OES_texture_float');
+        if (!ext) {
+            console.warn('OES_texture_float not supported, using UNSIGNED_BYTE');
+        }
+
+        const fbo1 = this.createFBO(width, height);
+        const fbo2 = this.createFBO(width, height);
+
+        return {
+            width,
+            height,
+            read: fbo1,
+            write: fbo2,
+            swap() {
+                const temp = this.read;
+                this.read = this.write;
+                this.write = temp;
+            }
+        };
+    }
+
+    createFBO(width, height) {
+        const gl = this.gl;
+
+        const texture = this.createTexture(width, height);
+        const fbo = gl.createFramebuffer();
+
+        gl.bindFramebuffer(gl.FRAMEBUFFER, fbo);
+        gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, texture, 0);
+        gl.viewport(0, 0, width, height);
+        gl.clear(gl.COLOR_BUFFER_BIT);
+
+        return {
+            framebuffer: fbo,
+            texture: texture,
+            width: width,
+            height: height
+        };
+    }
+
+    initFramebuffers() {
+        const simRes = this.config.simResolution;
+        const dyeRes = this.config.dyeResolution;
+
+        // Enable floating point textures extension
+        this.gl.getExtension('OES_texture_float');
+        this.gl.getExtension('OES_texture_float_linear');
+
+        this.velocity = this.createDoubleFBO(simRes, simRes);
+        this.divergence = this.createFBO(simRes, simRes);
+        this.pressure = this.createDoubleFBO(simRes, simRes);
+    }
+
+    setupPointerEvents() {
+        const canvas = this.canvas;
+
+        const updatePointer = (e) => {
+            const rect = canvas.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width;
+            const y = 1.0 - (e.clientY - rect.top) / rect.height;
+
+            const pointer = this.pointers[0] || { x: 0, y: 0, dx: 0, dy: 0, down: false };
+
+            pointer.dx = (x - pointer.x) * 10.0;
+            pointer.dy = (y - pointer.y) * 10.0;
+            pointer.x = x;
+            pointer.y = y;
+
+            this.pointers[0] = pointer;
+        };
+
+        canvas.addEventListener('mousemove', (e) => {
+            updatePointer(e);
+            if (!this.pointers[0]) this.pointers[0] = { down: false };
+            this.pointers[0].down = e.buttons === 1;
+        });
+
+        canvas.addEventListener('mousedown', (e) => {
+            updatePointer(e);
+            this.pointers[0].down = true;
+        });
+
+        canvas.addEventListener('mouseup', () => {
+            if (this.pointers[0]) this.pointers[0].down = false;
+        });
+    }
+
+    step(deltaTime) {
+        const gl = this.gl;
+        const dt = Math.min(deltaTime, 0.016);
+
+        // Apply mouse splat
+        if (this.pointers[0] && this.pointers[0].down) {
+            const pointer = this.pointers[0];
+            const force = { x: pointer.dx, y: pointer.dy };
+
+            if (Math.abs(force.x) > 0.01 || Math.abs(force.y) > 0.01) {
+                this.splat(pointer.x, pointer.y, force.x, force.y);
+            }
+        }
+
+        // Advect velocity
+        this.advect(this.velocity, this.velocity, this.config.velocityDissipation, dt);
+
+        // Compute divergence
+        this.computeDivergence(this.velocity, this.divergence);
+
+        // Solve pressure (Jacobi iterations)
+        this.clearFBO(this.pressure.read);
+        for (let i = 0; i < this.config.pressureIterations; i++) {
+            this.solvePressure(this.pressure, this.divergence);
+            this.pressure.swap();
+        }
+
+        // Subtract pressure gradient
+        this.subtractGradient(this.velocity, this.pressure.read);
+
+        // Render to screen
+        this.render();
+    }
+
+    splat(x, y, dx, dy) {
+        const gl = this.gl;
+        const program = this.programs.splat;
+
+        gl.useProgram(program);
+
+        // Splat velocity
+        this.bindFBO(this.velocity.write);
+
+        const posLoc = gl.getAttribLocation(program, 'a_position');
+        gl.bindBuffer(gl.ARRAY_BUFFER, this.quadBuffer);
+        gl.enableVertexAttribArray(posLoc);
+        gl.vertexAttribPointer(posLoc, 2, gl.FLOAT, false, 0, 0);
+
+        gl.uniform1i(gl.getUniformLocation(program, 'u_target'), 0);
+        gl.uniform2f(gl.getUniformLocation(program, 'u_point'), x, y);
+        gl.uniform3f(gl.getUniformLocation(program, 'u_color'), dx, dy, 0.0);
+        gl.uniform1f(gl.getUniformLocation(program, 'u_radius'), this.config.splatRadius);
+
+        gl.activeTexture(gl.TEXTURE0);
+        gl.bindTexture(gl.TEXTURE_2D, this.velocity.read.texture);
+
+        gl.drawArrays(gl.TRIANGLE_FAN, 0, 4);
+
+        this.velocity.swap();
+    }
+
+    advect(target, source, dissipation, dt) {
+        const gl = this.gl;
+        const program = this.programs.advection;
+
+        gl.useProgram(program);
+        this.bindFBO(target.write);
+
+        const posLoc = gl.getAttribLocation(program, 'a_position');
+        gl.bindBuffer(gl.ARRAY_BUFFER, this.quadBuffer);
+        gl.enableVertexAttribArray(posLoc);
+        gl.vertexAttribPointer(posLoc, 2, gl.FLOAT, false, 0, 0);
+
+        gl.uniform1i(gl.getUniformLocation(program, 'u_velocity'), 0);
+        gl.uniform1i(gl.getUniformLocation(program, 'u_source'), 1);
+        gl.uniform2f(gl.getUniformLocation(program, 'u_texelSize'), 1.0 / target.width, 1.0 / target.height);
+        gl.uniform1f(gl.getUniformLocation(program, 'u_dt'), dt);
+        gl.uniform1f(gl.getUniformLocation(program, 'u_dissipation'), dissipation);
+
+        gl.activeTexture(gl.TEXTURE0);
+        gl.bindTexture(gl.TEXTURE_2D, this.velocity.read.texture);
+        gl.activeTexture(gl.TEXTURE1);
+        gl.bindTexture(gl.TEXTURE_2D, source.read.texture);
+
+        gl.drawArrays(gl.TRIANGLE_FAN, 0, 4);
+
+        target.swap();
+    }
+
+    computeDivergence(velocity, divergence) {
+        const gl = this.gl;
+        const program = this.programs.divergence;
+
+        gl.useProgram(program);
+        this.bindFBO(divergence);
+
+        const posLoc = gl.getAttribLocation(program, 'a_position');
+        gl.bindBuffer(gl.ARRAY_BUFFER, this.quadBuffer);
+        gl.enableVertexAttribArray(posLoc);
+        gl.vertexAttribPointer(posLoc, 2, gl.FLOAT, false, 0, 0);
+
+        gl.uniform1i(gl.getUniformLocation(program, 'u_velocity'), 0);
+        gl.uniform2f(gl.getUniformLocation(program, 'u_texelSize'), 1.0 / velocity.width, 1.0 / velocity.height);
+
+        gl.activeTexture(gl.TEXTURE0);
+        gl.bindTexture(gl.TEXTURE_2D, velocity.read.texture);
+
+        gl.drawArrays(gl.TRIANGLE_FAN, 0, 4);
+    }
+
+    solvePressure(pressure, divergence) {
+        const gl = this.gl;
+        const program = this.programs.pressure;
+
+        gl.useProgram(program);
+        this.bindFBO(pressure.write);
+
+        const posLoc = gl.getAttribLocation(program, 'a_position');
+        gl.bindBuffer(gl.ARRAY_BUFFER, this.quadBuffer);
+        gl.enableVertexAttribArray(posLoc);
+        gl.vertexAttribPointer(posLoc, 2, gl.FLOAT, false, 0, 0);
+
+        gl.uniform1i(gl.getUniformLocation(program, 'u_pressure'), 0);
+        gl.uniform1i(gl.getUniformLocation(program, 'u_divergence'), 1);
+        gl.uniform2f(gl.getUniformLocation(program, 'u_texelSize'), 1.0 / pressure.width, 1.0 / pressure.height);
+
+        gl.activeTexture(gl.TEXTURE0);
+        gl.bindTexture(gl.TEXTURE_2D, pressure.read.texture);
+        gl.activeTexture(gl.TEXTURE1);
+        gl.bindTexture(gl.TEXTURE_2D, divergence.texture);
+
+        gl.drawArrays(gl.TRIANGLE_FAN, 0, 4);
+    }
+
+    subtractGradient(velocity, pressure) {
+        const gl = this.gl;
+        const program = this.programs.gradientSubtract;
+
+        gl.useProgram(program);
+        this.bindFBO(velocity.write);
+
+        const posLoc = gl.getAttribLocation(program, 'a_position');
+        gl.bindBuffer(gl.ARRAY_BUFFER, this.quadBuffer);
+        gl.enableVertexAttribArray(posLoc);
+        gl.vertexAttribPointer(posLoc, 2, gl.FLOAT, false, 0, 0);
+
+        gl.uniform1i(gl.getUniformLocation(program, 'u_pressure'), 0);
+        gl.uniform1i(gl.getUniformLocation(program, 'u_velocity'), 1);
+        gl.uniform2f(gl.getUniformLocation(program, 'u_texelSize'), 1.0 / velocity.width, 1.0 / velocity.height);
+
+        gl.activeTexture(gl.TEXTURE0);
+        gl.bindTexture(gl.TEXTURE_2D, pressure.texture);
+        gl.activeTexture(gl.TEXTURE1);
+        gl.bindTexture(gl.TEXTURE_2D, velocity.read.texture);
+
+        gl.drawArrays(gl.TRIANGLE_FAN, 0, 4);
+
+        velocity.swap();
+    }
+
+    render() {
+        const gl = this.gl;
+        const program = this.programs.display;
+
+        gl.useProgram(program);
+        gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+        gl.viewport(0, 0, this.canvas.width, this.canvas.height);
+
+        const posLoc = gl.getAttribLocation(program, 'a_position');
+        gl.bindBuffer(gl.ARRAY_BUFFER, this.quadBuffer);
+        gl.enableVertexAttribArray(posLoc);
+        gl.vertexAttribPointer(posLoc, 2, gl.FLOAT, false, 0, 0);
+
+        gl.uniform1i(gl.getUniformLocation(program, 'u_velocity'), 0);
+        gl.uniform1f(gl.getUniformLocation(program, 'u_brightness'), this.config.brightness);
+
+        gl.activeTexture(gl.TEXTURE0);
+        gl.bindTexture(gl.TEXTURE_2D, this.velocity.read.texture);
+
+        // Enable blending for transparency
+        gl.enable(gl.BLEND);
+        gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+
+        gl.drawArrays(gl.TRIANGLE_FAN, 0, 4);
+
+        gl.disable(gl.BLEND);
+    }
+
+    bindFBO(fbo) {
+        const gl = this.gl;
+        gl.bindFramebuffer(gl.FRAMEBUFFER, fbo.framebuffer);
+        gl.viewport(0, 0, fbo.width, fbo.height);
+    }
+
+    clearFBO(fbo) {
+        const gl = this.gl;
+        this.bindFBO(fbo);
+        gl.clear(gl.COLOR_BUFFER_BIT);
+    }
+}
+
+// Initialize fluid simulation
+let fluidSim;
+let lastTime = 0;
+
+function initFluidSimulation() {
+    fluidSim = new FluidSimulation(fluidCanvas);
+
+    if (fluidSim.gl) {
+        requestAnimationFrame(updateFluid);
+        console.log('Fluid simulation started');
+    }
+}
+
+function updateFluid(time) {
+    const deltaTime = (time - lastTime) / 1000.0;
+    lastTime = time;
+
+    if (fluidSim && fluidSim.gl) {
+        fluidSim.step(deltaTime);
+    }
+
+    requestAnimationFrame(updateFluid);
+}
+
+// Start fluid simulation
+initFluidSimulation();
