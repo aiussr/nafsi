@@ -417,7 +417,7 @@ const SHADERS = {
             );
 
             color *= u_brightness;
-            gl_FragColor = vec4(color, 0.3); // Semi-transparent
+            gl_FragColor = vec4(color, 1.0); // Fully opaque
         }
     `
 };
@@ -448,6 +448,7 @@ class FluidSimulation {
         };
 
         this.pointers = [];
+        this.time = 0; // Track time for noise generation
         this.init();
     }
 
@@ -621,14 +622,33 @@ class FluidSimulation {
         const gl = this.gl;
         const dt = Math.min(deltaTime, 0.016);
 
-        // Apply mouse splat
-        if (this.pointers[0] && this.pointers[0].down) {
+        // Update time for noise
+        this.time += dt;
+
+        // Apply mouse splat on any movement
+        if (this.pointers[0]) {
             const pointer = this.pointers[0];
             const force = { x: pointer.dx, y: pointer.dy };
 
             if (Math.abs(force.x) > 0.01 || Math.abs(force.y) > 0.01) {
                 this.splat(pointer.x, pointer.y, force.x, force.y);
             }
+        }
+
+        // Apply persistent low-frequency noise for ambient movement
+        // Add random splats at slow intervals to keep fluid alive
+        if (Math.random() < 0.05) { // 5% chance per frame (~3 times per second at 60fps)
+            const x = Math.random();
+            const y = Math.random();
+
+            // Use time-based sine waves for smooth, organic motion
+            const angle = this.time * 0.5 + Math.random() * Math.PI * 2;
+            const strength = 0.2 + Math.random() * 0.3; // Subtle force
+
+            const dx = Math.cos(angle) * strength;
+            const dy = Math.sin(angle) * strength;
+
+            this.splat(x, y, dx, dy);
         }
 
         // Advect velocity
@@ -911,7 +931,7 @@ function updateDisplayShader() {
         void main() {
             ${paletteCode}
             color *= u_brightness;
-            gl_FragColor = vec4(color, 0.3);
+            gl_FragColor = vec4(color, 1.0);
         }
     `;
 
