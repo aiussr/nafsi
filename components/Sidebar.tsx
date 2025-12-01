@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Task, ModuleType, MODULES, TaskType } from '../types';
 import { TaskCard } from './TaskCard';
-import { Plus, BrainCircuit, Loader2, Sparkles, BookOpen, FileText, GraduationCap } from 'lucide-react';
+import { Plus, BrainCircuit, Loader2, Sparkles, BookOpen, FileText, GraduationCap, Download, Upload } from 'lucide-react';
 
 interface SidebarProps {
   tasks: Task[];
@@ -12,6 +12,8 @@ interface SidebarProps {
   onAiBreakdown: (task: Task) => void;
   onAiAutoSchedule: () => void;
   onDragStart: (e: React.DragEvent, taskId: string) => void;
+  onExportData: () => void;
+  onImportData: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({
@@ -21,7 +23,9 @@ export const Sidebar: React.FC<SidebarProps> = ({
   onDeleteTask,
   onAiBreakdown,
   onAiAutoSchedule,
-  onDragStart
+  onDragStart,
+  onExportData,
+  onImportData
 }) => {
   const [inputTitle, setInputTitle] = useState('');
   const [inputNotes, setInputNotes] = useState('');
@@ -152,23 +156,45 @@ export const Sidebar: React.FC<SidebarProps> = ({
       </div>
 
       {/* AI Controls */}
-      <div className="px-5 py-3 bg-white border-b border-slate-200 flex items-center justify-between">
+      <div className="px-5 py-3 bg-white border-b border-slate-200 flex items-center justify-between gap-2">
         <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
           Backlog ({backlogTasks.length})
         </span>
-        <button
-          onClick={onAiAutoSchedule}
-          disabled={isAiLoading || backlogTasks.length === 0}
-          className={`
-            text-xs flex items-center gap-1.5 px-3 py-1.5 rounded-md border transition-all shadow-sm
-            ${isAiLoading 
-              ? 'bg-slate-100 text-slate-400 border-slate-200 cursor-not-allowed' 
-              : 'bg-white text-indigo-600 border-slate-200 hover:border-indigo-300 hover:text-indigo-700 font-medium hover:shadow-md'}
-          `}
-        >
-          {isAiLoading ? <Loader2 size={12} className="animate-spin" /> : <Sparkles size={12} />}
-          Auto-Plan Month
-        </button>
+        <div className="flex gap-2">
+          <button
+            onClick={onExportData}
+            className="text-xs flex items-center gap-1.5 px-2.5 py-1.5 rounded-md border transition-all shadow-sm bg-white text-emerald-600 border-slate-200 hover:border-emerald-300 hover:text-emerald-700 font-medium hover:shadow-md"
+            title="Export schedule as JSON file"
+          >
+            <Download size={12} />
+            Export
+          </button>
+
+          <label className="text-xs flex items-center gap-1.5 px-2.5 py-1.5 rounded-md border transition-all shadow-sm bg-white text-indigo-600 border-slate-200 hover:border-indigo-300 hover:text-indigo-700 font-medium hover:shadow-md cursor-pointer">
+            <Upload size={12} />
+            Import
+            <input
+              type="file"
+              accept=".json"
+              onChange={onImportData}
+              className="hidden"
+            />
+          </label>
+
+          <button
+            onClick={onAiAutoSchedule}
+            disabled={isAiLoading || backlogTasks.length === 0}
+            className={`
+              text-xs flex items-center gap-1.5 px-2.5 py-1.5 rounded-md border transition-all shadow-sm
+              ${isAiLoading
+                ? 'bg-slate-100 text-slate-400 border-slate-200 cursor-not-allowed'
+                : 'bg-white text-indigo-600 border-slate-200 hover:border-indigo-300 hover:text-indigo-700 font-medium hover:shadow-md'}
+            `}
+          >
+            {isAiLoading ? <Loader2 size={12} className="animate-spin" /> : <Sparkles size={12} />}
+            Auto
+          </button>
+        </div>
       </div>
 
       {/* Task List */}

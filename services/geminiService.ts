@@ -1,124 +1,93 @@
-
-import { GoogleGenAI, Type, Schema } from "@google/genai";
 import { Task, ModuleType } from "../types";
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-
 export const generateBreakdown = async (
-  topic: string, 
+  topic: string,
   module: ModuleType
 ): Promise<{ title: string; duration: number }[]> => {
-  const model = "gemini-2.5-flash";
-  
-  const prompt = `
-    I am a university student studying ${module}.
-    Break down the topic "${topic}" into 3-5 specific, small, actionable study tasks.
-    Estimate time in hours (0.5 to 2.5) for each.
-    Return strictly JSON.
-  `;
 
-  const schema: Schema = {
-    type: Type.ARRAY,
-    items: {
-      type: Type.OBJECT,
-      properties: {
-        title: { type: Type.STRING, description: "Actionable task name" },
-        duration: { type: Type.NUMBER, description: "Hours (decimal)" },
-      },
-      required: ["title", "duration"],
-    },
-  };
+  // Simulate async for UI consistency
+  await new Promise(resolve => setTimeout(resolve, 800));
 
-  try {
-    const response = await ai.models.generateContent({
-      model,
-      contents: prompt,
-      config: {
-        responseMimeType: "application/json",
-        responseSchema: schema,
-      },
+  const subtasks: { title: string; duration: number }[] = [];
+
+  const phases = [
+    "Review fundamentals",
+    "Work through examples",
+    "Practice problems",
+    "Review and consolidate"
+  ];
+
+  const numTasks = 3 + Math.floor(Math.random() * 2);
+  const baseDuration = 1.5;
+
+  for (let i = 0; i < numTasks; i++) {
+    const phase = phases[i % phases.length];
+    subtasks.push({
+      title: `${phase}: ${topic}`,
+      duration: baseDuration + (Math.random() * 0.5 - 0.25)
     });
-
-    if (response.text) {
-      return JSON.parse(response.text);
-    }
-    return [];
-  } catch (error) {
-    console.error("Gemini breakdown error:", error);
-    return [];
   }
+
+  return subtasks;
 };
 
 export const suggestSchedule = async (
   tasks: Task[],
-  availableDates: string[] // List of valid YYYY-MM-DD strings for the current view
+  availableDates: string[]
 ): Promise<Task[]> => {
-  const model = "gemini-2.5-flash";
 
-  // Only schedule backlog tasks
+  await new Promise(resolve => setTimeout(resolve, 1000));
+
   const backlogTasks = tasks.filter(t => !t.date);
   if (backlogTasks.length === 0) return tasks;
 
-  // Existing schedule context
-  const existingSchedule = tasks
+  const dateLoads = new Map<string, number>();
+  availableDates.forEach(date => dateLoads.set(date, 0));
+
+  tasks
     .filter(t => t.date && availableDates.includes(t.date))
-    .map(t => ({ date: t.date, duration: t.duration, module: t.module }));
-
-  const prompt = `
-    I have study tasks to schedule for a university student.
-    
-    Tasks to Schedule:
-    ${JSON.stringify(backlogTasks.map(t => ({ id: t.id, title: t.title, module: t.module, duration: t.duration, type: t.type })))}
-
-    Available Dates: ${JSON.stringify(availableDates)}
-
-    Current Workload on Dates:
-    ${JSON.stringify(existingSchedule)}
-
-    Rules:
-    1. Distribute the tasks across the Available Dates.
-    2. Avoid overloading a single day (max ~6-8 hours).
-    3. Group similar modules if it makes sense, but allow variety.
-    4. Prioritize exams and coursework earlier if implied, but spread evenly otherwise.
-    5. Return a JSON array of objects with "id" and "date".
-  `;
-
-  const schema: Schema = {
-    type: Type.ARRAY,
-    items: {
-      type: Type.OBJECT,
-      properties: {
-        id: { type: Type.STRING },
-        date: { type: Type.STRING }, // YYYY-MM-DD
-      },
-      required: ["id", "date"],
-    },
-  };
-
-  try {
-    const response = await ai.models.generateContent({
-      model,
-      contents: prompt,
-      config: {
-        responseMimeType: "application/json",
-        responseSchema: schema,
-      },
+    .forEach(t => {
+      const current = dateLoads.get(t.date!) || 0;
+      dateLoads.set(t.date!, current + t.duration);
     });
 
-    if (response.text) {
-      const assignments = JSON.parse(response.text) as { id: string; date: string }[];
-      
-      return tasks.map(t => {
-        const assign = assignments.find(a => a.id === t.id);
-        if (assign) {
-          return { ...t, date: assign.date };
-        }
-        return t;
-      });
+  const sortedTasks = [...backlogTasks].sort((a, b) => {
+    if (a.type === 'exam' && b.type !== 'exam') return -1;
+    if (b.type === 'exam' && a.type !== 'exam') return 1;
+    if (a.type === 'coursework' && b.type === 'study') return -1;
+    if (b.type === 'coursework' && a.type === 'study') return 1;
+    return b.duration - a.duration;
+  });
+
+  const MAX_DAILY_HOURS = 7;
+  const assignments = new Map<string, string>();
+
+  sortedTasks.forEach(task => {
+    let bestDate: string | null = null;
+    let minLoad = Infinity;
+
+    for (const date of availableDates) {
+      const currentLoad = dateLoads.get(date) || 0;
+      if (currentLoad + task.duration <= MAX_DAILY_HOURS && currentLoad < minLoad) {
+        minLoad = currentLoad;
+        bestDate = date;
+      }
     }
-    return tasks;
-  } catch (error) {
-    console.error("Gemini schedule error:", error);
-    return tasks;
-  }
+
+    if (!bestDate) {
+      bestDate = Array.from(dateLoads.entries())
+        .sort((a, b) => a[1] - b[1])[0][0];
+    }
+
+    assignments.set(task.id, bestDate);
+    dateLoads.set(bestDate, (dateLoads.get(bestDate) || 0) + task.duration);
+  });
+
+  return tasks.map(t => {
+    const assignedDate = assignments.get(t.id);
+    if (assignedDate) {
+      return { ...t, date: assignedDate };
+    }
+    return t;
+  });
 };
