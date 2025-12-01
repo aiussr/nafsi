@@ -136,6 +136,42 @@ const App: React.FC = () => {
     setTimeout(() => setNotification(null), 3000);
   };
 
+  const exportData = () => {
+    const dataStr = JSON.stringify(tasks, null, 2);
+    const blob = new Blob([dataStr], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `uniflow-backup-${new Date().toISOString().split('T')[0]}.json`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+    showNotification('Schedule exported successfully!');
+  };
+
+  const importData = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      try {
+        const result = e.target?.result;
+        if (typeof result === 'string') {
+          const imported = JSON.parse(result) as Task[];
+          setTasks(imported);
+          showNotification('Schedule restored successfully!');
+        }
+      } catch (error) {
+        console.error('Import error:', error);
+        showNotification('Failed to import - invalid file', 'error');
+      }
+    };
+    reader.readAsText(file);
+    event.target.value = ''; // Reset input
+  };
+
   const handleAiBreakdown = async (task: Task) => {
     setIsAiLoading(true);
     try {
@@ -201,7 +237,7 @@ const App: React.FC = () => {
         onDrop={handleDropToBacklog}
         className="h-full flex-shrink-0"
       >
-        <Sidebar 
+        <Sidebar
           tasks={tasks}
           isAiLoading={isAiLoading}
           onAddTask={handleAddTask}
@@ -209,6 +245,8 @@ const App: React.FC = () => {
           onAiBreakdown={handleAiBreakdown}
           onAiAutoSchedule={handleAutoSchedule}
           onDragStart={handleDragStart}
+          onExportData={exportData}
+          onImportData={importData}
         />
       </div>
 
