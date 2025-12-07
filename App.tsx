@@ -246,31 +246,33 @@ const App: React.FC = () => {
       {!bannerDismissed && (
         <div
           className="fixed top-0 left-0 right-0 z-[100] pointer-events-none"
-          style={{
-            transform: `translate(${(mousePos.x - window.innerWidth / 2) / 100}px, ${(mousePos.y - window.innerHeight / 2) / 100}px)`
-          }}
+          style={
+            window.innerWidth >= 1024
+              ? { transform: `translate(${(mousePos.x - window.innerWidth / 2) / 100}px, ${(mousePos.y - window.innerHeight / 2) / 100}px)` }
+              : {}
+          }
         >
           <div className="relative overflow-hidden backdrop-blur-md bg-gradient-to-r from-indigo-500/10 via-purple-500/10 to-pink-500/10 border-b border-indigo-200/30 shadow-lg">
             <div className="absolute inset-0 bg-gradient-to-r from-indigo-400/5 via-purple-400/5 to-pink-400/5 animate-pulse"></div>
-            <div className="relative px-6 py-3 flex items-center justify-between pointer-events-auto">
-              <div className="flex items-center gap-3 flex-1">
-                <div className="flex items-center gap-2">
+            <div className="relative px-4 sm:px-6 py-3 flex items-center justify-between pointer-events-auto">
+              <div className="flex items-center gap-2 sm:gap-3 flex-1">
+                <div className="flex items-center gap-1.5 sm:gap-2">
                   <div className="w-2 h-2 bg-indigo-500 rounded-full animate-pulse shadow-lg shadow-indigo-500/50" style={{ animationDelay: '0ms' }}></div>
                   <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse shadow-lg shadow-purple-500/50" style={{ animationDelay: '150ms' }}></div>
                   <div className="w-2 h-2 bg-pink-500 rounded-full animate-pulse shadow-lg shadow-pink-500/50" style={{ animationDelay: '300ms' }}></div>
                 </div>
-                <div className="flex-1">
-                  <p className="text-sm font-semibold text-slate-800">
+                <div className="flex-1 min-w-0">
+                  <p className="text-xs sm:text-sm font-semibold text-slate-800 truncate">
                     🚧 <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">Prototype in Development</span>
                   </p>
-                  <p className="text-xs text-slate-600 mt-0.5">
+                  <p className="hidden sm:block text-xs text-slate-600 mt-0.5">
                     This is an early preview of UniFlow Study Planner • Actively building new features
                   </p>
                 </div>
               </div>
               <button
                 onClick={() => setBannerDismissed(true)}
-                className="ml-4 px-3 py-1.5 text-xs font-medium text-slate-600 hover:text-slate-900 bg-white/60 hover:bg-white/80 rounded-md border border-slate-200/50 hover:border-slate-300 transition-all shadow-sm hover:shadow-md"
+                className="ml-2 sm:ml-4 px-2 sm:px-3 py-1.5 text-xs font-medium text-slate-600 hover:text-slate-900 bg-white/60 hover:bg-white/80 rounded-md border border-slate-200/50 hover:border-slate-300 transition-all shadow-sm hover:shadow-md whitespace-nowrap"
               >
                 Dismiss
               </button>
@@ -279,11 +281,57 @@ const App: React.FC = () => {
         </div>
       )}
 
-      {/* Sidebar (Backlog) */}
-      <div 
+      {/* Mobile-Only View */}
+      <div className="lg:hidden flex flex-col items-center justify-center h-full w-full bg-gradient-to-br from-slate-50 via-indigo-50/30 to-purple-50/30 p-6 text-center">
+        <div className="max-w-md space-y-6 animate-in fade-in duration-700">
+          <div className="w-20 h-20 mx-auto bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-2xl shadow-indigo-500/30 rotate-3 hover:rotate-6 transition-transform">
+            <CalendarIcon size={40} className="text-white" />
+          </div>
+
+          <div className="space-y-3">
+            <h1 className="text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+              UniFlow Study Planner
+            </h1>
+            <p className="text-lg text-slate-700 font-medium">
+              Desktop Experience Required
+            </p>
+          </div>
+
+          <div className="space-y-4 text-slate-600">
+            <p className="text-sm leading-relaxed">
+              This interactive calendar planner is optimized for desktop browsers with drag-and-drop functionality.
+            </p>
+
+            <div className="bg-white/60 backdrop-blur-sm rounded-xl p-4 border border-indigo-100 space-y-2 text-left">
+              <p className="text-xs font-semibold text-indigo-900 flex items-center gap-2">
+                <CheckCircle2 size={14} className="text-indigo-600" />
+                What You Can Do:
+              </p>
+              <ul className="text-xs space-y-1 text-slate-700 ml-6 list-disc">
+                <li>Organize study tasks visually</li>
+                <li>Drag tasks onto calendar dates</li>
+                <li>AI-powered scheduling</li>
+                <li>Export/import your schedule</li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="pt-4">
+            <p className="text-sm text-slate-500 font-medium">
+              Please visit on a desktop or laptop computer
+            </p>
+            <p className="text-xs text-slate-400 mt-2">
+              Minimum width: 1024px
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Desktop View - Sidebar (Backlog) */}
+      <div
         onDragOver={handleDragOver}
         onDrop={handleDropToBacklog}
-        className="h-full flex-shrink-0"
+        className="hidden lg:block h-full flex-shrink-0"
       >
         <Sidebar
           tasks={tasks}
@@ -298,8 +346,8 @@ const App: React.FC = () => {
         />
       </div>
 
-      {/* Main Calendar Area */}
-      <main className="flex-1 flex flex-col h-full min-w-0 bg-slate-50 relative shadow-2xl">
+      {/* Desktop View - Main Calendar Area */}
+      <main className="hidden lg:flex flex-1 flex-col h-full min-w-0 bg-slate-50 relative shadow-2xl">
         
         {/* Header */}
         <header className="h-20 border-b border-slate-200 bg-white px-8 flex items-center justify-between shrink-0 z-10">
