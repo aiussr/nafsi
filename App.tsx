@@ -20,9 +20,20 @@ const App: React.FC = () => {
 
   const [isAiLoading, setIsAiLoading] = useState(false);
   const [notification, setNotification] = useState<{message: string, type: 'success'|'error'} | null>(null);
-  
+  const [bannerDismissed, setBannerDismissed] = useState(false);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
   // Calendar State
   const [currentDate, setCurrentDate] = useState(new Date());
+
+  // Track mouse position for banner parallax effect
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePos({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
 
   // Persist tasks whenever they change
   useEffect(() => {
@@ -230,7 +241,44 @@ const App: React.FC = () => {
 
   return (
     <div className="flex h-screen w-screen overflow-hidden bg-slate-100 text-slate-900 font-sans">
-      
+
+      {/* Prototype Banner */}
+      {!bannerDismissed && (
+        <div
+          className="fixed top-0 left-0 right-0 z-[100] pointer-events-none"
+          style={{
+            transform: `translate(${(mousePos.x - window.innerWidth / 2) / 100}px, ${(mousePos.y - window.innerHeight / 2) / 100}px)`
+          }}
+        >
+          <div className="relative overflow-hidden backdrop-blur-md bg-gradient-to-r from-indigo-500/10 via-purple-500/10 to-pink-500/10 border-b border-indigo-200/30 shadow-lg">
+            <div className="absolute inset-0 bg-gradient-to-r from-indigo-400/5 via-purple-400/5 to-pink-400/5 animate-pulse"></div>
+            <div className="relative px-6 py-3 flex items-center justify-between pointer-events-auto">
+              <div className="flex items-center gap-3 flex-1">
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-indigo-500 rounded-full animate-pulse shadow-lg shadow-indigo-500/50" style={{ animationDelay: '0ms' }}></div>
+                  <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse shadow-lg shadow-purple-500/50" style={{ animationDelay: '150ms' }}></div>
+                  <div className="w-2 h-2 bg-pink-500 rounded-full animate-pulse shadow-lg shadow-pink-500/50" style={{ animationDelay: '300ms' }}></div>
+                </div>
+                <div className="flex-1">
+                  <p className="text-sm font-semibold text-slate-800">
+                    🚧 <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">Prototype in Development</span>
+                  </p>
+                  <p className="text-xs text-slate-600 mt-0.5">
+                    This is an early preview of UniFlow Study Planner • Actively building new features
+                  </p>
+                </div>
+              </div>
+              <button
+                onClick={() => setBannerDismissed(true)}
+                className="ml-4 px-3 py-1.5 text-xs font-medium text-slate-600 hover:text-slate-900 bg-white/60 hover:bg-white/80 rounded-md border border-slate-200/50 hover:border-slate-300 transition-all shadow-sm hover:shadow-md"
+              >
+                Dismiss
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Sidebar (Backlog) */}
       <div 
         onDragOver={handleDragOver}
