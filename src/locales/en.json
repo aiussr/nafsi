@@ -12,7 +12,9 @@
     "arsenal": "Arsenal",
     "blackouts": "Blackouts",
     "documents": "Documents",
-    "sources": "Sources"
+    "sources": "Sources",
+    "community": "Community",
+    "analytics": "Analytics"
   },
   "common": {
     "loading": "Loading...",
@@ -117,5 +119,21 @@
     "high": "High",
     "medium": "Medium",
     "low": "Low"
+  },
+  "community": {
+    "title": "Community",
+    "subtitle": "Join the discussion — share your thoughts on the conflict",
+    "discussions": "Discussions",
+    "polls": "Polls",
+    "recentComments": "Recent Comments"
+  },
+  "analytics": {
+    "title": "Analytics",
+    "subtitle": "User engagement, sentiment, and feedback insights"
+  },
+  "auth": {
+    "signIn": "Sign in with X",
+    "signOut": "Sign out",
+    "signInToParticipate": "Sign in to participate"
   }
 }

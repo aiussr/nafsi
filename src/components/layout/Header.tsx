@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useLanguage } from '@/hooks/useLanguage';
+import { LoginButton } from '@/components/auth/LoginButton';
 import { Menu, X, Globe, Activity } from 'lucide-react';
 
 const navItems = [
@@ -13,6 +14,8 @@ const navItems = [
   { key: 'blackouts', path: '/blackouts' },
   { key: 'documents', path: '/documents' },
   { key: 'sources', path: '/sources' },
+  { key: 'community', path: '/community' },
+  { key: 'analytics', path: '/analytics' },
 ];
 
 const languages = [
@@ -47,7 +50,8 @@ export function Header() {
                 key={item.key}
                 to={item.path}
                 className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
-                  location.pathname === item.path
+                  location.pathname === item.path ||
+                  (item.path !== '/' && location.pathname.startsWith(item.path))
                     ? 'bg-danger/20 text-danger-light'
                     : 'text-gray-400 hover:text-gray-100 hover:bg-dark-600'
                 }`}
@@ -57,9 +61,9 @@ export function Header() {
             ))}
           </nav>
 
-          {/* Language Switcher */}
+          {/* Right side: Language + Login + Mobile menu */}
           <div className="flex items-center gap-2">
-            <div className="flex items-center gap-1 bg-dark-700 rounded-lg p-1">
+            <div className="hidden sm:flex items-center gap-1 bg-dark-700 rounded-lg p-1">
               <Globe className="w-4 h-4 text-gray-500 mx-1" />
               {languages.map((lang) => (
                 <button
@@ -75,6 +79,8 @@ export function Header() {
                 </button>
               ))}
             </div>
+
+            <LoginButton />
 
             {/* Mobile Menu Toggle */}
             <button
@@ -103,6 +109,23 @@ export function Header() {
                 {t(`nav.${item.key}`)}
               </Link>
             ))}
+            {/* Mobile language switcher */}
+            <div className="flex items-center gap-1 mt-2 px-3">
+              <Globe className="w-4 h-4 text-gray-500" />
+              {languages.map((lang) => (
+                <button
+                  key={lang.code}
+                  onClick={() => switchLanguage(lang.code)}
+                  className={`px-2 py-1 rounded text-xs font-medium transition-colors ${
+                    currentLang === lang.code
+                      ? 'bg-accent text-white'
+                      : 'text-gray-400 hover:text-gray-200'
+                  }`}
+                >
+                  {lang.label}
+                </button>
+              ))}
+            </div>
           </nav>
         )}
       </div>

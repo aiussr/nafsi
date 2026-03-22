@@ -5,3 +5,4 @@ export * from './blackout';
 export * from './mapMarker';
 export * from './document';
 export * from './source';
+export * from './social';

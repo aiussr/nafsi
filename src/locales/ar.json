@@ -12,7 +12,9 @@
     "arsenal": "الترسانة",
     "blackouts": "انقطاعات",
     "documents": "وثائق",
-    "sources": "المصادر"
+    "sources": "المصادر",
+    "community": "المجتمع",
+    "analytics": "التحليلات"
   },
   "common": {
     "loading": "جاري التحميل...",
@@ -117,5 +119,21 @@
     "high": "مرتفع",
     "medium": "متوسط",
     "low": "منخفض"
+  },
+  "community": {
+    "title": "المجتمع",
+    "subtitle": "انضم إلى النقاش — شارك أفكارك حول الصراع",
+    "discussions": "نقاشات",
+    "polls": "استطلاعات",
+    "recentComments": "تعليقات حديثة"
+  },
+  "analytics": {
+    "title": "التحليلات",
+    "subtitle": "تفاعل المستخدمين والمشاعر وملاحظات الاستخدام"
+  },
+  "auth": {
+    "signIn": "تسجيل الدخول بـ X",
+    "signOut": "تسجيل الخروج",
+    "signInToParticipate": "سجل الدخول للمشاركة"
   }
 }

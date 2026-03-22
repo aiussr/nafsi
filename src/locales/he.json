@@ -12,7 +12,9 @@
     "arsenal": "ארסנל",
     "blackouts": "האפלות",
     "documents": "מסמכים",
-    "sources": "מקורות"
+    "sources": "מקורות",
+    "community": "קהילה",
+    "analytics": "אנליטיקה"
   },
   "common": {
     "loading": "טוען...",
@@ -117,5 +119,21 @@
     "high": "גבוה",
     "medium": "בינוני",
     "low": "נמוך"
+  },
+  "community": {
+    "title": "קהילה",
+    "subtitle": "הצטרפו לדיון — שתפו את דעותיכם על העימות",
+    "discussions": "דיונים",
+    "polls": "סקרים",
+    "recentComments": "תגובות אחרונות"
+  },
+  "analytics": {
+    "title": "אנליטיקה",
+    "subtitle": "מעורבות משתמשים, סנטימנט ותובנות משוב"
+  },
+  "auth": {
+    "signIn": "התחבר עם X",
+    "signOut": "התנתק",
+    "signInToParticipate": "התחבר כדי להשתתף"
   }
 }
