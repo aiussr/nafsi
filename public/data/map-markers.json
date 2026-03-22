@@ -1,0 +1,65 @@
+{
+  "markers": [
+    {
+      "id": "mrk-001",
+      "type": "military_base",
+      "position": { "lat": 35.235, "lng": 53.92 },
+      "label": { "en": "Semnan Missile Base", "he": "בסיס טילים סמנאן", "ar": "قاعدة صواريخ سمنان" },
+      "details": { "en": "IRGC missile development and testing facility", "he": "מתקן פיתוח ובדיקות טילים של משמרות המהפכה", "ar": "منشأة تطوير واختبار صواريخ الحرس الثوري" },
+      "icon": "base"
+    },
+    {
+      "id": "mrk-002",
+      "type": "military_base",
+      "position": { "lat": 32.0853, "lng": 34.7818 },
+      "label": { "en": "Tel Aviv / IDF HQ", "he": "תל אביב / מטכ\"ל", "ar": "تل أبيب / مقر الجيش الإسرائيلي" },
+      "details": { "en": "Israeli Defense Forces headquarters area", "he": "אזור מטכ\"ל צה\"ל", "ar": "منطقة مقر قوات الدفاع الإسرائيلية" },
+      "icon": "base"
+    },
+    {
+      "id": "mrk-003",
+      "type": "target",
+      "position": { "lat": 31.87, "lng": 34.7 },
+      "label": { "en": "Nevatim Air Base", "he": "בסיס נבטים", "ar": "قاعدة نيفاتيم الجوية" },
+      "details": { "en": "Israeli Air Force base, reported target of Iranian missile strike", "he": "בסיס חיל האוויר, מטרה מדווחת של מתקפת הטילים האיראנית", "ar": "قاعدة سلاح الجو الإسرائيلي، هدف مُبلغ عنه لضربة الصواريخ الإيرانية" },
+      "relatedEvent": "evt-001",
+      "icon": "target"
+    },
+    {
+      "id": "mrk-004",
+      "type": "interception",
+      "position": { "lat": 31.5, "lng": 35.0 },
+      "label": { "en": "Arrow System Interception Zone", "he": "אזור יירוט מערכת חץ", "ar": "منطقة اعتراض نظام السهم" },
+      "details": { "en": "Area where Arrow-3 interceptors engaged incoming ballistic missiles", "he": "אזור בו מיירטי חץ-3 יירטו טילים בליסטיים", "ar": "المنطقة التي اعترض فيها نظام أرو-3 الصواريخ الباليستية القادمة" },
+      "relatedEvent": "evt-002",
+      "icon": "shield"
+    },
+    {
+      "id": "mrk-005",
+      "type": "target",
+      "position": { "lat": 32.6546, "lng": 51.668 },
+      "label": { "en": "Isfahan Military Complex", "he": "מתחם צבאי אספהאן", "ar": "مجمع أصفهان العسكري" },
+      "details": { "en": "IRGC missile production facility targeted in Israeli retaliation", "he": "מתקן ייצור טילים של משמרות המהפכה שהותקף בתגובה ישראלית", "ar": "منشأة إنتاج صواريخ الحرس الثوري المستهدفة في الرد الإسرائيلي" },
+      "relatedEvent": "evt-003",
+      "icon": "target"
+    }
+  ],
+  "missilePaths": [
+    {
+      "id": "path-001",
+      "from": { "lat": 35.235, "lng": 53.92, "label": { "en": "Semnan, Iran", "he": "סמנאן, איראן", "ar": "سمنان، إيران" } },
+      "to": { "lat": 31.87, "lng": 34.7, "label": { "en": "Nevatim, Israel", "he": "נבטים, ישראל", "ar": "نيفاتيم، إسرائيل" } },
+      "missileType": "msl-002",
+      "timestamp": "2025-10-01T03:00:00Z",
+      "intercepted": true
+    },
+    {
+      "id": "path-002",
+      "from": { "lat": 33.3, "lng": 48.3, "label": { "en": "Kermanshah, Iran", "he": "כרמנשאה, איראן", "ar": "كرمانشاه، إيران" } },
+      "to": { "lat": 32.0853, "lng": 34.7818, "label": { "en": "Tel Aviv, Israel", "he": "תל אביב, ישראל", "ar": "تل أبيب، إسرائيل" } },
+      "missileType": "msl-003",
+      "timestamp": "2025-10-01T03:05:00Z",
+      "intercepted": true
+    }
+  ]
+}

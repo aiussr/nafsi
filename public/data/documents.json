@@ -1,0 +1,38 @@
+[
+  {
+    "id": "doc-001",
+    "title": {
+      "en": "Timeline: Iran-Israel Direct Military Confrontation",
+      "he": "ציר זמן: עימות צבאי ישיר איראן-ישראל",
+      "ar": "الجدول الزمني: المواجهة العسكرية المباشرة بين إيران وإسرائيل"
+    },
+    "type": "compilation",
+    "date": "2025-10-28",
+    "description": {
+      "en": "Comprehensive timeline documenting the escalation of direct military confrontation between Iran and Israel, including missile strikes and retaliatory operations.",
+      "he": "ציר זמן מקיף המתעד את ההסלמה בעימות הצבאי הישיר בין איראן וישראל, כולל מתקפות טילים ומבצעי תגמול.",
+      "ar": "جدول زمني شامل يوثق تصعيد المواجهة العسكرية المباشرة بين إيران وإسرائيل، بما في ذلك الضربات الصاروخية وعمليات الانتقام."
+    },
+    "url": "#",
+    "tags": ["timeline", "escalation", "missiles"],
+    "sources": ["src-001", "src-002"]
+  },
+  {
+    "id": "doc-002",
+    "title": {
+      "en": "Analysis: Iran's Missile Arsenal Capabilities",
+      "he": "ניתוח: יכולות מערך הטילים של איראן",
+      "ar": "تحليل: قدرات ترسانة الصواريخ الإيرانية"
+    },
+    "type": "analysis",
+    "date": "2025-10-15",
+    "description": {
+      "en": "In-depth analysis of Iran's ballistic missile program, including types deployed, accuracy assessments, and defense penetration capabilities.",
+      "he": "ניתוח מעמיק של תוכנית הטילים הבליסטיים של איראן, כולל סוגי הטילים שהופעלו, הערכות דיוק ויכולות חדירה להגנה.",
+      "ar": "تحليل معمق لبرنامج الصواريخ الباليستية الإيراني، بما في ذلك الأنواع المنشورة وتقييمات الدقة وقدرات اختراق الدفاعات."
+    },
+    "url": "#",
+    "tags": ["missiles", "iran", "analysis"],
+    "sources": ["src-005"]
+  }
+]

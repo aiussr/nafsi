@@ -1,0 +1,121 @@
+{
+  "site": {
+    "name": "WarScope",
+    "tagline": "متتبع الصراع الإيراني الإسرائيلي",
+    "description": "تتبع وتحليل الصراع الإيراني الإسرائيلي في الوقت الفعلي"
+  },
+  "nav": {
+    "home": "لوحة القيادة",
+    "feed": "تحديثات مباشرة",
+    "map": "الخريطة",
+    "economy": "الاقتصاد",
+    "arsenal": "الترسانة",
+    "blackouts": "انقطاعات",
+    "documents": "وثائق",
+    "sources": "المصادر"
+  },
+  "common": {
+    "loading": "جاري التحميل...",
+    "error": "خطأ في تحميل البيانات",
+    "noData": "لا توجد بيانات متاحة",
+    "verified": "موثق",
+    "unverified": "غير موثق",
+    "share": "مشاركة",
+    "copyLink": "نسخ الرابط",
+    "copied": "تم النسخ!",
+    "viewAll": "عرض الكل",
+    "filter": "تصفية",
+    "search": "بحث...",
+    "lastUpdated": "آخر تحديث",
+    "source": "مصدر",
+    "sources": "مصادر",
+    "ongoing": "مستمر",
+    "resolved": "تم الحل",
+    "all": "الكل"
+  },
+  "home": {
+    "latestEvents": "أحدث الأحداث",
+    "keyStats": "إحصائيات رئيسية",
+    "quickMap": "نظرة عامة على الصراع",
+    "economicSnapshot": "لمحة اقتصادية",
+    "totalEvents": "إجمالي الأحداث",
+    "activeBlackouts": "انقطاعات نشطة",
+    "missilesTracked": "صواريخ متتبعة",
+    "countriesInvolved": "دول معنية"
+  },
+  "feed": {
+    "title": "تغذية الأحداث المباشرة",
+    "filterByType": "تصفية حسب النوع",
+    "filterBySeverity": "تصفية حسب الخطورة",
+    "filterByCountry": "تصفية حسب البلد"
+  },
+  "map": {
+    "title": "خريطة الصراع",
+    "layers": "طبقات الخريطة",
+    "targets": "أهداف",
+    "launchSites": "مواقع الإطلاق",
+    "interceptions": "اعتراضات",
+    "blackoutZones": "مناطق الانقطاع",
+    "militaryBases": "قواعد عسكرية",
+    "missilePaths": "مسارات الصواريخ",
+    "legend": "مفتاح الخريطة"
+  },
+  "economy": {
+    "title": "التأثير الاقتصادي",
+    "oil": "أسعار النفط",
+    "currency": "العملات",
+    "stock": "أسواق الأسهم",
+    "trade": "التجارة",
+    "inflation": "التضخم"
+  },
+  "arsenal": {
+    "title": "قاعدة بيانات الصواريخ والأسلحة",
+    "iran": "إيران",
+    "israel": "إسرائيل",
+    "range": "المدى",
+    "speed": "السرعة",
+    "warhead": "الرأس الحربي",
+    "type": "النوع",
+    "specifications": "المواصفات"
+  },
+  "blackout": {
+    "title": "متتبع الانقطاعات",
+    "internet": "الإنترنت",
+    "power": "الكهرباء",
+    "communications": "الاتصالات",
+    "gps": "نظام تحديد المواقع",
+    "affected": "المنطقة المتأثرة"
+  },
+  "documents": {
+    "title": "وثائق وتحليلات",
+    "report": "تقرير",
+    "video": "فيديو",
+    "analysis": "تحليل",
+    "compilation": "تجميع"
+  },
+  "sources_page": {
+    "title": "دليل المصادر",
+    "credibility": "المصداقية",
+    "high": "عالية",
+    "medium": "متوسطة",
+    "low": "منخفضة",
+    "unverified": "غير موثق"
+  },
+  "share": {
+    "shareOn": "مشاركة على",
+    "whatsapp": "واتساب",
+    "twitter": "X (تويتر)",
+    "instagram": "إنستغرام",
+    "copyToClipboard": "نسخ إلى الحافظة"
+  },
+  "footer": {
+    "disclaimer": "المعلومات مقدمة لأغراض تعليمية وبحثية. تحقق من جميع البيانات مع المصادر الأولية.",
+    "lastUpdate": "آخر تحديث للبيانات"
+  },
+  "severity": {
+    "critical": "حرج",
+    "high": "مرتفع",
+    "medium": "متوسط",
+    "low": "منخفض"
+  }
+}

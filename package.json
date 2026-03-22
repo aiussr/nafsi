@@ -1,22 +1,38 @@
 {
-  "name": "uniflow-study-planner",
+  "name": "warscope",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
+  "description": "WarScope — Iran-Israel Conflict Tracker",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
+    "date-fns": "^3.6.0",
+    "i18next": "^23.11.0",
+    "i18next-browser-languagedetector": "^7.2.0",
+    "leaflet": "^1.9.4",
     "lucide-react": "^0.555.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "@google/genai": "^1.30.0"
+    "react-i18next": "^14.1.0",
+    "react-leaflet": "^4.2.1",
+    "react-router-dom": "^7.1.0",
+    "recharts": "^2.12.0",
+    "rss-parser": "^3.13.0"
   },
   "devDependencies": {
+    "@netlify/functions": "^2.6.0",
+    "@types/leaflet": "^1.9.8",
     "@types/node": "^22.14.0",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.0.0",
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.4",
     "typescript": "~5.8.2",
     "vite": "^6.2.0"
   }

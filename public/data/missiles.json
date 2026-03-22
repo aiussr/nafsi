@@ -1,0 +1,101 @@
+[
+  {
+    "id": "msl-001",
+    "name": { "en": "Fattah-1", "he": "פאתח-1", "ar": "فتاح-1" },
+    "country": "IR",
+    "type": "hypersonic",
+    "range_km": 1400,
+    "warhead_kg": 500,
+    "speed": "hypersonic",
+    "description": {
+      "en": "Iran's first claimed hypersonic ballistic missile. Features a maneuverable re-entry vehicle (MaRV) designed to evade missile defense systems.",
+      "he": "הטיל הבליסטי ההיפרסוני הראשון שאיראן טענה לגביו. כולל כלי חזרה לאטמוספרה מתמרן שנועד לחמוק ממערכות הגנה.",
+      "ar": "أول صاروخ باليستي فرط صوتي تدعيه إيران. يتميز بمركبة عودة قابلة للمناورة مصممة للتهرب من أنظمة الدفاع الصاروخي."
+    },
+    "image": "/images/missiles/fattah-1.png",
+    "specs": { "length_m": 12, "diameter_m": 0.8, "guidance": "INS/GPS + MaRV" },
+    "sources": ["src-005"]
+  },
+  {
+    "id": "msl-002",
+    "name": { "en": "Emad", "he": "עמאד", "ar": "عماد" },
+    "country": "IR",
+    "type": "ballistic",
+    "range_km": 1700,
+    "warhead_kg": 750,
+    "speed": "supersonic",
+    "description": {
+      "en": "Medium-range ballistic missile with improved accuracy over Shahab-3. Features a maneuverable reentry vehicle.",
+      "he": "טיל בליסטי בטווח בינוני עם דיוק משופר לעומת שהאב-3. כולל כלי חזרה לאטמוספרה מתמרן.",
+      "ar": "صاروخ باليستي متوسط المدى بدقة محسنة مقارنة بشهاب-3. يتميز بمركبة عودة قابلة للمناورة."
+    },
+    "image": "/images/missiles/emad.png",
+    "specs": { "length_m": 15.8, "diameter_m": 1.25, "guidance": "INS + terminal guidance" },
+    "sources": ["src-005"]
+  },
+  {
+    "id": "msl-003",
+    "name": { "en": "Kheibar Shekan", "he": "חייבר שקאן", "ar": "خيبر شكن" },
+    "country": "IR",
+    "type": "ballistic",
+    "range_km": 1450,
+    "warhead_kg": 500,
+    "speed": "supersonic",
+    "description": {
+      "en": "Solid-fueled medium-range ballistic missile. Third generation of Fateh family with improved range and reduced launch preparation time.",
+      "he": "טיל בליסטי בטווח בינוני עם דלק מוצק. הדור השלישי של משפחת פאתח עם טווח משופר וזמן הכנה לשיגור מקוצר.",
+      "ar": "صاروخ باليستي متوسط المدى يعمل بالوقود الصلب. الجيل الثالث من عائلة فاتح بمدى محسن ووقت تحضير إطلاق أقل."
+    },
+    "image": "/images/missiles/kheibar-shekan.png",
+    "specs": { "length_m": 11, "diameter_m": 0.6, "guidance": "INS/GPS" },
+    "sources": ["src-005"]
+  },
+  {
+    "id": "msl-004",
+    "name": { "en": "Arrow 3", "he": "חץ 3", "ar": "أرو 3" },
+    "country": "IL",
+    "type": "interceptor",
+    "range_km": 2400,
+    "speed": "hypersonic",
+    "description": {
+      "en": "Exo-atmospheric anti-ballistic missile system. Designed to intercept ballistic missiles during the space-flight portion of their trajectory.",
+      "he": "מערכת טילי נגד בליסטיים אקסו-אטמוספריים. מיועדת ליירט טילים בליסטיים בשלב הטיסה בחלל של מסלולם.",
+      "ar": "نظام صواريخ مضادة للصواريخ الباليستية خارج الغلاف الجوي. مصمم لاعتراض الصواريخ الباليستية أثناء مرحلة الطيران الفضائي."
+    },
+    "image": "/images/missiles/arrow-3.png",
+    "specs": { "length_m": 7, "diameter_m": 0.5, "guidance": "Two-color infrared seeker" },
+    "sources": ["src-004"]
+  },
+  {
+    "id": "msl-005",
+    "name": { "en": "David's Sling", "he": "קלע דוד", "ar": "مقلاع داوود" },
+    "country": "IL",
+    "type": "interceptor",
+    "range_km": 300,
+    "speed": "supersonic",
+    "description": {
+      "en": "Medium-range air defense system designed to intercept enemy planes, drones, tactical ballistic missiles, and cruise missiles.",
+      "he": "מערכת הגנה אווירית בטווח בינוני המיועדת ליירט מטוסי אויב, מל\"טים, טילים בליסטיים טקטיים וטילי שיוט.",
+      "ar": "نظام دفاع جوي متوسط المدى مصمم لاعتراض طائرات العدو والطائرات بدون طيار والصواريخ الباليستية التكتيكية وصواريخ كروز."
+    },
+    "image": "/images/missiles/davids-sling.png",
+    "specs": { "length_m": 4.6, "diameter_m": 0.36, "guidance": "Electro-optical/radar" },
+    "sources": ["src-004"]
+  },
+  {
+    "id": "msl-006",
+    "name": { "en": "Iron Dome", "he": "כיפת ברזל", "ar": "القبة الحديدية" },
+    "country": "IL",
+    "type": "air-defense",
+    "range_km": 70,
+    "speed": "supersonic",
+    "description": {
+      "en": "Short-range air defense system designed to intercept rockets, artillery shells, and mortars. Highly effective against short-range threats.",
+      "he": "מערכת הגנה אווירית לטווח קצר המיועדת ליירט רקטות, פגזי ארטילריה ומרגמות. יעילה מאוד מול איומים בטווח קצר.",
+      "ar": "نظام دفاع جوي قصير المدى مصمم لاعتراض الصواريخ وقذائف المدفعية والهاون. فعال للغاية ضد التهديدات قصيرة المدى."
+    },
+    "image": "/images/missiles/iron-dome.png",
+    "specs": { "length_m": 3, "diameter_m": 0.16, "guidance": "Electro-optical radar" },
+    "sources": ["src-004"]
+  }
+]

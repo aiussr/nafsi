@@ -1,0 +1,65 @@
+[
+  {
+    "id": "src-001",
+    "name": "Reuters",
+    "type": "news_agency",
+    "url": "https://www.reuters.com",
+    "credibility": "high",
+    "country": "UK",
+    "description": { "en": "International news agency", "he": "סוכנות ידיעות בינלאומית", "ar": "وكالة أنباء دولية" }
+  },
+  {
+    "id": "src-002",
+    "name": "Al Jazeera",
+    "type": "news_agency",
+    "url": "https://www.aljazeera.com",
+    "credibility": "medium",
+    "country": "QA",
+    "description": { "en": "Qatar-based international news network", "he": "רשת חדשות בינלאומית מבוססת קטאר", "ar": "شبكة أخبار دولية مقرها قطر" }
+  },
+  {
+    "id": "src-003",
+    "name": "BBC News",
+    "type": "news_agency",
+    "url": "https://www.bbc.com/news",
+    "credibility": "high",
+    "country": "UK",
+    "description": { "en": "British Broadcasting Corporation", "he": "תאגיד השידור הבריטי", "ar": "هيئة الإذاعة البريطانية" }
+  },
+  {
+    "id": "src-004",
+    "name": "IDF Spokesperson",
+    "type": "government",
+    "url": "https://www.idf.il",
+    "credibility": "medium",
+    "country": "IL",
+    "description": { "en": "Israel Defense Forces official communications", "he": "דובר צה\"ל - תקשורת רשמית", "ar": "الاتصالات الرسمية لقوات الدفاع الإسرائيلية" }
+  },
+  {
+    "id": "src-005",
+    "name": "CSIS Missile Threat",
+    "type": "think_tank",
+    "url": "https://missilethreat.csis.org",
+    "credibility": "high",
+    "country": "US",
+    "description": { "en": "Center for Strategic and International Studies missile database", "he": "מרכז ללימודים אסטרטגיים ובינלאומיים - מסד נתוני טילים", "ar": "قاعدة بيانات الصواريخ لمركز الدراسات الاستراتيجية والدولية" }
+  },
+  {
+    "id": "src-006",
+    "name": "Bloomberg",
+    "type": "news_agency",
+    "url": "https://www.bloomberg.com",
+    "credibility": "high",
+    "country": "US",
+    "description": { "en": "Financial and economic news service", "he": "שירות חדשות פיננסיות וכלכליות", "ar": "خدمة أخبار مالية واقتصادية" }
+  },
+  {
+    "id": "src-007",
+    "name": "NetBlocks",
+    "type": "osint",
+    "url": "https://netblocks.org",
+    "credibility": "high",
+    "country": "UK",
+    "description": { "en": "Internet observatory tracking connectivity disruptions worldwide", "he": "מצפה אינטרנט העוקב אחר שיבושי קישוריות ברחבי העולם", "ar": "مرصد الإنترنت لتتبع انقطاعات الاتصال حول العالم" }
+  }
+]

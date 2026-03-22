@@ -1,0 +1,121 @@
+{
+  "site": {
+    "name": "WarScope",
+    "tagline": "מעקב אחר העימות איראן-ישראל",
+    "description": "מעקב וניתוח בזמן אמת של העימות איראן-ישראל"
+  },
+  "nav": {
+    "home": "לוח בקרה",
+    "feed": "עדכונים חיים",
+    "map": "מפה",
+    "economy": "כלכלה",
+    "arsenal": "ארסנל",
+    "blackouts": "האפלות",
+    "documents": "מסמכים",
+    "sources": "מקורות"
+  },
+  "common": {
+    "loading": "טוען...",
+    "error": "שגיאה בטעינת נתונים",
+    "noData": "אין נתונים זמינים",
+    "verified": "מאומת",
+    "unverified": "לא מאומת",
+    "share": "שתף",
+    "copyLink": "העתק קישור",
+    "copied": "הועתק!",
+    "viewAll": "הצג הכל",
+    "filter": "סנן",
+    "search": "חיפוש...",
+    "lastUpdated": "עודכן לאחרונה",
+    "source": "מקור",
+    "sources": "מקורות",
+    "ongoing": "פעיל",
+    "resolved": "נפתר",
+    "all": "הכל"
+  },
+  "home": {
+    "latestEvents": "אירועים אחרונים",
+    "keyStats": "נתונים מרכזיים",
+    "quickMap": "סקירת עימות",
+    "economicSnapshot": "תמונת מצב כלכלית",
+    "totalEvents": "סה\"כ אירועים",
+    "activeBlackouts": "האפלות פעילות",
+    "missilesTracked": "טילים במעקב",
+    "countriesInvolved": "מדינות מעורבות"
+  },
+  "feed": {
+    "title": "עדכוני אירועים חיים",
+    "filterByType": "סנן לפי סוג",
+    "filterBySeverity": "סנן לפי חומרה",
+    "filterByCountry": "סנן לפי מדינה"
+  },
+  "map": {
+    "title": "מפת עימות",
+    "layers": "שכבות מפה",
+    "targets": "מטרות",
+    "launchSites": "אתרי שיגור",
+    "interceptions": "יירוטים",
+    "blackoutZones": "אזורי האפלה",
+    "militaryBases": "בסיסים צבאיים",
+    "missilePaths": "מסלולי טילים",
+    "legend": "מקרא"
+  },
+  "economy": {
+    "title": "השפעה כלכלית",
+    "oil": "מחירי נפט",
+    "currency": "מטבע",
+    "stock": "שוקי מניות",
+    "trade": "סחר",
+    "inflation": "אינפלציה"
+  },
+  "arsenal": {
+    "title": "מסד נתוני טילים ונשק",
+    "iran": "איראן",
+    "israel": "ישראל",
+    "range": "טווח",
+    "speed": "מהירות",
+    "warhead": "ראש נפץ",
+    "type": "סוג",
+    "specifications": "מפרטים"
+  },
+  "blackout": {
+    "title": "מעקב האפלות",
+    "internet": "אינטרנט",
+    "power": "חשמל",
+    "communications": "תקשורת",
+    "gps": "GPS",
+    "affected": "אזור מושפע"
+  },
+  "documents": {
+    "title": "מסמכים וניתוחים",
+    "report": "דו\"ח",
+    "video": "וידאו",
+    "analysis": "ניתוח",
+    "compilation": "אוסף"
+  },
+  "sources_page": {
+    "title": "ספריית מקורות",
+    "credibility": "אמינות",
+    "high": "גבוהה",
+    "medium": "בינונית",
+    "low": "נמוכה",
+    "unverified": "לא מאומת"
+  },
+  "share": {
+    "shareOn": "שתף ב",
+    "whatsapp": "וואטסאפ",
+    "twitter": "X (טוויטר)",
+    "instagram": "אינסטגרם",
+    "copyToClipboard": "העתק ללוח"
+  },
+  "footer": {
+    "disclaimer": "המידע מסופק למטרות חינוכיות ומחקריות. אמתו את כל הנתונים עם מקורות ראשוניים.",
+    "lastUpdate": "נתונים עודכנו לאחרונה"
+  },
+  "severity": {
+    "critical": "קריטי",
+    "high": "גבוה",
+    "medium": "בינוני",
+    "low": "נמוך"
+  }
+}

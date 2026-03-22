@@ -1,62 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="color-scheme" content="light">
-    <title>UniFlow Study Planner</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              background: '#f8fafc', // slate-50
-              surface: '#ffffff',
-              primary: '#0f172a', // slate-900
-              secondary: '#64748b', // slate-500
-              prob: '#3b82f6', // blue-500
-              stats: '#10b981', // emerald-500
-              game: '#f43f5e', // rose-500
-            },
-            fontFamily: {
-              sans: ['Inter', 'sans-serif'],
-            },
-          },
-        },
-      };
-    </script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-      body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #0f172a; }
-      /* Custom scrollbar for better aesthetics */
-      ::-webkit-scrollbar { width: 6px; height: 6px; }
-      ::-webkit-scrollbar-track { background: transparent; }
-      ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
-      ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
-      
-      /* Force inputs to be visible */
-      input, textarea, select {
-        background-color: #ffffff !important;
-        color: #000000 !important;
-      }
-    </style>
-  <script type="importmap">
-{
-  "imports": {
-    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0",
-    "react/": "https://aistudiocdn.com/react@^19.2.0/",
-    "react": "https://aistudiocdn.com/react@^19.2.0",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
-    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
-    "react-dom": "https://aistudiocdn.com/react-dom@^19.2.0"
-  }
-}
-</script>
-<link rel="stylesheet" href="/index.css">
-</head>
-  <body>
+    <meta name="color-scheme" content="dark" />
+    <title>WarScope — Iran-Israel Conflict Tracker</title>
+    <meta name="description" content="Real-time tracking of the Iran-Israel conflict. Live updates, interactive maps, economic impact, missile database, and comprehensive documentation." />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="WarScope — Iran-Israel Conflict Tracker" />
+    <meta property="og:description" content="Real-time conflict tracking with interactive maps, live updates, and economic impact analysis." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/images/og-cover.png" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="WarScope — Iran-Israel Conflict Tracker" />
+    <meta name="twitter:description" content="Real-time conflict tracking with interactive maps, live updates, and economic impact analysis." />
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+  </head>
+  <body class="bg-dark-900 text-gray-100 antialiased">
     <div id="root"></div>
-  <script type="module" src="/index.tsx"></script>
-</body>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>

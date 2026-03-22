@@ -1,0 +1,121 @@
+{
+  "site": {
+    "name": "WarScope",
+    "tagline": "Iran-Israel Conflict Tracker",
+    "description": "Real-time tracking and analysis of the Iran-Israel conflict"
+  },
+  "nav": {
+    "home": "Dashboard",
+    "feed": "Live Feed",
+    "map": "Map",
+    "economy": "Economy",
+    "arsenal": "Arsenal",
+    "blackouts": "Blackouts",
+    "documents": "Documents",
+    "sources": "Sources"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error loading data",
+    "noData": "No data available",
+    "verified": "Verified",
+    "unverified": "Unverified",
+    "share": "Share",
+    "copyLink": "Copy Link",
+    "copied": "Copied!",
+    "viewAll": "View All",
+    "filter": "Filter",
+    "search": "Search...",
+    "lastUpdated": "Last updated",
+    "source": "Source",
+    "sources": "Sources",
+    "ongoing": "Ongoing",
+    "resolved": "Resolved",
+    "all": "All"
+  },
+  "home": {
+    "latestEvents": "Latest Events",
+    "keyStats": "Key Statistics",
+    "quickMap": "Conflict Overview",
+    "economicSnapshot": "Economic Snapshot",
+    "totalEvents": "Total Events",
+    "activeBlackouts": "Active Blackouts",
+    "missilesTracked": "Missiles Tracked",
+    "countriesInvolved": "Countries Involved"
+  },
+  "feed": {
+    "title": "Live Event Feed",
+    "filterByType": "Filter by type",
+    "filterBySeverity": "Filter by severity",
+    "filterByCountry": "Filter by country"
+  },
+  "map": {
+    "title": "Conflict Map",
+    "layers": "Map Layers",
+    "targets": "Targets",
+    "launchSites": "Launch Sites",
+    "interceptions": "Interceptions",
+    "blackoutZones": "Blackout Zones",
+    "militaryBases": "Military Bases",
+    "missilePaths": "Missile Paths",
+    "legend": "Legend"
+  },
+  "economy": {
+    "title": "Economic Impact",
+    "oil": "Oil Prices",
+    "currency": "Currency",
+    "stock": "Stock Markets",
+    "trade": "Trade",
+    "inflation": "Inflation"
+  },
+  "arsenal": {
+    "title": "Missile & Weapons Database",
+    "iran": "Iran",
+    "israel": "Israel",
+    "range": "Range",
+    "speed": "Speed",
+    "warhead": "Warhead",
+    "type": "Type",
+    "specifications": "Specifications"
+  },
+  "blackout": {
+    "title": "Blackout Tracker",
+    "internet": "Internet",
+    "power": "Power",
+    "communications": "Communications",
+    "gps": "GPS",
+    "affected": "Affected Area"
+  },
+  "documents": {
+    "title": "Documents & Analysis",
+    "report": "Report",
+    "video": "Video",
+    "analysis": "Analysis",
+    "compilation": "Compilation"
+  },
+  "sources_page": {
+    "title": "Source Directory",
+    "credibility": "Credibility",
+    "high": "High",
+    "medium": "Medium",
+    "low": "Low",
+    "unverified": "Unverified"
+  },
+  "share": {
+    "shareOn": "Share on",
+    "whatsapp": "WhatsApp",
+    "twitter": "X (Twitter)",
+    "instagram": "Instagram",
+    "copyToClipboard": "Copy to clipboard"
+  },
+  "footer": {
+    "disclaimer": "Information provided for educational and research purposes. Verify all data with primary sources.",
+    "lastUpdate": "Data last updated"
+  },
+  "severity": {
+    "critical": "Critical",
+    "high": "High",
+    "medium": "Medium",
+    "low": "Low"
+  }
+}
