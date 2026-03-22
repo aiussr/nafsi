@@ -1,0 +1,66 @@
+[
+  {
+    "_comment": "Add events here. Each event needs: id, timestamp, title (en/he/ar), description, type, location, severity, sources array, media array, verified boolean.",
+    "id": "evt-001",
+    "timestamp": "2025-10-01T03:00:00Z",
+    "title": {
+      "en": "Iran launches ballistic missile salvo toward Israel",
+      "he": "איראן שיגרה מטח טילים בליסטיים לעבר ישראל",
+      "ar": "إيران تطلق وابلاً من الصواريخ الباليستية باتجاه إسرائيل"
+    },
+    "description": {
+      "en": "Iran's IRGC launched approximately 180 ballistic missiles toward multiple targets in Israel, marking a significant escalation in direct confrontation between the two nations.",
+      "he": "משמרות המהפכה של איראן שיגרו כ-180 טילים בליסטיים לעבר מטרות מרובות בישראל, במה שמהווה הסלמה משמעותית בעימות הישיר בין שתי המדינות.",
+      "ar": "أطلق الحرس الثوري الإيراني حوالي 180 صاروخاً باليستياً باتجاه أهداف متعددة في إسرائيل، مما يمثل تصعيداً كبيراً في المواجهة المباشرة بين البلدين."
+    },
+    "type": "missile",
+    "location": { "name": "Multiple locations, Israel", "lat": 32.0853, "lng": 34.7818, "country": "IL" },
+    "severity": "critical",
+    "sources": ["src-001", "src-002", "src-003"],
+    "media": [],
+    "relatedEvents": ["evt-002"],
+    "verified": true
+  },
+  {
+    "id": "evt-002",
+    "timestamp": "2025-10-01T03:15:00Z",
+    "title": {
+      "en": "Israel activates multi-layer air defense system",
+      "he": "ישראל מפעילה מערכת הגנה אווירית רב-שכבתית",
+      "ar": "إسرائيل تفعل نظام الدفاع الجوي متعدد الطبقات"
+    },
+    "description": {
+      "en": "Israel's Arrow, David's Sling, and Iron Dome systems engaged incoming missiles. Reports indicate majority of missiles intercepted.",
+      "he": "מערכות חץ, קלע דוד וכיפת ברזל של ישראל יירטו את הטילים הנכנסים. דיווחים מצביעים על כך שרוב הטילים יורטו.",
+      "ar": "أنظمة السهم ومقلاع داوود والقبة الحديدية الإسرائيلية اعترضت الصواريخ القادمة. تشير التقارير إلى اعتراض غالبية الصواريخ."
+    },
+    "type": "interception",
+    "location": { "name": "Israel Airspace", "lat": 31.5, "lng": 34.75, "country": "IL" },
+    "severity": "critical",
+    "sources": ["src-001", "src-004"],
+    "media": [],
+    "relatedEvents": ["evt-001"],
+    "verified": true
+  },
+  {
+    "id": "evt-003",
+    "timestamp": "2025-10-26T02:00:00Z",
+    "title": {
+      "en": "Israel retaliates with strikes on Iranian military targets",
+      "he": "ישראל תוקפת בתגובה מטרות צבאיות באיראן",
+      "ar": "إسرائيل ترد بضربات على أهداف عسكرية إيرانية"
+    },
+    "description": {
+      "en": "Israeli Air Force conducted Operation Days of Repentance, striking IRGC missile production facilities and air defense systems across multiple provinces in Iran.",
+      "he": "חיל האוויר הישראלי ביצע את מבצע ימי התשובה, ותקף מתקני ייצור טילים של משמרות המהפכה ומערכות הגנה אווירית במספר מחוזות באיראן.",
+      "ar": "نفذ سلاح الجو الإسرائيلي عملية أيام التوبة، حيث استهدف منشآت إنتاج الصواريخ التابعة للحرس الثوري وأنظمة الدفاع الجوي عبر عدة محافظات في إيران."
+    },
+    "type": "strike",
+    "location": { "name": "Multiple provinces, Iran", "lat": 32.65, "lng": 51.68, "country": "IR" },
+    "severity": "critical",
+    "sources": ["src-001", "src-002", "src-004"],
+    "media": [],
+    "relatedEvents": ["evt-001"],
+    "verified": true
+  }
+]

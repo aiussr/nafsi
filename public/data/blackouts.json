@@ -1,0 +1,32 @@
+[
+  {
+    "id": "blo-001",
+    "location": { "name": "Tehran", "lat": 35.6892, "lng": 51.389, "country": "IR" },
+    "type": "internet",
+    "startTime": "2025-10-01T02:45:00Z",
+    "endTime": "2025-10-01T08:00:00Z",
+    "status": "resolved",
+    "affectedArea_km2": 730,
+    "description": {
+      "en": "Widespread internet disruption reported across Tehran during missile launch operations. Major ISPs reported service outages.",
+      "he": "דווח על שיבוש אינטרנט נרחב ברחבי טהראן במהלך מבצעי שיגור טילים. ספקי אינטרנט גדולים דיווחו על הפסקות שירות.",
+      "ar": "تم الإبلاغ عن انقطاع واسع النطاق للإنترنت في أنحاء طهران خلال عمليات إطلاق الصواريخ. أبلغ مزودو خدمات الإنترنت الرئيسيون عن انقطاع الخدمة."
+    },
+    "sources": ["src-007"]
+  },
+  {
+    "id": "blo-002",
+    "location": { "name": "Isfahan", "lat": 32.6546, "lng": 51.668, "country": "IR" },
+    "type": "power",
+    "startTime": "2025-10-26T02:30:00Z",
+    "endTime": "2025-10-26T14:00:00Z",
+    "status": "resolved",
+    "affectedArea_km2": 500,
+    "description": {
+      "en": "Power outages reported in Isfahan province following Israeli strikes on military installations. Civilian infrastructure partially affected.",
+      "he": "דווח על הפסקות חשמל במחוז אספהאן בעקבות תקיפות ישראליות על מתקנים צבאיים. תשתית אזרחית נפגעה חלקית.",
+      "ar": "تم الإبلاغ عن انقطاع التيار الكهربائي في محافظة أصفهان بعد الضربات الإسرائيلية على المنشآت العسكرية. تضررت البنية التحتية المدنية جزئياً."
+    },
+    "sources": ["src-007"]
+  }
+]

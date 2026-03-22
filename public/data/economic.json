@@ -1,0 +1,53 @@
+[
+  {
+    "id": "eco-001",
+    "indicator": { "en": "Brent Crude Oil", "he": "נפט גולמי ברנט", "ar": "نفط برنت الخام" },
+    "category": "oil",
+    "dataPoints": [
+      { "date": "2025-09-28", "value": 71.5 },
+      { "date": "2025-09-29", "value": 72.0 },
+      { "date": "2025-09-30", "value": 71.8 },
+      { "date": "2025-10-01", "value": 75.2, "note": "Post-missile salvo spike" },
+      { "date": "2025-10-02", "value": 78.4, "note": "Continued rise on escalation fears" },
+      { "date": "2025-10-03", "value": 76.1 },
+      { "date": "2025-10-07", "value": 74.5 },
+      { "date": "2025-10-14", "value": 73.2 },
+      { "date": "2025-10-26", "value": 77.8, "note": "Israeli retaliation strikes" },
+      { "date": "2025-10-28", "value": 75.0 }
+    ],
+    "unit": "USD/barrel",
+    "sources": ["src-006"]
+  },
+  {
+    "id": "eco-002",
+    "indicator": { "en": "USD/ILS Exchange Rate", "he": "שער דולר/שקל", "ar": "سعر صرف الدولار/الشيكل" },
+    "category": "currency",
+    "dataPoints": [
+      { "date": "2025-09-28", "value": 3.62 },
+      { "date": "2025-09-30", "value": 3.65 },
+      { "date": "2025-10-01", "value": 3.78, "note": "Shekel weakens post-attack" },
+      { "date": "2025-10-02", "value": 3.82 },
+      { "date": "2025-10-07", "value": 3.75 },
+      { "date": "2025-10-14", "value": 3.70 },
+      { "date": "2025-10-26", "value": 3.76 },
+      { "date": "2025-10-28", "value": 3.72 }
+    ],
+    "unit": "ILS per USD",
+    "sources": ["src-006"]
+  },
+  {
+    "id": "eco-003",
+    "indicator": { "en": "Tehran Stock Exchange (TEDPIX)", "he": "בורסת טהראן (TEDPIX)", "ar": "بورصة طهران (TEDPIX)" },
+    "category": "stock",
+    "dataPoints": [
+      { "date": "2025-09-28", "value": 2100000 },
+      { "date": "2025-09-30", "value": 2085000 },
+      { "date": "2025-10-01", "value": 1950000, "note": "Sharp drop on conflict escalation" },
+      { "date": "2025-10-02", "value": 1920000 },
+      { "date": "2025-10-07", "value": 1980000 },
+      { "date": "2025-10-26", "value": 1890000, "note": "Further decline after Israeli strikes" }
+    ],
+    "unit": "Points",
+    "sources": ["src-006"]
+  }
+]

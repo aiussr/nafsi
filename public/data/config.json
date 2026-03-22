@@ -1,0 +1,12 @@
+{
+  "_comment": "Configuration for live data feeds. Edit RSS feed URLs and GDELT keywords here.",
+  "rssFeeds": [
+    { "name": "Reuters Middle East", "url": "https://www.reuters.com/arc/outboundfeeds/rss/category/middle-east/", "enabled": true },
+    { "name": "Al Jazeera", "url": "https://www.aljazeera.com/xml/rss/all.xml", "enabled": true },
+    { "name": "BBC Middle East", "url": "https://feeds.bbci.co.uk/news/world/middle_east/rss.xml", "enabled": true },
+    { "name": "Times of Israel", "url": "https://www.timesofisrael.com/feed/", "enabled": true }
+  ],
+  "gdeltKeywords": ["iran", "israel", "missile", "strike", "military", "tehran", "idf", "irgc", "hezbollah"],
+  "refreshIntervalMs": 300000,
+  "conflictKeywords": ["iran", "israel", "missile", "strike", "attack", "military", "tehran", "tel aviv", "idf", "irgc", "nuclear", "drone", "interception", "iron dome", "ballistic"]
+}
